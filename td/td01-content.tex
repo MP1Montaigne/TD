@@ -100,13 +100,13 @@ et $P^{-1}=\frac14P^{\mathsf T}=\frac14P$. D'où
 \exercise{2}{}
 
 \begin{statementbox}
-On dit que $A=(a_{ij})_{1\leq i,j\leq n}\in\M_n(\K)$, une matrice est en damier ssi
+On dit que $A=(a_{ij})_{1\leq i,j\leq n}\in\M_n(\K)$, est une matrice en damier ssi
 \[
 \forall(i,j)\in\intervalint{1}{n}^2,\ i+j\text{ est impair alors }a_{ij}=0.
 \]
 Je note $\DM_n(\K)$ l'ensemble de ces matrices.
 \begin{enumerate}[label=\alph*.]
-  \item Mq $\DM_n(\K)$ est un ss-ev de $\M_n(\K)$ stable par produit.
+  \item Mq $\DM_n(\K)$ est un s-ev de $\M_n(\K)$ stable par produit.
   \item Mq $\DM_n(\K)$ est isomorphe à
   $\M_{\lfloor n/2\rfloor}(\K)\times\M_{\lfloor(n+1)/2\rfloor}(\K)$.
   \item Si $A\in\DM_n(\K)$ est inversible, que dire de $A^{-1}$ ?
@@ -289,6 +289,125 @@ D'où
 \]
 \end{solution}
 
+\exercise{13}{}
+
+\begin{statementbox}
+On admet que si $E$ est un $\C$-e.v., $u\in\Lin(E)$ tel que
+$\forall x\in E\setminus\{0\}$, $(x,u(x))$ est liée,
+ie $\forall x\in E\setminus\{0\}$, $\exists\lambda_x\in\C$, $u(x)=\lambda_xx$, alors
+$\exists\lambda\in\C$, $\forall x\in E$, $u(x)=\lambda x$ : $u$ est une homothétie.
+
+\begin{enumerate}[label=\arabic*)]
+  \item Soit $E$ un $\C$-e.v. de dimension finie, $u\in\Lin(E)$. Mq $\tr(u)=0$ ssi
+  $\exists\mathcal B$ base de $E$ telle que $\Mat_{\mathcal B}(u)$ est une matrice à
+  diagonale nulle.
+
+  \item Soit $n\in\N^*$, $D_n=\operatorname{diag}(1,2,\ldots,n)$. Soit
+  \[
+  \begin{aligned}
+  \varphi:\M_n(\C)&\longrightarrow\M_n(\C),\\M&\longmapsto MD_n-D_nM,
+  \end{aligned}
+  \qquad \varphi\in\Lin(\M_n(\C)).
+  \]
+  Identifier $\Ker\varphi$, en déduire
+  $\Ima\varphi=\{A\in\M_n(\C):A\text{ de diagonale nulle}\}$.
+
+  \item Soit $A\in\M_n(\C)$, mq
+  \[
+  \tr A=0\quad\text{ssi}\quad\exists(B,C)\in\M_n(\C)^2, A=BC-CB.
+  \]
+\end{enumerate}
+\end{statementbox}
+
+\begin{solution}
+\partanswer{1)}
+Supp $\exists\mathcal B$ base de $E$ telle que $\Mat_{\mathcal B}(u)$ est de diagonale
+nulle. Alors $\tr(u)=0$.
+
+Pour $n\in\N^*$, $H_n$ : « Soit $E$ un $\C$-e.v. de dimension $n$ et $u\in\Lin(E)$,
+alors si $\tr(u)=0$ alors $\exists\mathcal B$ base de $E$ telle que
+$\Mat_{\mathcal B}(u)$ est de diagonale nulle. »
+
+I : Si $\dim E=1$, alors $\exists\lambda\in\C$, $u=\lambda\Id_E$ et si $\tr(u)=0$,
+alors $\lambda=0$. Alors $u=0$ et toute base convient.
+
+H : Soit $n\in\N^*$, supposons $H(n)$ est vraie. Alors soit $E$ un $\C$-e.v. de dimension
+$n+1$ et $u\in\Lin(E)$ tel que $\tr(u)=0$.
+
+Si $\exists\lambda\in\C$, $u=\lambda\Id_E$, alors $\tr(u)=(n+1)\lambda$, donc
+$\lambda=0$. Sinon, d'après le résultat admis, $\exists\varepsilon_1\in E$ tel que
+$(u(\varepsilon_1),\varepsilon_1)$ est libre, posons $\varepsilon_2=u(\varepsilon_1)$.
+
+On peut compléter cette famille en une base de $E$ (th. base incomplète) :
+$\mathcal B_1=(\varepsilon_1,\varepsilon_2,\ldots,\varepsilon_{n+1})$. Alors
+\[
+\Mat_{\mathcal B_1}(u)=\begin{pmatrix}0&*\\0&A'\end{pmatrix}.
+\]
+Comme $\tr(u)=0$, $\tr(A')=0$. Posons
+$F=\Vect(\varepsilon_2,\ldots,\varepsilon_{n+1})$, on a $\dim F=n$.
+
+Soit $\pi$ projecteur sur $F$ p.r à $\Vect(\varepsilon_1)$ et
+\[
+\begin{aligned}u':F&\longrightarrow F,\\x&\longmapsto\pi(u(x)),\end{aligned}
+\qquad u'\in\Lin(F).
+\]
+On a $A'=\Mat_{(\varepsilon_2,\ldots,\varepsilon_{n+1})}(u')$, d'où $\tr(u')=0$.
+D'après hyp. de récurrence, $\exists\mathcal B'=(f_2,\ldots,f_{n+1})$ base de $F$ telle
+que $\Mat_{\mathcal B'}(u')=\begin{pmatrix}0&*\\ *&0\end{pmatrix}=C$.
+
+Il vient
+\[
+\Mat_{(\varepsilon_1,f_2,\ldots,f_{n+1})}(u)
+=\begin{pmatrix}0&*\\ *&C\end{pmatrix}
+=\begin{pmatrix}0&*\\ *&0\end{pmatrix}.
+\]
+$(\varepsilon_1,f_2,\ldots,f_{n+1})$ est une base de $E$ car $u(\varepsilon_1)\in F$.
+Donc $H(n+1)$ est vraie, ce qui achève la récurrence.
+
+\partanswer{2)}
+Soit $M=(m_{ij})_{1\leq i,j\leq n}\in\M_n(\C)$.
+\[
+MD_n=(jm_{ij})_{1\leq i,j\leq n},\qquad
+D_nM=(im_{ij})_{1\leq i,j\leq n}.
+\]
+Ainsi $MD_n=D_nM$ ssi $\forall(i,j)\in\intervalint{1}{n}^2$, $jm_{ij}=im_{ij}$,
+ssi $\forall i\neq j\in\intervalint{1}{n}^2$, $m_{ij}=0$, ssi $M$ est diagonale.
+D'où $\Ker\varphi=\{M\in\M_n(\C):M\text{ est diagonale}\}$.
+
+Ce qui précède montre que $\forall M\in\M_n(\C)$, $MD_n-D_nM$ a une diagonale nulle.
+D'après le théorème du rang,
+\[
+\dim(\M_n(\C))=\dim(\Ker\varphi)+\rg(\varphi),
+\]
+d'où $\rg(\varphi)=n^2-n$. Or l'ensemble des matrices à diagonale nulle est de dimension
+$n^2-n$. D'où
+\[
+\underline{\Ima\varphi=\{A\in\M_n(\C):A\text{ de diagonale nulle}\}}.
+\]
+
+\partanswer{3)}
+Supposons que $\exists(B,C)\in\M_n(\C)^2$ : $A=BC-CB$. Alors
+$\tr(A)=\tr(BC)-\tr(CB)=0$.
+
+Réciproquement, si $\tr(A)=0$, soit $u$ c.a. à $A$. D'après 1), il existe
+$A'\in\M_n(\C)$ tq $A$ est semblable à $A'$, et $A'$ est de diagonale nulle :
+\[
+\exists P\in\GL_n(\C),qquad A=P\underbrace{A'}_{\text{diag. nulle}}P^{-1}.
+\]
+Donc il existe, d'après 2), un $M\in\M_n(\C)$ tq $A'=MD_n-D_nM$ et donc
+\begin{align*}
+A&=P(MD_n-D_nM)P^{-1}\\
+&=PMD_nP^{-1}-PD_nMP^{-1}\\
+&=(PMP^{-1})(PD_nP^{-1})-(PD_nP^{-1})(PMP^{-1}).
+\end{align*}
+D'où le résultat.
+
+\begin{remarkbox}
+Il n'y a pas unicité de $B$ et $C$, cf. pour $A=0$ : $B=\lambda I_n$ et
+$C\in\M_n(\C)$.
+\end{remarkbox}
+\end{solution}
+
 \exercise{14}{}
 
 \begin{statementbox}
@@ -385,125 +504,6 @@ Soit $A\in\M_n(\K)$ (avec $n\geq2$), calculer $\rg(\Com(A))$ en fct de celui de 
 \end{itemize}
 \end{solution}
 
-\exercise{16}{}
-
-\begin{statementbox}
-On admet que si $E$ est un $\C$-e.v., $u\in\Lin(E)$ tel que
-$\forall x\in E\setminus\{0\}$, $(x,u(x))$ est liée,
-ie $\forall x\in E\setminus\{0\}$, $\exists\lambda_x\in\C$, $u(x)=\lambda_xx$, alors
-$\exists\lambda\in\C$, $\forall x\in E$, $u(x)=\lambda x$ : $u$ est une homothétie.
-
-\begin{enumerate}[label=\arabic*)]
-  \item Soit $E$ un $\C$-e.v. de dimension finie, $u\in\Lin(E)$. Mq $\tr(u)=0$ ssi
-  $\exists\mathcal B$ base de $E$ telle que $\Mat_{\mathcal B}(u)$ est une matrice à
-  diagonale nulle.
-
-  \item Soit $n\in\N^*$, $D_n=\operatorname{diag}(1,2,\ldots,n)$. Soit
-  \[
-  \begin{aligned}
-  \varphi:\M_n(\C)&\longrightarrow\M_n(\C),\\M&\longmapsto MD_n-D_nM,
-  \end{aligned}
-  \qquad \varphi\in\Lin(\M_n(\C)).
-  \]
-  Identifier $\Ker\varphi$, en déduire
-  $\Ima\varphi=\{A\in\M_n(\C):A\text{ de diagonale nulle}\}$.
-
-  \item Soit $A\in\M_n(\C)$, mq
-  \[
-  \tr A=0\quad\text{ssi}\quad\exists(B,C)\in\M_n(\C)^2,quad A=BC-CB.
-  \]
-\end{enumerate}
-\end{statementbox}
-
-\begin{solution}
-\partanswer{1)}
-Supp $\exists\mathcal B$ base de $E$ telle que $\Mat_{\mathcal B}(u)$ est de diagonale
-nulle. Alors $\tr(u)=0$.
-
-Pour $n\in\N^*$, $H_n$ : « Soit $E$ un $\C$-e.v. de dimension $n$ et $u\in\Lin(E)$,
-alors si $\tr(u)=0$ alors $\exists\mathcal B$ base de $E$ telle que
-$\Mat_{\mathcal B}(u)$ est de diagonale nulle. »
-
-I : Si $\dim E=1$, alors $\exists\lambda\in\C$, $u=\lambda\Id_E$ et si $\tr(u)=0$,
-alors $\lambda=0$. Alors $u=0$ et toute base convient.
-
-H : Soit $n\in\N^*$, supposons $H(n)$ est vraie. Alors soit $E$ un $\C$-e.v. de dimension
-$n+1$ et $u\in\Lin(E)$ tel que $\tr(u)=0$.
-
-Si $\exists\lambda\in\C$, $u=\lambda\Id_E$, alors $\tr(u)=(n+1)\lambda$, donc
-$\lambda=0$. Sinon, d'après le résultat admis, $\exists\varepsilon_1\in E$ tel que
-$(u(\varepsilon_1),\varepsilon_1)$ est libre, posons $\varepsilon_2=u(\varepsilon_1)$.
-
-On peut compléter cette famille en une base de $E$ (th. base incomplète) :
-$\mathcal B_1=(\varepsilon_1,\varepsilon_2,\ldots,\varepsilon_{n+1})$. Alors
-\[
-\Mat_{\mathcal B_1}(u)=\begin{pmatrix}0&*\\0&A'\end{pmatrix}.
-\]
-Comme $\tr(u)=0$, $\tr(A')=0$. Posons
-$F=\Vect(\varepsilon_2,\ldots,\varepsilon_{n+1})$, on a $\dim F=n$.
-
-Soit $\pi$ projecteur sur $F$ p.r à $\Vect(\varepsilon_1)$ et
-\[
-\begin{aligned}u':F&\longrightarrow F,\\x&\longmapsto\pi(u(x)),\end{aligned}
-\qquad u'\in\Lin(F).
-\]
-On a $A'=\Mat_{(\varepsilon_2,\ldots,\varepsilon_{n+1})}(u')$, d'où $\tr(u')=0$.
-D'après hyp. de récurrence, $\exists\mathcal B'=(f_2,\ldots,f_{n+1})$ base de $F$ telle
-que $\Mat_{\mathcal B'}(u')=\begin{pmatrix}0&*\\ *&0\end{pmatrix}=C$.
-
-Il vient
-\[
-\Mat_{(\varepsilon_1,f_2,\ldots,f_{n+1})}(u)
-=\begin{pmatrix}0&*\\ *&C\end{pmatrix}
-=\begin{pmatrix}0&*\\ *&0\end{pmatrix}.
-\]
-$(\varepsilon_1,f_2,\ldots,f_{n+1})$ est une base de $E$ car $u(\varepsilon_1)\in F$.
-Donc $H(n+1)$ est vraie, ce qui achève la récurrence.
-
-\partanswer{2)}
-Soit $M=(m_{ij})_{1\leq i,j\leq n}\in\M_n(\C)$.
-\[
-MD_n=(jm_{ij})_{1\leq i,j\leq n},\qquad
-D_nM=(im_{ij})_{1\leq i,j\leq n}.
-\]
-Ainsi $MD_n=D_nM$ ssi $\forall(i,j)\in\intervalint{1}{n}^2$, $jm_{ij}=im_{ij}$,
-ssi $\forall i\neq j\in\intervalint{1}{n}^2$, $m_{ij}=0$, ssi $M$ est diagonale.
-D'où $\Ker\varphi=\{M\in\M_n(\C):M\text{ est diagonale}\}$.
-
-Ce qui précède montre que $\forall M\in\M_n(\C)$, $MD_n-D_nM$ a une diagonale nulle.
-D'après le théorème du rang,
-\[
-\dim(\M_n(\C))=\dim(\Ker\varphi)+\rg(\varphi),
-\]
-d'où $\rg(\varphi)=n^2-n$. Or l'ensemble des matrices à diagonale nulle est de dimension
-$n^2-n$. D'où
-\[
-\underline{\Ima\varphi=\{A\in\M_n(\C):A\text{ de diagonale nulle}\}}.
-\]
-
-\partanswer{3)}
-Supposons que $\exists(B,C)\in\M_n(\C)^2$ : $A=BC-CB$. Alors
-$\tr(A)=\tr(BC)-\tr(CB)=0$.
-
-Réciproquement, si $\tr(A)=0$, soit $u$ c.a. à $A$. D'après 1), il existe
-$A'\in\M_n(\C)$ tq $A$ est semblable à $A'$, et $A'$ est de diagonale nulle :
-\[
-\exists P\in\GL_n(\C),qquad A=P\underbrace{A'}_{\text{diag. nulle}}P^{-1}.
-\]
-Donc il existe, d'après 2), un $M\in\M_n(\C)$ tq $A'=MD_n-D_nM$ et donc
-\begin{align*}
-A&=P(MD_n-D_nM)P^{-1}\\
-&=PMD_nP^{-1}-PD_nMP^{-1}\\
-&=(PMP^{-1})(PD_nP^{-1})-(PD_nP^{-1})(PMP^{-1}).
-\end{align*}
-D'où le résultat.
-
-\begin{remarkbox}
-Il n'y a pas unicité de $B$ et $C$, cf. pour $A=0$ : $B=\lambda I_n$ et
-$C\in\M_n(\C)$.
-\end{remarkbox}
-\end{solution}
-
 \exercise{18}{}
 
 \begin{statementbox}
@@ -513,7 +513,7 @@ $d_n:=|\{\sigma\in\mathfrak S_n:\forall i\in\intervalint{1}{n},\ \sigma(i)\neq i
 On pose $d_0=1$.
 
 \begin{enumerate}[label=\alph*)]
-  \item Exprimer, pour $n\in\N$, $n!$ en fct de $(d_0,\ldots,d_n)$.
+  \item Exprimer, pour $n\in\N$, $n!$ en fonction de $(d_0,\ldots,d_n)$.
 \end{enumerate}
 \end{statementbox}
 
