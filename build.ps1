@@ -4,11 +4,18 @@ $ErrorActionPreference = 'Stop'
 $ProjectRoot = $PSScriptRoot
 $PdfDirectory = Join-Path $ProjectRoot 'pdf'
 $AuxDirectory = Join-Path $ProjectRoot 'build'
-$MiKTeXBin = Join-Path $env:LOCALAPPDATA 'Programs\MiKTeX\miktex\bin\x64'
-$Latex = Join-Path $MiKTeXBin 'pdflatex.exe'
 
-if (-not (Test-Path -LiteralPath $Latex)) {
-    throw "MiKTeX est introuvable. Installez MiKTeX puis relancez ce script."
+$LatexCommand = Get-Command pdflatex -ErrorAction SilentlyContinue
+if ($LatexCommand) {
+    $Latex = $LatexCommand.Source
+}
+elseif ($env:LOCALAPPDATA) {
+    $MiKTeXBin = Join-Path $env:LOCALAPPDATA 'Programs\MiKTeX\miktex\bin\x64'
+    $Latex = Join-Path $MiKTeXBin 'pdflatex.exe'
+}
+
+if (-not $Latex -or -not (Test-Path -LiteralPath $Latex)) {
+    throw "pdflatex est introuvable. Installez MiKTeX/TeX Live puis relancez ce script."
 }
 
 New-Item -ItemType Directory -Path $PdfDirectory -Force | Out-Null
