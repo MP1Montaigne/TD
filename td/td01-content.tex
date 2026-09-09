@@ -1,0 +1,731 @@
+% Transcription littérale des photographies de photos/01.
+% Les abréviations et l'ordre des raisonnements de la copie sont conservés.
+
+\exercise{1}{}
+
+\begin{statementbox}
+Soit $(x,y,z)\in\R^3$,
+\[
+M(x,y,z)=
+\begin{pmatrix}
+0&x&y&z\\
+x&0&z&y\\
+y&z&0&x\\
+z&y&x&0
+\end{pmatrix}.
+\]
+
+\begin{enumerate}[label=\alph*)]
+  \item Soit
+  \[
+  \varepsilon_1=\begin{pmatrix}1\\1\\1\\1\end{pmatrix},\quad
+  \varepsilon_2=\begin{pmatrix}1\\-1\\1\\-1\end{pmatrix},\quad
+  \varepsilon_3=\begin{pmatrix}1\\1\\-1\\-1\end{pmatrix},\quad
+  \varepsilon_4=\begin{pmatrix}1\\-1\\-1\\1\end{pmatrix}.
+  \]
+  Évaluer $M(x,y,z)\varepsilon_i$ pour $i\in\intervalint{1}{4}$.
+
+  \item Soit $P=(\varepsilon_1\ \varepsilon_2\ \varepsilon_3\ \varepsilon_4)$ ; mq
+  $(\varepsilon_1,\varepsilon_2,\varepsilon_3,\varepsilon_4)$ est une famille orthogonale
+  dans $\R^4$, en déduire que $P$ est inversible.
+
+  \item Soit $u\in\Lin(\R^4)$ c.a. à $M(x,y,z)$. Écrire la matrice de $u$ dans
+  $(\varepsilon_1,\varepsilon_2,\varepsilon_3,\varepsilon_4)$, en déduire des CNS portant
+  sur $(x,y,z)$ pour que $M(x,y,z)$ soit inversible, et donner $M(x,y,z)^{-1}$ dans ce cas.
+\end{enumerate}
+\end{statementbox}
+
+\begin{solution}
+\partanswer{a)}
+\[
+M(x,y,z)\varepsilon_1=(x+y+z)\varepsilon_1,
+\]
+\[
+M(x,y,z)\varepsilon_2=
+\begin{pmatrix}-x+y-z\\x+z-y\\y-z-x\\z-y+x\end{pmatrix}
+=(-x+y-z)\varepsilon_2,
+\]
+\[
+M(x,y,z)\varepsilon_3=
+\begin{pmatrix}x-y-z\\x-z-y\\y+z-x\\z+y-x\end{pmatrix}
+=(x-y-z)\varepsilon_3,
+\]
+\[
+M(x,y,z)\varepsilon_4=
+\begin{pmatrix}-x-y+z\\x-z+y\\y-z+x\\z-y-x\end{pmatrix}
+=(-x-y+z)\varepsilon_4.
+\]
+
+\partanswer{b)}
+\[
+\langle\varepsilon_1,\varepsilon_i\rangle=0\quad\text{pour }2\leq i\leq4,
+\]
+\[
+\langle\varepsilon_2,\varepsilon_i\rangle=0\quad\text{pour }3\leq i\leq4,
+\qquad \langle\varepsilon_3,\varepsilon_4\rangle=0.
+\]
+$(\varepsilon_i)_{i\in\intervalint{1}{4}}$ est une famille orthogonale ne contenant pas
+$0$, elle est donc libre et $P$ est inversible.
+
+\partanswer{c)}
+D'après a),
+\[
+\Mat_{(\varepsilon_1,\varepsilon_2,\varepsilon_3,\varepsilon_4)}(u)=
+\begin{pmatrix}
+x+y+z&0&0&0\\
+0&-x+y-z&0&0\\
+0&0&x-y-z&0\\
+0&0&0&-x-y+z
+\end{pmatrix}=M'.
+\]
+$M(x,y,z)$ est inversible ssi $M'$ l'est, ssi
+\[
+(x+y+z)(-x+y-z)(x-y-z)(-x-y+z)\neq0.
+\]
+Dans ce cas $M(x,y,z)=PM'P^{-1}$ et
+\[
+M(x,y,z)^{-1}=PM'^{-1}P^{-1}.
+\]
+Notons que $\forall i\in\intervalint{1}{4}$, $\|\varepsilon_i\|_2=2$. Donc
+$\frac12P$ est la matrice de passage de la base canonique à une base orthonormée. Il vient
+\[
+\left(\frac12P\right)^{-1}=\frac12P^{\mathsf T}=2P^{-1}
+\]
+et $P^{-1}=\frac14P^{\mathsf T}=\frac14P$. D'où
+\[
+\boxed{M(x,y,z)^{-1}=\frac14PM'^{-1}P.}
+\]
+\end{solution}
+
+\exercise{2}{}
+
+\begin{statementbox}
+On dit que $A=(a_{ij})_{1\leq i,j\leq n}\in\M_n(\K)$, une matrice est en damier ssi
+\[
+\forall(i,j)\in\intervalint{1}{n}^2,\ i+j\text{ est impair alors }a_{ij}=0.
+\]
+Je note $\DM_n(\K)$ l'ensemble de ces matrices.
+\begin{enumerate}[label=\alph*.]
+  \item Mq $\DM_n(\K)$ est un ss-ev de $\M_n(\K)$ stable par produit.
+  \item Mq $\DM_n(\K)$ est isomorphe à
+  $\M_{\lfloor n/2\rfloor}(\K)\times\M_{\lfloor(n+1)/2\rfloor}(\K)$.
+  \item Si $A\in\DM_n(\K)$ est inversible, que dire de $A^{-1}$ ?
+\end{enumerate}
+\end{statementbox}
+
+\begin{solution}
+\partanswer{a.}
+$0\in\DM_n(\K)$.
+
+Soit $A=(a_{ij})_{1\leq i,j\leq n}$ et $B=(b_{ij})_{1\leq i,j\leq n}$ matrices en damier,
+et soit $(i,j)\in\intervalint{1}{n}^2$ tel que $i+j$ est impair. Pour $\lambda\in\K$,
+\[
+[\lambda A+B]_{ij}=\underbrace{\lambda a_{ij}}_{0}+\underbrace{b_{ij}}_{0}.
+\]
+Donc $\DM_n(\K)$ est un s-e-v de $\M_n(\K)$.
+
+Ensuite $[AB]_{ij}=\sum_{k=1}^na_{ik}b_{kj}$. Avec $i,j$ de parité différente, donc
+$\forall k\in\intervalint{1}{n}$, $i+k$ et $j+k$ sont de parité différente, donc
+$a_{ik}=0$ ou $b_{kj}=0$. Ainsi $[AB]_{ij}=0$ et $AB\in\DM_n(\K)$.
+
+\partanswer{b.}
+Soit $(E_{ij})_{1\leq i,j\leq n}$ la base de $\M_n(\K)$ formée des matrices élémentaires.
+Alors $(E_{ij})_{1\leq i,j\leq n,\ i+j\text{ pair}}$ est une base de $\DM_n(\K)$.
+\begin{align*}
+&\operatorname{Card}\{(i,j)\in\intervalint{1}{n}^2:i+j\text{ pair}\}\\
+&=\operatorname{Card}\bigl(
+\{(i,j)\in\intervalint{1}{n}^2:i\text{ impair et }j\text{ impair}\}
+\cup\{(i,j)\in\intervalint{1}{n}^2:i\text{ pair et }j\text{ pair}\}\bigr)\\
+&=\left\lfloor\frac n2\right\rfloor^2+\left\lfloor\frac{n+1}{2}\right\rfloor^2.
+\end{align*}
+On a
+\[
+\dim\left(\M_{\lfloor n/2\rfloor}(\K)\times
+\M_{\lfloor(n+1)/2\rfloor}(\K)\right)=\dim\DM_n(\K).
+\]
+Donc ces deux espaces sont isomorphes.
+
+\begin{remarkbox}
+\textbf{Autre méthode :} (pour exhiber directement l'isomorphisme)
+
+Soit $(e_1,\ldots,e_n)$ la b.c. de $\K^n$,
+\[
+F=\Vect(e_{2k})_{1\leq k\leq\lfloor n/2\rfloor},\qquad
+G=\Vect(e_{2k-1})_{1\leq k\leq\lfloor(n+1)/2\rfloor},
+\]
+de bases respectives $\mathcal B_1$ et $\mathcal B_2$.
+
+Soit $A=(a_{ij})_{1\leq i,j\leq n}\in\M_n(\K)$, $u_A\in\Lin(\K^n)$ c.a. à $A$.
+On a $A\in\DM_n(\K)$ ssi $F$ et $G$ sont stables par $u_A$.
+
+On peut définir
+\[
+\begin{aligned}
+\varphi:\DM_n(\K)&\longrightarrow
+\M_{\lfloor n/2\rfloor}(\K)\times\M_{\lfloor(n+1)/2\rfloor}(\K),\\
+A&\longmapsto\left(\Mat_{\mathcal B_1}(u_{A|F}),
+\Mat_{\mathcal B_2}(u_{A|G})\right).
+\end{aligned}
+\]
+Comme $u_A$ est uniquement déterminé par ses restrictions $u_{A|F}$ et $u_{A|G}$,
+$\varphi$ est un isomorphisme.
+\end{remarkbox}
+
+\partanswer{c.}
+Soit $A\in\DM_n(\K)$ inversible, donc $u_A$ est un isomorphisme donc injectif, et
+$u_{A|F}$ et $u_{A|G}$ le sont aussi ; comme on est en dim finie, $u_{A|F}$ et $u_{A|G}$
+sont des isomorphismes de $F$ et $G$ resp. Ceci montre que $F$ et $G$ sont stables par
+$u_A^{-1}=u_{A^{-1}}$. Donc $A^{-1}\in\DM_n(\K)$.
+
+\begin{remarkbox}
+On peut aussi considérer $P=a_mX^m+\cdots+a_nX^n$, un polynôme annulateur $\neq0$ de $A$.
+On a $a_mA^m+\cdots+a_nA^n=0$. ième multiplication par $(A^{-1})^m$ :
+\[
+a_mI_n+\cdots+a_nA^{n-m}=0.
+\]
+Ainsi $A^{-1}\in\K[A]$. Comme $\DM_n(\K)$ est un s-ev de $\M_n(\K)$ stable par produit,
+$A^{-1}\in\DM_n(\K)$.
+\end{remarkbox}
+\end{solution}
+
+\exercise{5}{}
+
+\begin{statementbox}
+Soit $H$ un hyperplan de $\M_n(\C)$ stable par produit.
+\begin{enumerate}[label=\alph*)]
+  \item On suppose que $I_n\notin H$, mq $\forall M\in\M_n(\C)$, si $M^2\in H$, alors
+  $M\in H$. En déduire que $\forall i\neq j$, $E_{ij}\in H$, puis que
+  \[
+  J_n=\begin{pmatrix}0&&&1\\1&0&&\\&\ddots&\ddots&\\0&&1&0\end{pmatrix}\in H.
+  \]
+  Évaluer $J_n^n$, qu'en déduit-on ?
+  \item Soit $M\in H$ inversible, mq $M^{-1}\in H$.
+\end{enumerate}
+\end{statementbox}
+
+\begin{solution}
+\partanswer{a)}
+Si $I_n\notin H$, comme $H$ est un hyperplan, $\M_n(\C)=H\oplus\C I_n$. Pour
+$M\in\M_n(\C)$, $\exists!A\in H$, $\lambda\in\C$, $M=A+\lambda I_n$.
+
+Supposons $M^2\in H$. On a
+\[
+M^2=(A+\lambda I_n)^2=A^2+2\lambda A+\lambda^2I_n\in H.
+\]
+Or $A^2+2\lambda A\in H$. Nécessairement $\lambda^2I_n\in H$ et
+$\lambda^2=0\Longrightarrow\lambda=0$. On a $M=A\in H$.
+
+Soit $i\neq j\in\intervalint{1}{n}^2$, $E_{ij}^2=0\in H$, donc $E_{ij}\in H$. Il
+s'ensuit que $J_n=E_{2,1}+\cdots+E_{n,n-1}+E_{1,n}\in H$.
+
+Soit $(e_1,\ldots,e_n)$ la base canonique de $\C^n$, $u\in\Lin(\C^n)$ c.a. à $J_n$.
+On a $u(e_1)=e_2,\ldots,u(e_{n-1})=e_n$ et $u(e_n)=e_1$. En itérant $n$ fois,
+$u^n=\Id_{\C^n}$, $J_n^n=I_n\in H$. Ce qui ne se peut. Donc $I_n\in H$.
+
+\partanswer{b)}
+Soit $P=a_rX^r+\cdots+a_mX^m\neq0$ tel que $P(M)=0$ avec $a_r\neq0$ (on pourra
+considérer le polynôme annulateur non nul de $M$). Alors
+$a_rM^r+\cdots+a_mM^m=0$. En multipliant par $M^{-r}$,
+\[
+a_rI_n+\cdots+a_mM^{m-r}=0.
+\]
+Il s'ensuit que $M^{-1}\in\C[M]$, donc $M^{-1}\in H$.
+
+\begin{remarkbox}
+Soit $(n\geq1)$ $H$ un hyperplan de $\M_n(\C)$. Si $H$ ne contient aucune matrice
+inversible, $\M_n(\C)=H\oplus\C I_n$. Soit
+$i\neq j\in\intervalint{1}{n}^2$, on peut décomposer $E_{ij}=A+\lambda I_n$. Alors
+$\lambda I_n-E_{ij}=-A\in H$ est triangulaire non inversible, donc $\lambda=0$ et
+$E_{ij}=A\in H$. De même $J_n\in H$ et $J_n$ est inversible, ce qui ne se peut.
+
+Notons que
+\[
+H=\left\{\begin{pmatrix}0&b\\a&c\end{pmatrix}:(a,b,c)\in\C^3\right\}
+\]
+est un hyperplan de $\M_2(\C)$ non stable par produit, car
+\[
+\begin{pmatrix}0&1\\1&0\end{pmatrix}^2=I_2\notin H
+\quad\text{et}\quad
+\begin{pmatrix}0&1\\1&1\end{pmatrix}^{-1}
+=-\begin{pmatrix}1&-1\\-1&0\end{pmatrix}\notin H.
+\]
+\end{remarkbox}
+\end{solution}
+
+\exercise{11}{}
+
+\begin{statementbox}
+Calculer le déterminant et la trace de la transposition, en tant qu'endomorphisme de
+$\M_n(\K)$.
+\end{statementbox}
+
+\begin{solution}
+Soit
+\[
+\begin{aligned}
+\tau:\M_n(\K)&\longrightarrow\M_n(\K),\\M&\longmapsto M^{\mathsf T}.
+\end{aligned}
+\qquad
+\tau\in\Lin(\M_n(\K)),\quad\tau\circ\tau=\Id_{\M_n(\K)}.
+\]
+$\tau$ est une symétrie p.r à $S_n(\K)$ parallèlement à $A_n(\K)$.
+
+Soit
+\[
+\mathcal B_1=(E_{ii})_{1\leq i\leq n}\cup(E_{ij}+E_{ji})_{1\leq i<j\leq n}
+\]
+base de $S_n(\K)$ et
+$\mathcal B_2=(E_{ij}-E_{ji})_{1\leq i<j\leq n}$ base de $A_n(\K)$.
+$\mathcal B=\mathcal B_1\cup\mathcal B_2$ est une base de $\M_n(\K)$ et
+\[
+\Mat_{\mathcal B}(\tau)=
+\begin{pmatrix}I_{n(n+1)/2}&0\\0&-I_{n(n-1)/2}\end{pmatrix}\in\M_{n^2}(\K).
+\]
+D'où
+\[
+\boxed{\det(\tau)=(-1)^{n(n-1)/2}}
+\qquad\text{et}\qquad
+\boxed{\tr(\tau)=\frac{n(n+1)}2-\frac{n(n-1)}2=n.}
+\]
+\end{solution}
+
+\exercise{14}{}
+
+\begin{statementbox}
+Soit $A\in\M_n(\C)$ nilpotente d'indice $p\in\N^*$, soit $n\in\N^*$.
+\begin{enumerate}[label=\alph*.]
+  \item Mq $\exists P\in\Q[X]$ tel que $P(x)^n=1+x+o(x^p)$ lorsque $x\to0$.
+  \item En déduire $\exists B\in\Q[A]$, $B^n=I_n+A$.
+\end{enumerate}
+\end{statementbox}
+
+\begin{solution}
+\partanswer{a.}
+\[
+(1+x)^{1/n}\underset{x\to0}{=}
+1+\frac xn+\frac{\frac1n(\frac1n-1)}2x^2+\cdots+
+\frac{\frac1n(\frac1n-1)\cdots(\frac1n-p+2)}{(p-1)!}x^{p-1}+O(x^p).
+\]
+La partie polynomiale est un polynôme $P\in\Q[X]$.
+\[
+1+x\underset{x\to0}{=}(P(x)+O(x^p))^n
+=\sum_{i=0}^n\binom niP(x)^{n-i}(O(x^p))^i
+=P(x)^n+O(x^p).
+\]
+
+\partanswer{b.}
+On pose $Q(x)=P(x)^n-(1+x)\in\Q[X]$. Alors $Q(x)=x^pa(x)$,
+$a(x)=O(1)$ lorsque $x\to0$.
+
+Soit $m\in\N$ tel que $Q(x)=x^mD(x)$ avec $D(0)\neq0$ ($m$ est la multiplicité de $0$
+en tant que racine de $Q$). Alors $\frac{Q(x)}{x^p}=x^{m-p}D(x)=O(1)$, nécessairement
+$m\geq p$.
+
+On peut écrire $Q(X)=X^pC(X)$, $C\in\Q[X]$. Alors on pose $B=P(A)\in\Q[A]$, donc
+\[
+B^n=I_n+A+Q(A)=I_n+A.
+\]
+D'où $\boxed{\exists B\in\Q[A],\ B^n=I_n+A}$.
+
+\begin{remarkbox}
+Soit, pour $\theta\in]0,\pi[$,
+$u_\theta=(\cos\theta,\sin\theta)$ et $S_\theta$ la symétrie p.r à $\R e_1$
+parallèlement à $\R u_\theta$. On prend $A_\theta$ la matrice dans la b.c. de $S_\theta$.
+
+Comme $u_\theta=\cos\theta\binom10+\sin\theta\binom01$,
+$e_2=(u_\theta-\cos\theta e_1)\frac1{\sin\theta}$. Donc
+\[
+S_\theta(e_2)=(-\cos\theta)e_1-\frac{u_\theta}{\sin\theta}
+=-2\cot(\theta)e_1-e_2.
+\]
+Ainsi
+\[
+A_\theta=\begin{pmatrix}1&-2\cot\theta\\0&-1\end{pmatrix},
+\qquad A_\theta^2=I_2.
+\]
+De plus $\theta\longmapsto A_\theta$ étant injective, on obtient une infinité de matrices
+de symétrie dans $\M_2(\K)$, et donc une infinité de racines carrées de $I_2$.
+
+Soit $N_2=\begin{pmatrix}0&1\\0&0\end{pmatrix}$, on a $N_2^2=0$. Si $N_2$ possédait
+une racine carrée $B$, on aurait $B^2=N_2$, donc $B^4=0$. Nous verrons que cela implique
+$B^2=0$, ce qui n'est pas le cas.
+
+(Sur l'idée que $I_n+A$ avec $A$ nilpotente admet une infinité de racines carrées.)
+\end{remarkbox}
+\end{solution}
+
+\exercise{15}{}
+
+\begin{statementbox}
+Soit $A\in\M_n(\K)$ (avec $n\geq2$), calculer $\rg(\Com(A))$ en fct de celui de $A$.
+
+[On distinguera selon que $\rg(A)=n$, $n-1$ ou est $\leq n-2$.]
+\end{statementbox}
+
+\begin{solution}
+\begin{itemize}
+  \item Si $\rg(A)=n$, $A^{-1}=\frac1{\det(A)}(\Com(A))^{\mathsf T}\in\GL_n(\K)$.
+  Donc $\underline{\rg(\Com(A))=n}$.
+
+  \item Si $\rg(A)\leq n-2$ : le rang étant la taille maximale d'une sous-matrice carrée
+  inversible, tous les déterminants obtenus en ôtant une ligne et une colonne de $A$ sont
+  nuls, et $\Com(A)=0$. Donc $\underline{\rg(\Com(A))=0}$.
+
+  \item Si $\rg(A)=n-1$, on a
+  \[
+  A(\Com(A))^{\mathsf T}=\det(A)I_n=0
+  \]
+  (car $A\notin\GL_n(\K)$). Soit $(u_1,u_2)\in\Lin(\K^n)$ c.a. à $A$ et à
+  $(\Com(A))^{\mathsf T}$ : $u_1\circ u_2=0$. Donc
+  $\Ima(u_2)\subset\Ker(u_1)$ de dim $1$, car $\rg(A)=n-1$.
+
+  Comme $\rg(A)=n-1$, $A$ possède une sous-matrice carrée de taille $n-1$ inversible, et
+  $\Com(A)\neq0$, donc $u_2\neq0$ et $\dim(\Ima(u_2))=1$.
+  Ainsi $\underline{\rg(\Com(A))=\rg((\Com(A))^{\mathsf T})=1}$.
+\end{itemize}
+\end{solution}
+
+\exercise{16}{}
+
+\begin{statementbox}
+On admet que si $E$ est un $\C$-e.v., $u\in\Lin(E)$ tel que
+$\forall x\in E\setminus\{0\}$, $(x,u(x))$ est liée,
+ie $\forall x\in E\setminus\{0\}$, $\exists\lambda_x\in\C$, $u(x)=\lambda_xx$, alors
+$\exists\lambda\in\C$, $\forall x\in E$, $u(x)=\lambda x$ : $u$ est une homothétie.
+
+\begin{enumerate}[label=\arabic*)]
+  \item Soit $E$ un $\C$-e.v. de dimension finie, $u\in\Lin(E)$. Mq $\tr(u)=0$ ssi
+  $\exists\mathcal B$ base de $E$ telle que $\Mat_{\mathcal B}(u)$ est une matrice à
+  diagonale nulle.
+
+  \item Soit $n\in\N^*$, $D_n=\operatorname{diag}(1,2,\ldots,n)$. Soit
+  \[
+  \begin{aligned}
+  \varphi:\M_n(\C)&\longrightarrow\M_n(\C),\\M&\longmapsto MD_n-D_nM,
+  \end{aligned}
+  \qquad \varphi\in\Lin(\M_n(\C)).
+  \]
+  Identifier $\Ker\varphi$, en déduire
+  $\Ima\varphi=\{A\in\M_n(\C):A\text{ de diagonale nulle}\}$.
+
+  \item Soit $A\in\M_n(\C)$, mq
+  \[
+  \tr A=0\quad\text{ssi}\quad\exists(B,C)\in\M_n(\C)^2,quad A=BC-CB.
+  \]
+\end{enumerate}
+\end{statementbox}
+
+\begin{solution}
+\partanswer{1)}
+Supp $\exists\mathcal B$ base de $E$ telle que $\Mat_{\mathcal B}(u)$ est de diagonale
+nulle. Alors $\tr(u)=0$.
+
+Pour $n\in\N^*$, $H_n$ : « Soit $E$ un $\C$-e.v. de dimension $n$ et $u\in\Lin(E)$,
+alors si $\tr(u)=0$ alors $\exists\mathcal B$ base de $E$ telle que
+$\Mat_{\mathcal B}(u)$ est de diagonale nulle. »
+
+I : Si $\dim E=1$, alors $\exists\lambda\in\C$, $u=\lambda\Id_E$ et si $\tr(u)=0$,
+alors $\lambda=0$. Alors $u=0$ et toute base convient.
+
+H : Soit $n\in\N^*$, supposons $H(n)$ est vraie. Alors soit $E$ un $\C$-e.v. de dimension
+$n+1$ et $u\in\Lin(E)$ tel que $\tr(u)=0$.
+
+Si $\exists\lambda\in\C$, $u=\lambda\Id_E$, alors $\tr(u)=(n+1)\lambda$, donc
+$\lambda=0$. Sinon, d'après le résultat admis, $\exists\varepsilon_1\in E$ tel que
+$(u(\varepsilon_1),\varepsilon_1)$ est libre, posons $\varepsilon_2=u(\varepsilon_1)$.
+
+On peut compléter cette famille en une base de $E$ (th. base incomplète) :
+$\mathcal B_1=(\varepsilon_1,\varepsilon_2,\ldots,\varepsilon_{n+1})$. Alors
+\[
+\Mat_{\mathcal B_1}(u)=\begin{pmatrix}0&*\\0&A'\end{pmatrix}.
+\]
+Comme $\tr(u)=0$, $\tr(A')=0$. Posons
+$F=\Vect(\varepsilon_2,\ldots,\varepsilon_{n+1})$, on a $\dim F=n$.
+
+Soit $\pi$ projecteur sur $F$ p.r à $\Vect(\varepsilon_1)$ et
+\[
+\begin{aligned}u':F&\longrightarrow F,\\x&\longmapsto\pi(u(x)),\end{aligned}
+\qquad u'\in\Lin(F).
+\]
+On a $A'=\Mat_{(\varepsilon_2,\ldots,\varepsilon_{n+1})}(u')$, d'où $\tr(u')=0$.
+D'après hyp. de récurrence, $\exists\mathcal B'=(f_2,\ldots,f_{n+1})$ base de $F$ telle
+que $\Mat_{\mathcal B'}(u')=\begin{pmatrix}0&*\\ *&0\end{pmatrix}=C$.
+
+Il vient
+\[
+\Mat_{(\varepsilon_1,f_2,\ldots,f_{n+1})}(u)
+=\begin{pmatrix}0&*\\ *&C\end{pmatrix}
+=\begin{pmatrix}0&*\\ *&0\end{pmatrix}.
+\]
+$(\varepsilon_1,f_2,\ldots,f_{n+1})$ est une base de $E$ car $u(\varepsilon_1)\in F$.
+Donc $H(n+1)$ est vraie, ce qui achève la récurrence.
+
+\partanswer{2)}
+Soit $M=(m_{ij})_{1\leq i,j\leq n}\in\M_n(\C)$.
+\[
+MD_n=(jm_{ij})_{1\leq i,j\leq n},\qquad
+D_nM=(im_{ij})_{1\leq i,j\leq n}.
+\]
+Ainsi $MD_n=D_nM$ ssi $\forall(i,j)\in\intervalint{1}{n}^2$, $jm_{ij}=im_{ij}$,
+ssi $\forall i\neq j\in\intervalint{1}{n}^2$, $m_{ij}=0$, ssi $M$ est diagonale.
+D'où $\Ker\varphi=\{M\in\M_n(\C):M\text{ est diagonale}\}$.
+
+Ce qui précède montre que $\forall M\in\M_n(\C)$, $MD_n-D_nM$ a une diagonale nulle.
+D'après le théorème du rang,
+\[
+\dim(\M_n(\C))=\dim(\Ker\varphi)+\rg(\varphi),
+\]
+d'où $\rg(\varphi)=n^2-n$. Or l'ensemble des matrices à diagonale nulle est de dimension
+$n^2-n$. D'où
+\[
+\underline{\Ima\varphi=\{A\in\M_n(\C):A\text{ de diagonale nulle}\}}.
+\]
+
+\partanswer{3)}
+Supposons que $\exists(B,C)\in\M_n(\C)^2$ : $A=BC-CB$. Alors
+$\tr(A)=\tr(BC)-\tr(CB)=0$.
+
+Réciproquement, si $\tr(A)=0$, soit $u$ c.a. à $A$. D'après 1), il existe
+$A'\in\M_n(\C)$ tq $A$ est semblable à $A'$, et $A'$ est de diagonale nulle :
+\[
+\exists P\in\GL_n(\C),qquad A=P\underbrace{A'}_{\text{diag. nulle}}P^{-1}.
+\]
+Donc il existe, d'après 2), un $M\in\M_n(\C)$ tq $A'=MD_n-D_nM$ et donc
+\begin{align*}
+A&=P(MD_n-D_nM)P^{-1}\\
+&=PMD_nP^{-1}-PD_nMP^{-1}\\
+&=(PMP^{-1})(PD_nP^{-1})-(PD_nP^{-1})(PMP^{-1}).
+\end{align*}
+D'où le résultat.
+
+\begin{remarkbox}
+Il n'y a pas unicité de $B$ et $C$, cf. pour $A=0$ : $B=\lambda I_n$ et
+$C\in\M_n(\C)$.
+\end{remarkbox}
+\end{solution}
+
+\exercise{18}{}
+
+\begin{statementbox}
+Soit, pour $n\in\N^*$, $d_n$ le nombre de permutations de $\intervalint{1}{n}$ sans point
+fixe [i.e.
+$d_n:=|\{\sigma\in\mathfrak S_n:\forall i\in\intervalint{1}{n},\ \sigma(i)\neq i\}|$].
+On pose $d_0=1$.
+
+\begin{enumerate}[label=\alph*)]
+  \item Exprimer, pour $n\in\N$, $n!$ en fct de $(d_0,\ldots,d_n)$.
+\end{enumerate}
+\end{statementbox}
+
+\begin{solution}
+\partanswer{a)}
+\[
+n!=\sum_{k=0}^n\binom nkd_{n-k}=\sum_{k=0}^n\binom nkd_k.
+\]
+Il vient
+\[
+\begin{pmatrix}0!\\1!\\\vdots\\n!\end{pmatrix}
+=\underbrace{\left(\binom ij\right)_{0\leq i,j\leq n}}_{A,
+\ \binom ij=0\text{ si }j>i}
+\begin{pmatrix}d_0\\d_1\\\vdots\\d_n\end{pmatrix}.
+\]
+
+Soit $u\in\Lin(\C_n[X])$ défini par : $\forall P\in\C[X]$,
+$u(P)=P(X+1)$. Pour tout $j\in\intervalint{0}{n}$,
+\[
+u(X^j)=(X+1)^j=\sum_{i=0}^j\binom jiX^i.
+\]
+Donc $\Mat_{(1,X,\ldots,X^n)}(u)=A^{\mathsf T}$. Or
+\[
+\begin{aligned}u^{-1}:\C_n[X]&\longrightarrow\C_n[X],\\P&\longmapsto P(X-1).
+\end{aligned}
+\]
+Pour tout $j\in\intervalint{0}{n}$,
+\[
+u^{-1}(X^j)=\sum_{i=0}^j(-1)^{j-i}\binom jiX^i.
+\]
+Ainsi
+\[
+(A^{\mathsf T})^{-1}=\left((-1)^{j-i}\binom ji\right)_{0\leq i,j\leq n}
+=(A^{-1})^{\mathsf T}
+\]
+et $A^{-1}=\left((-1)^{j-i}\binom ij\right)_{0\leq i,j\leq n}$.
+
+Il vient
+\[
+\begin{pmatrix}d_0\\d_1\\\vdots\\d_n\end{pmatrix}
+=A^{-1}\begin{pmatrix}0!\\1!\\\vdots\\n!\end{pmatrix}
+\]
+et $\forall i\in\N$,
+\[
+d_i=\sum_{j=0}^i(-1)^{i-j}\binom ijj!
+=\sum_{j=0}^i(-1)^{i-j}\frac{i!}{(i-j)!}.
+\]
+Ainsi
+\[
+\frac{d_i}{i!}=\sum_{j=0}^i(-1)^{i-j}\frac1{(i-j)!}
+=\sum_{j=0}^i\frac{(-1)^j}{j!}
+\]
+est la probabilité pour qu'une permutation de $\mathfrak S_n$ (muni de la probabilité
+uniforme) ne contienne pas de point fixe. Donc
+\[
+\boxed{\lim_{i\to+\infty}\frac{d_i}{i!}=\frac1e.}
+\]
+\end{solution}
+
+\exercise{25}{}
+
+\begin{statementbox}
+\begin{enumerate}[label=\alph*.]
+  \item Soit $M\in\M_n(\Z)$, on dit que $M\in\GL_n(\Z)$ ssi $M$ est inversible et
+  $M^{-1}\in\M_n(\Z)$. Mq $M\in\GL_n(\Z)$ ssi $\det M\in\{-1,1\}$.
+  \item Mq $M\in\GL_n(\Z)$ possède au moins $n$ et au plus $n^2-n+1$ coefficients
+  impairs, et que ces bornes sont atteintes.
+\end{enumerate}
+\end{statementbox}
+
+\begin{solution}
+\partanswer{a.}
+Soit $M\in\GL_n(\Z)$. Alors
+$\det(M^{-1})=\frac1{\det(M)}\in\Z$ et $\det M\in\Z$. Nécessairement
+$\det(M)\in\{-1,1\}$.
+
+Réciproquement, soit $M\in\M_n(\Z)$ ; si $\det M\in\{-1,1\}$, alors $M$ est inversible
+et
+\[
+M^{-1}=\frac1{\det(M)}\Com(M)^{\mathsf T}\in\M_n(\Z).
+\]
+
+\partanswer{b.}
+Supposons que $M$ possède moins de $n$ coefficients impairs. Alors il existe une colonne de
+$M$ avec seulement des coefficients pairs. Par multilinéarité, $\det M$ est pair. Donc
+$\det(M)\notin\{-1,1\}$. Donc $M\notin\GL_n(\Z)$.
+
+Si $M\in\GL_n(\Z)$, elle possède au moins $n$ coefficients impairs, c'est atteint pour
+$I_n$.
+
+Supposons que $M$ possède plus de $n^2-n+1$ coefficients impairs. Alors elle possède moins
+de $n-1$ coefficients pairs. Alors $\exists j_1\neq j_2\in\intervalint{1}{n}$, $C_{j_1}$
+et $C_{j_2}$ ne possédant que des coefficients impairs. Donc $C_{j_1}+C_{j_2}$ possède
+seulement des coefficients pairs. De même $\det(M)$ est pair.
+
+Soit
+\[
+M=\begin{pmatrix}
+1&1&\cdots&1\\1&0&\cdots&1\\\vdots&\ddots&\ddots&\vdots\\1&\cdots&1&1
+\end{pmatrix}
+\]
+possédant $n^2-n+1$ coefficients impairs. En effectuant
+$L_2\leftarrow L_2-L_1,\ldots,L_n\leftarrow L_n-L_1$, il vient
+$\det M=(-1)^{n-1}\in\{-1,1\}$. Donc $M\in\GL_n(\Z)$.
+\end{solution}
+
+\exercise{31}{}
+
+\begin{statementbox}
+Soit $n\in\N^*$, et $\forall j\in\intervalint{0}{n}$,
+$S_j=X^j(1-X)^{n-j}$. Mq $(S_j)_{0\leq j\leq n}$ est une base de $\R_n[X]$, écrire la
+matrice de passage de $(1,X,\ldots,X^n)$ à $(S_0,\ldots,S_n)$ ainsi que son inverse.
+\end{statementbox}
+
+\begin{solution}
+Soient $(a_0,\ldots,a_n)\in\R^{n+1}$ tq $\sum_{j=0}^na_jS_j=0$. S'il existe
+$j\in\intervalint{0}{n}$ tq $a_j\neq0$, notons
+$h=\min\{j\in\intervalint{0}{n}:a_j\neq0\}$. Alors
+\[
+\sum_{j=h}^na_jX^j(1-X)^{n-j}=0,
+\]
+d'où $\sum_{j=h}^na_jX^{j-h}(1-X)^{n-j}=0$. Puis, en évaluant en $0$ : $a_h=0$, ce qui
+ne se peut.
+
+Donc $(S_j)_{j\in\intervalint{0}{n}}$ est libre et comprend $n+1$ vecteurs en dim $n+1$ :
+c'est donc une base de $\R_n[X]$.
+
+Soit $j\in\intervalint{0}{n}$ :
+\[
+S_j=\sum_{k=0}^{n-j}\binom{n-j}{k}(-1)^kX^{k+j}
+=\sum_{p=j}^n\binom{n-j}{p-j}(-1)^{p-j}X^p.
+\]
+Alors $\Pass_{(1,X,\ldots,X^n),(S_0,\ldots,S_n)}=P\in\GL_{n+1}(\R)$, avec
+\[
+P_{p,j}=\begin{cases}\binom{n-j}{p-j}(-1)^{p-j},&p\geq j,\\0,&p<j,
+\end{cases}
+\qquad p,j\in\intervalint{0}{n}.
+\]
+
+Soit $u\in\Lin(\R_n[X])$ c.a. à $P$, ie $\forall j\in\intervalint{0}{n}$,
+\[
+u(X^j)=X^j(1-X)^{n-j}=(1-X)^n\left(\frac X{1-X}\right)^j.
+\]
+Par combinaison linéaire : $\forall P\in\R_n[X]$,
+\[
+u(P)=(1-X)^nP\left(\frac X{1-X}\right).
+\]
+Posons $Y=\frac X{1-X}$, ssi $X=\frac Y{1+Y}$ et $1-X=\frac1{1+Y}$.
+Ainsi
+\[
+u(P)\left(\frac Y{1+Y}\right)=\frac1{(1+Y)^n}P(Y)=Q(Y)
+\]
+ssi $P(Y)=(1+Y)^nQ\left(\frac Y{1+Y}\right)$.
+
+Ainsi
+\[
+\begin{aligned}
+u^{-1}:\R_n[X]&\longrightarrow\R_n[X],\\
+Q&\longmapsto(1+X)^nQ\left(\frac X{1+X}\right).
+\end{aligned}
+\]
+Et $\forall j\in\intervalint{0}{n}$,
+\[
+u^{-1}(X^j)=(1+X)^{n-j}X^j=\sum_{p=j}^n\binom{n-j}{p-j}X^p.
+\]
+Donc
+\[
+(P^{-1})_{p,j}=\begin{cases}\binom{n-j}{p-j},&p\geq j,\\0,&p<j,
+\end{cases}
+\qquad p,j\in\intervalint{0}{n}.
+\]
+\end{solution}
+
+\exercise{36}{}
+
+\begin{statementbox}
+Soit $f:\M_n(\K)\to\K$ non constante,
+$\forall(A,B)\in\M_n(\K)^2$, $f(AB)=f(A)f(B)$.
+\begin{enumerate}[label=\arabic*)]
+  \item Mq $f(0)=0$ et que $f(I_n)=1$.
+  \item Mq $\forall A\in\M_n(\K)$, $f(A)\neq0$ ssi $A$ est inversible.
+\end{enumerate}
+\end{statementbox}
+
+\begin{solution}
+\partanswer{1)}
+On a $f(0)\times f(0)=f(0)$. Donc $f(0)^2-f(0)=0$ et $f(0)\in\{0,1\}$.
+Si $f(0)=1$, on a $\forall A\in\M_n(\K)$, $f(A\times0)=f(A)f(0)$. D'où
+$f(A)=f(0)=1$, ce qui ne se peut car $f$ est non constante. Ainsi
+$\underline{f(0)=0}$.
+
+De même $f(I_n)\in\{0,1\}$. Si $f(I_n)=0$, $\forall A\in\M_n(\K)$,
+$f(A\times I_n)=f(A)f(I_n)$, d'où $f(A)=0$, ce qui ne se peut, $f$ étant non constante.
+On a donc $\underline{f(I_n)=1}$.
+
+\partanswer{2)}
+Supposons $A$ inversible, $f(AA^{-1})=f(A)f(A^{-1})$. D'où
+$f(A)f(A^{-1})=1$ et $f(A)\neq0$.
+
+Supposons $A$ non inversible. Notons $r=\rg(A)\leq n-1$. $A$ est équivalente à une
+matrice nilpotente $A'$ de rang $r$ : $\exists(P,Q)\in\GL_n(\K)$,
+$A=Q^{-1}A'P$. Ainsi
+\[
+f(A)=f(Q^{-1}A'P)=f(Q^{-1})f(A')f(P).
+\]
+$A'$ est nilpotente donc $\exists p\in\N^*$, $(A')^p=0$ et
+$f((A')^p)=0=f(A')^p$. Donc $f(A')=0$, et $f(A)=0$ car
+$f(Q^{-1})\neq0$ et $f(P)\neq0$.
+
+\begin{remarkbox}
+$f$ induit un morphisme de groupes de $(\GL_n(\K),\times)$ vers $(\K^*,\times)$.
+On peut montrer $\exists g$ morphisme de groupes de $(\K^*,\times)$ vers
+$(\K^*,\times)$, $f=g\circ\det$.
+\end{remarkbox}
+\end{solution}

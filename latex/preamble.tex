@@ -1,0 +1,172 @@
+% Préambule commun à tous les TD et au recueil annuel.
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[a4paper,margin=2.15cm,headheight=22pt]{geometry}
+
+\usepackage{amsmath,amssymb,mathtools,stmaryrd}
+\usepackage{array,booktabs}
+\usepackage{enumitem}
+\usepackage{etoolbox}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage[nameinlink,noabbrev]{cleveref}
+
+\definecolor{TDblue}{HTML}{173F5F}
+\definecolor{TDcyan}{HTML}{207D93}
+\definecolor{TDgold}{HTML}{D49A24}
+\definecolor{TDpaper}{HTML}{F5F8FA}
+\definecolor{TDink}{HTML}{16222A}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=TDblue,
+  urlcolor=TDcyan,
+  citecolor=TDcyan,
+  pdftitle={Travaux dirigés de MP*},
+  pdfauthor={Retranscription des notes de TD}
+}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.45em}
+\setlist{nosep,leftmargin=2em}
+\setlist[enumerate]{itemsep=0.2em,topsep=0.35em}
+\allowdisplaybreaks
+\numberwithin{equation}{section}
+\setcounter{secnumdepth}{-1}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\sffamily\small MP${}^{\boldsymbol\ast}$ — Mathématiques}
+\fancyhead[R]{\sffamily\small\nouppercase{\rightmark}}
+\fancyfoot[C]{\sffamily\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{TDcyan}\leaders\hrule height \headrulewidth\hfill}}
+
+\titleformat{\chapter}[display]
+  {\sffamily\bfseries\color{TDblue}}
+  {\filleft\Large\chaptername\ \thechapter}
+  {0.5ex}
+  {\titlerule[1.2pt]\vspace{1ex}\Huge}
+\titleformat{\section}
+  {\Large\sffamily\bfseries\color{TDblue}}
+  {}{0pt}{}
+  [\vspace{-0.5ex}{\color{TDcyan}\titlerule[0.5pt]}]
+\titleformat{\subsection}
+  {\large\sffamily\bfseries\color{TDcyan}}
+  {\thesubsection}{0.6em}{}
+
+\newtcolorbox{statementbox}{
+  enhanced,breakable,
+  colback=TDpaper,colframe=TDcyan,
+  boxrule=0.7pt,arc=1.2mm,
+  left=1.2mm,right=1.2mm,top=1mm,bottom=1mm,
+  borderline west={2.2pt}{0pt}{TDcyan},
+  title={\sffamily\bfseries Énoncé},
+  fonttitle=\sffamily\bfseries
+}
+
+\newenvironment{solution}
+  {\par\medskip\noindent{\color{TDgold}\rule{1.6em}{1.2pt}}\enspace
+   {\sffamily\bfseries\color{TDblue}Solution.}\enspace}
+  {\par\medskip}
+
+\newtcolorbox{remarkbox}{
+  enhanced,breakable,
+  colback=white,colframe=TDgold,
+  boxrule=0.5pt,arc=1mm,
+  borderline west={2pt}{0pt}{TDgold},
+  title={\sffamily\bfseries Remarque},
+  fonttitle=\sffamily\bfseries
+}
+
+\newcommand{\exercise}[2]{%
+  \section[Exercice #1]{Exercice #1\ifstrempty{#2}{}{\texorpdfstring{\enspace—\enspace}{ — }#2}}%
+  \markright{Exercice #1}%
+}
+
+\newcommand{\partanswer}[1]{%
+  \par\medskip\noindent{\sffamily\bfseries\color{TDcyan}#1)}\enspace
+}
+
+\newcommand{\TDTitlePage}[3]{%
+  \begin{titlepage}
+    \pagecolor{TDpaper}
+    \color{TDink}
+    \centering
+    \vspace*{2.2cm}
+    {\sffamily\Large CLASSE PRÉPARATOIRE MP\par}
+    \vspace{0.9cm}
+    {\color{TDcyan}\rule{0.78\textwidth}{1.2pt}\par}
+    \vspace{1.2cm}
+    {\sffamily\bfseries\fontsize{46}{52}\selectfont TD #1\par}
+    \vspace{0.6cm}
+    {\sffamily\bfseries\LARGE\color{TDblue}#2\par}
+    \vspace{1.2cm}
+    {\color{TDcyan}\rule{0.78\textwidth}{1.2pt}\par}
+    \vfill
+    \begin{tcolorbox}[width=.76\textwidth,colback=white,colframe=TDcyan,arc=2mm]
+      \centering\sffamily
+      \textbf{Séance du #3}\\[0.4em]
+      Retranscription et mise au propre des notes manuscrites
+    \end{tcolorbox}
+    \vfill
+    {\sffamily\small Version compilée le \today\par}
+  \end{titlepage}
+  \nopagecolor
+}
+
+\newcommand{\CollectionTitlePage}{%
+  \begin{titlepage}
+    \pagecolor{TDpaper}
+    \color{TDink}
+    \centering
+    \vspace*{2.2cm}
+    {\sffamily\Large CLASSE PRÉPARATOIRE MP\par}
+    \vspace{0.9cm}
+    {\color{TDcyan}\rule{0.78\textwidth}{1.2pt}\par}
+    \vspace{1.2cm}
+    {\sffamily\bfseries\fontsize{38}{44}\selectfont RECUEIL ANNUEL\par}
+    \vspace{0.6cm}
+    {\sffamily\bfseries\LARGE\color{TDblue}Travaux dirigés de mathématiques\par}
+    \vspace{1.2cm}
+    {\color{TDcyan}\rule{0.78\textwidth}{1.2pt}\par}
+    \vfill
+    \begin{tcolorbox}[width=.76\textwidth,colback=white,colframe=TDcyan,arc=2mm]
+      \centering\sffamily
+      \textbf{Année de MP${}^{\boldsymbol\ast}$}\\[0.4em]
+      Toutes les séances réunies dans un document unique
+    \end{tcolorbox}
+    \vfill
+    {\sffamily\small Version compilée le \today\par}
+  \end{titlepage}
+  \nopagecolor
+}
+
+% Raccourcis mathématiques.
+\newcommand{\K}{\mathbb K}
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\N}{\mathbb N}
+\newcommand{\M}{\mathcal M}
+\newcommand{\Lin}{\mathcal L}
+\newcommand{\Vect}{\operatorname{Vect}}
+\newcommand{\rg}{\operatorname{rg}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\Com}{\operatorname{Com}}
+\newcommand{\Id}{\operatorname{Id}}
+\newcommand{\Ker}{\operatorname{Ker}}
+\newcommand{\Ima}{\operatorname{Im}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\Mat}{\operatorname{Mat}}
+\newcommand{\Pass}{\operatorname{Pass}}
+\newcommand{\DM}{\mathcal{DM}}
+\newcommand{\transpose}[1]{{}^{\mathsf T}\!#1}
+\newcommand{\intervalint}[2]{\llbracket #1,#2\rrbracket}

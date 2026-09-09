@@ -1,0 +1,17 @@
+\documentclass[11pt,a4paper,openany]{report}
+\input{latex/preamble}
+
+\begin{document}
+\pagenumbering{gobble}
+\CollectionTitlePage
+\pagenumbering{roman}
+\pdfbookmark[0]{Sommaire général}{toc}
+\tableofcontents
+\clearpage
+\pagenumbering{arabic}
+
+% Ajouter ici une ligne \chapter puis un \input pour chaque nouvelle séance.
+\chapter{TD 01 — Algèbre linéaire}
+\input{td/td01-content}
+
+\end{document}
