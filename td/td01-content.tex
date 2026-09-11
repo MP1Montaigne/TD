@@ -76,7 +76,7 @@ x+y+z&0&0&0\\
 0&-x+y-z&0&0\\
 0&0&x-y-z&0\\
 0&0&0&-x-y+z
-\end{pmatrix}=M'.
+\end{pmatrix}=M'= P^{-1}M(x,y,z)P.
 \]
 $M(x,y,z)$ est inversible ssi $M'$ l'est, ssi
 \[
@@ -179,7 +179,7 @@ $u_A^{-1}=u_{A^{-1}}$. Donc $A^{-1}\in\DM_n(\K)$.
 
 \begin{remarkbox}
 On peut aussi considérer $P=a_mX^m+\cdots+a_nX^n$, un polynôme annulateur $\neq0$ de $A$.
-On a $a_mA^m+\cdots+a_nA^n=0$. ième multiplication par $(A^{-1})^m$ :
+On a $a_mA^m+\cdots+a_nA^n=0$. En multipliant par $(A^{-1})^m$ :
 \[
 a_mI_n+\cdots+a_nA^{n-m}=0.
 \]
@@ -200,6 +200,7 @@ Soit $H$ un hyperplan de $\M_n(\C)$ stable par produit.
   \]
   Évaluer $J_n^n$, qu'en déduit-on ?
   \item Soit $M\in H$ inversible, mq $M^{-1}\in H$.
+[On pourra considérer $P=a_rX^r+\cdots+a_mX^m\in\M_n(\C)$, polynôme annulateur non nul de M, avec $a_r\neq0$]
 \end{enumerate}
 \end{statementbox}
 
@@ -223,8 +224,7 @@ On a $u(e_1)=e_2,\ldots,u(e_{n-1})=e_n$ et $u(e_n)=e_1$. En itérant $n$ fois,
 $u^n=\Id_{\C^n}$, $J_n^n=I_n\in H$. Ce qui ne se peut. Donc $I_n\in H$.
 
 \partanswer{b)}
-Soit $P=a_rX^r+\cdots+a_mX^m\neq0$ tel que $P(M)=0$ avec $a_r\neq0$ (on pourra
-considérer le polynôme annulateur non nul de $M$). Alors
+Soit $P=a_rX^r+\cdots+a_mX^m\neq0$ tel que $P(M)=0$ avec $a_r\neq0$ Alors :
 $a_rM^r+\cdots+a_mM^m=0$. En multipliant par $M^{-r}$,
 \[
 a_rI_n+\cdots+a_mM^{m-r}=0.
@@ -343,6 +343,7 @@ $\mathcal B_1=(\varepsilon_1,\varepsilon_2,\ldots,\varepsilon_{n+1})$. Alors
 \[
 \Mat_{\mathcal B_1}(u)=\begin{pmatrix}0&*\\0&A'\end{pmatrix}.
 \]
+(La première colonne possède des 0 partout, sauf un 1 sur la deuxième ligne)
 Comme $\tr(u)=0$, $\tr(A')=0$. Posons
 $F=\Vect(\varepsilon_2,\ldots,\varepsilon_{n+1})$, on a $\dim F=n$.
 
@@ -392,13 +393,14 @@ $\tr(A)=\tr(BC)-\tr(CB)=0$.
 Réciproquement, si $\tr(A)=0$, soit $u$ c.a. à $A$. D'après 1), il existe
 $A'\in\M_n(\C)$ tq $A$ est semblable à $A'$, et $A'$ est de diagonale nulle :
 \[
-\exists P\in\GL_n(\C),qquad A=P\underbrace{A'}_{\text{diag. nulle}}P^{-1}.
+\exists P\in\GL_n(\C), A=P\underbrace{A'}_{\text{diag. nulle}}P^{-1}.
 \]
 Donc il existe, d'après 2), un $M\in\M_n(\C)$ tq $A'=MD_n-D_nM$ et donc
 \begin{align*}
 A&=P(MD_n-D_nM)P^{-1}\\
 &=PMD_nP^{-1}-PD_nMP^{-1}\\
-&=(PMP^{-1})(PD_nP^{-1})-(PD_nP^{-1})(PMP^{-1}).
+&=(PMP^{-1})(PD_nP^{-1})-(PD_nP^{-1})(PMP^{-1})\\
+&=BC-CB.
 \end{align*}
 D'où le résultat.
 
@@ -431,6 +433,7 @@ La partie polynomiale est un polynôme $P\in\Q[X]$.
 =\sum_{i=0}^n\binom niP(x)^{n-i}(O(x^p))^i
 =P(x)^n+O(x^p).
 \]
+Car $(O(x^p))^i\underset{x\to0}{=}O(x^p)$ dès que $i\geq1$
 
 \partanswer{b.}
 On pose $Q(x)=P(x)^n-(1+x)\in\Q[X]$. Alors $Q(x)=x^pa(x)$,
@@ -454,12 +457,12 @@ parallèlement à $\R u_\theta$. On prend $A_\theta$ la matrice dans la b.c. de 
 Comme $u_\theta=\cos\theta\binom10+\sin\theta\binom01$,
 $e_2=(u_\theta-\cos\theta e_1)\frac1{\sin\theta}$. Donc
 \[
-S_\theta(e_2)=(-\cos\theta)e_1-\frac{u_\theta}{\sin\theta}
-=-2\cot(\theta)e_1-e_2.
+S_\theta(e_2)=(-\cotan\theta)e_1-\frac{u_\theta}{\sin\theta}
+=-2\cotan(\theta)e_1-e_2.
 \]
 Ainsi
 \[
-A_\theta=\begin{pmatrix}1&-2\cot\theta\\0&-1\end{pmatrix},
+A_\theta=\begin{pmatrix}1&-2\cotan\theta\\0&-1\end{pmatrix},
 \qquad A_\theta^2=I_2.
 \]
 De plus $\theta\longmapsto A_\theta$ étant injective, on obtient une infinité de matrices
@@ -566,7 +569,7 @@ Ainsi
 \frac{d_i}{i!}=\sum_{j=0}^i(-1)^{i-j}\frac1{(i-j)!}
 =\sum_{j=0}^i\frac{(-1)^j}{j!}
 \]
-est la probabilité pour qu'une permutation de $\mathfrak S_n$ (muni de la probabilité
+est la probabilité pour qu'une permutation de $\mathfrak S_n$ (munie de la probabilité
 uniforme) ne contienne pas de point fixe. Donc
 \[
 \boxed{\lim_{i\to+\infty}\frac{d_i}{i!}=\frac1e.}
@@ -596,6 +599,7 @@ et
 M^{-1}=\frac1{\det(M)}\Com(M)^{\mathsf T}\in\M_n(\Z).
 \]
 
+
 \partanswer{b.}
 Supposons que $M$ possède moins de $n$ coefficients impairs. Alors il existe une colonne de
 $M$ avec seulement des coefficients pairs. Par multilinéarité, $\det M$ est pair. Donc
@@ -615,7 +619,9 @@ M=\begin{pmatrix}
 1&1&\cdots&1\\1&0&\cdots&1\\\vdots&\ddots&\ddots&\vdots\\1&\cdots&1&1
 \end{pmatrix}
 \]
-possédant $n^2-n+1$ coefficients impairs. En effectuant
+(la diagonale de M est composée de 0, sauf dans le coin en haut à gauche)
+
+M possède $n^2-n+1$ coefficients valant 1 et $n-1$ coefficients valant 0. En effectuant
 $L_2\leftarrow L_2-L_1,\ldots,L_n\leftarrow L_n-L_1$, il vient
 $\det M=(-1)^{n-1}\in\{-1,1\}$. Donc $M\in\GL_n(\Z)$.
 \end{solution}
