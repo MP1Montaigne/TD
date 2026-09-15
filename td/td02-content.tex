@@ -264,10 +264,91 @@ $u(P_k) = k P_k$.
 Donc $\Ker(u - k \Id) = \R P_k$.
 \end{solution}
 
+\exercise{41}{}
+
+\begin{statementbox}
+Soit $n$ réels $0 < a_1 < \dots < a_n$
+$A = (a_{ij})_{1 \leq i,j \leq n}$ avec $\forall i \in \intervalint{1}{n}, a_{ii} = 0$ et $\forall i \neq j \in \intervalint{1}{n}^2, a_{ij} = a_j$
+\[
+A = \begin{pmatrix} 0 & a_2 & \dots & a_n \\ a_1 & \ddots & \dots & \vdots \\ \vdots & & \ddots & a_n \\ a_1 & a_2 & \dots & 0 \end{pmatrix}
+\]
+\begin{enumerate}[label=\alph*)]
+  \item Mq $\lambda \in \R$ est valeur propre de $A$ ssi $\sum_{k=1}^n \frac{a_k}{\lambda + a_k} = 1$
+  \item En déduire que $A$ possède $n$ valeurs propres réelles distinctes, et qu'elle est semblable à une matrice diagonale.
+\end{enumerate}
+\end{statementbox}
+
+\begin{solution}
+\partanswer{a)}
+$\lambda \in \Sp(A)$ si $\exists X \in \M_{n,1}(\R) \setminus \{0\}$ tq $AX = \lambda X$, $X = \begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix}$.
+
+donc $\lambda \in \Sp(A)$ si
+\[
+\begin{cases}
+a_2 x_2 + \dots + a_n x_n = \lambda x_1 \\
+\vdots \\
+a_1 x_1 + \dots + a_{n-1} x_{n-1} = \lambda x_n
+\end{cases}
+\]
+ssi $\forall i \in \intervalint{1}{n}, \sum_{j=1}^n a_j x_j = (\lambda + a_i) x_i$.
+
+Si c'est le cas, notons $S = \sum_{j=1}^n a_j x_j$
+
+Si $S = 0$ :
+$\forall i \in \intervalint{1}{n}, (\lambda + a_i) x_i = 0$.
+Or $\exists i_0 \in \intervalint{1}{n}$ tel que $x_{i_0} \neq 0$, donc $\lambda = -a_{i_0}$ et $\forall i \neq i_0, \lambda + a_i \neq 0$ car les $(a_i)_{1 \leq i \leq n}$ sont distincts.
+$x_i = 0$, En reportant dans $S$, $a_{i_0} x_{i_0} = 0$, ce qui ne se peut car $a_{i_0} \neq 0$ et $x_{i_0} \neq 0$, donc $S \neq 0$,
+et $\forall i \in \intervalint{1}{n}, \lambda + a_i \neq 0$ et $x_i \neq 0$, d'où $x_i = \frac{S}{\lambda + a_i}$
+et $S = \sum_{i=1}^n a_i x_i = S \times \sum_{i=1}^n \frac{a_i}{\lambda + a_i}$ car $S \neq 0$
+
+Donc $\boxed{\sum_{i=1}^n \frac{a_i}{\lambda + a_i} = 1}$.
+
+Réciproquement, soit $\lambda \in \R$ tq $\sum_{i=1}^n \frac{a_i}{\lambda + a_i} = 1$ (cela implique que $\forall i \in \intervalint{1}{n}, \lambda + a_i \neq 0$).
+Définissons $\forall i \in \intervalint{1}{n}, x_i = \frac{1}{\lambda + a_i}$, $X = \begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix} \neq \begin{pmatrix} 0 \\ \vdots \\ 0 \end{pmatrix}$.
+
+En remontant les calculs précédents ($\sum_{i=1}^n a_i x_i = 1$ par hypothèse sur $\lambda$), on a $AX = \lambda X$, donc $\boxed{\lambda \in \Sp_\R(A)}$.
+
+\partanswer{b)}
+Considérons $f : \R \setminus \{-a_n, \dots, -a_1\} \to \R$, $\lambda \mapsto \sum_{i=1}^n \frac{a_i}{\lambda + a_i}$ (continue).
+
+Posons $a_0 = -\infty, a_{n+1} = +\infty$, ainsi $]-\infty, -a_n[ = ]-a_{n+1}, -a_n[$ et $]-a_1, +\infty[ = ]-a_1, -a_0[$.
+Si $j \in \intervalint{0}{n}$ et $I_j = ]-a_{j+1}, -a_j[$, alors $f$ est strictement décroissante sur $I_j$,
+et $\lim_{\lambda \to -\infty} f(\lambda) = 0 = \lim_{\lambda \to +\infty} f(\lambda)$.
+$\forall j \in \intervalint{1}{n}$, $\lim_{\lambda \to -a_j^-} f(\lambda) = -\infty$ et $\lim_{\lambda \to -a_j^+} f(\lambda) = +\infty$.
+
+D'où le tableau de variation :
+\begin{center}
+\begin{tabular}{|c|lccccccccr|}
+\hline
+$\lambda$ & $-\infty$ & & $-a_n$ & & $-a_{n-1}$ & $\dots$ & $-a_1$ & & $+\infty$ \\
+\hline
+$f(\lambda)$ & $0$ & $\searrow$ & $-\infty \parallel +\infty$ & $\searrow$ & $-\infty \dots +\infty$ & $\searrow$ & $-\infty \parallel +\infty$ & $\searrow$ & $0$ \\
+\hline
+\end{tabular}
+\end{center}
+
+D'après le TVI, $f$ prend une seule fois la valeur 1 sur chaque $I_j$, pour $j \in \intervalint{0}{n-1}$, donc il existe $n$ valeurs de $\lambda$ telles qu'elles soient valeur propre.
+
+Notons que $\forall \lambda \in \Sp_\R(A)$, les calculs précédents montrent que le sous-espace propre associé à $\lambda$ est de dim 1.
+Soit $u \in \Lin(\R^n)$ c.a. à $A$, on peut trouver une base de vecteurs propres de $u$ et donc $A$ est semblable à une matrice diagonale.
+
+\begin{remarkbox}
+Rem : Soit $F \in \R(X)$ définie par :
+\[
+F(X) = 1 - \sum_{k=1}^n \frac{a_k}{X + a_k} = \frac{P(X)}{\prod_{k=1}^n (X + a_k)}
+\]
+avec $P(X) = \prod_{k=1}^n (X + a_k) - \sum_{k=1}^n a_k \prod_{\substack{j=1\\j \neq k}}^n (X + a_j) = \Theta + \dots$ % À vérifier sur la photo, le symbole ressemble à un cercle ou un \Theta.
+
+Avec $\deg \Theta = n$ et $\dots \in \R_{n-1}[X]$
+donc $\deg P = n$ et $\operatorname{dom} P = 1$.
+$P$ s'annule aux $n$ valeurs propres distinctes de $A$, donc $\boxed{\chi_A = P}$.
+\end{remarkbox}
+\end{solution}
+
 \exercise{43}{}
 
 \begin{statementbox}
-Soit $A = \begin{pmatrix} 2 & 1 & 0 \\ -3 & -1 & -1 \\ 1 & 0 & -1 \end{pmatrix}$ et $u \in \Lin(\R^3)$ c.a à $A$.
+Soit $A = \begin{pmatrix} 2 & 1 & 0 \\ -3 & -1 & 1 \\ 1 & 0 & -1 \end{pmatrix}$ et $u \in \Lin(\R^3)$ c.a à $A$.
 \begin{enumerate}[label=\alph*)]
   \item Trouver tous les sev de $\R^3$ stables par $u$ [On pourra calculer $\chi_u$, et vérifier que $A^3 = 0, A^2 \neq 0$].
   \item Existe-t-il $M \in \M_3(\R) / M^2 = A$ ?
@@ -422,87 +503,6 @@ $F_p = \Vect(e_p, e_{p+2})$
 $F_{p+1} = \Vect(e_{p+1})$
 Les valeurs propres sont les mêmes que dans le cas pair, en ajoutant $x_{p+1}$.
 Dans tous les cas $\chi_u = \prod_{i=1}^p \chi_{u_{|F_i}}$.
-\end{solution}
-
-\exercise{41}{}
-
-\begin{statementbox}
-Soit $n$ réels $0 < a_1 < \dots < a_n$
-$A = (a_{ij})_{1 \leq i,j \leq n}$ avec $\forall i \in \intervalint{1}{n}, a_{ii} = 0$ et $\forall i \neq j \in \intervalint{1}{n}^2, a_{ij} = a_j$
-\[
-A = \begin{pmatrix} 0 & a_2 & \dots & a_n \\ a_1 & \ddots & \dots & \vdots \\ \vdots & & \ddots & a_n \\ a_1 & a_2 & \dots & 0 \end{pmatrix}
-\]
-\begin{enumerate}[label=\alph*)]
-  \item Mq $\lambda \in \R$ est valeur propre de $A$ si $\sum_{k=1}^n \frac{a_k}{\lambda + a_k} = 1$
-  \item En déduire que $A$ possède $n$ valeurs propres réelles distinctes, et qu'elle est semblable à une matrice diagonale.
-\end{enumerate}
-\end{statementbox}
-
-\begin{solution}
-\partanswer{a)}
-$\lambda \in \Sp(A)$ si $\exists X \in \M_{n,1}(\R) \setminus \{0\}$ tq $AX = \lambda X$, $X = \begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix}$.
-
-donc $\lambda \in \Sp(A)$ si
-\[
-\begin{cases}
-a_2 x_2 + \dots + a_n x_n = \lambda x_1 \\
-\vdots \\
-a_1 x_1 + \dots + a_{n-1} x_{n-1} = \lambda x_n
-\end{cases}
-\]
-ssi $\forall i \in \intervalint{1}{n}, \sum_{j=1}^n a_j x_j = (\lambda + a_i) x_i$.
-
-Si c'est le cas, notons $S = \sum_{j=1}^n a_j x_j$
-
-Si $S = 0$ :
-$\forall i \in \intervalint{1}{n}, (\lambda + a_i) x_i = 0$.
-Or $\exists i_0 \in \intervalint{1}{n}$ tel que $x_{i_0} \neq 0$, donc $\lambda = -a_{i_0}$ et $\forall i \neq i_0, \lambda + a_i \neq 0$ car les $(a_i)_{1 \leq i \leq n}$ sont distincts.
-$x_i = 0$, En reportant dans $S$, $a_{i_0} x_{i_0} = 0$, ce qui ne se peut car $a_{i_0} \neq 0$ et $x_{i_0} \neq 0$, donc $S \neq 0$,
-et $\forall i \in \intervalint{1}{n}, \lambda + a_i \neq 0$ et $x_i \neq 0$, d'où $x_i = \frac{S}{\lambda + a_i}$
-et $S = \sum_{i=1}^n a_i x_i = S \times \sum_{i=1}^n \frac{a_i}{\lambda + a_i}$ car $S \neq 0$
-
-Donc $\boxed{\sum_{i=1}^n \frac{a_i}{\lambda + a_i} = 1}$.
-
-Réciproquement, soit $\lambda \in \R$ tq $\sum_{i=1}^n \frac{a_i}{\lambda + a_i} = 1$ (cela implique que $\forall i \in \intervalint{1}{n}, \lambda + a_i \neq 0$).
-Définissons $\forall i \in \intervalint{1}{n}, x_i = \frac{1}{\lambda + a_i}$, $X = \begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix} \neq \begin{pmatrix} 0 \\ \vdots \\ 0 \end{pmatrix}$.
-
-En remontant les calculs précédents ($\sum_{i=1}^n a_i x_i = 1$ par hypothèse sur $\lambda$), on a $AX = \lambda X$, donc $\boxed{\lambda \in \Sp_\R(A)}$.
-
-\partanswer{b)}
-Considérons $f : \R \setminus \{-a_n, \dots, -a_1\} \to \R$, $\lambda \mapsto \sum_{i=1}^n \frac{a_i}{\lambda + a_i}$ (continue).
-
-Posons $a_0 = -\infty, a_{n+1} = +\infty$, ainsi $]-\infty, -a_n[ = ]-a_{n+1}, -a_n[$ et $]-a_1, +\infty[ = ]-a_1, -a_0[$.
-Si $j \in \intervalint{0}{n}$ et $I_j = ]-a_{j+1}, -a_j[$, alors $f$ est strictement décroissante sur $I_j$,
-et $\lim_{\lambda \to -\infty} f(\lambda) = 0 = \lim_{\lambda \to +\infty} f(\lambda)$.
-$\forall j \in \intervalint{1}{n}$, $\lim_{\lambda \to -a_j^-} f(\lambda) = -\infty$ et $\lim_{\lambda \to -a_j^+} f(\lambda) = +\infty$.
-
-D'où le tableau de variation :
-\begin{center}
-\begin{tabular}{|c|lccccccccr|}
-\hline
-$\lambda$ & $-\infty$ & & $-a_n$ & & $-a_{n-1}$ & $\dots$ & $-a_1$ & & $+\infty$ \\
-\hline
-$f(\lambda)$ & $0$ & $\searrow$ & $-\infty \parallel +\infty$ & $\searrow$ & $-\infty \dots +\infty$ & $\searrow$ & $-\infty \parallel +\infty$ & $\searrow$ & $0$ \\
-\hline
-\end{tabular}
-\end{center}
-
-D'après le TVI, $f$ prend une seule fois la valeur 1 sur chaque $I_j$, pour $j \in \intervalint{0}{n-1}$, donc il existe $n$ valeurs de $\lambda$ telles qu'elles soient valeur propre.
-
-Notons que $\forall \lambda \in \Sp_\R(A)$, les calculs précédents montrent que le sous-espace propre associé à $\lambda$ est de dim 1.
-Soit $u \in \Lin(\R^n)$ c.a. à $A$, on peut trouver une base de vecteurs propres de $u$ et donc $A$ est semblable à une matrice diagonale.
-
-\begin{remarkbox}
-Rem : Soit $F \in \R(X)$ définie par :
-\[
-F(X) = 1 - \sum_{k=1}^n \frac{a_k}{X + a_k} = \frac{P(X)}{\prod_{k=1}^n (X + a_k)}
-\]
-avec $P(X) = \prod_{k=1}^n (X + a_k) - \sum_{k=1}^n a_k \prod_{\substack{j=1\\j \neq k}}^n (X + a_j) = \Theta + \dots$ % À vérifier sur la photo, le symbole ressemble à un cercle ou un \Theta.
-
-Avec $\deg \Theta = n$ et $\dots \in \R_{n-1}[X]$
-donc $\deg P = n$ et $\operatorname{dom} P = 1$.
-$P$ s'annule aux $n$ valeurs propres distinctes de $A$, donc $\boxed{\chi_A = P}$.
-\end{remarkbox}
 \end{solution}
 
 \exercise{Mines}{}
