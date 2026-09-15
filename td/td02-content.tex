@@ -228,7 +228,7 @@ Ainsi, les valeurs propres de $f^{-1}$ sont les $k \in \N^*$ et $\forall k \in \
 De plus, $\forall u \in S \setminus \{0\}$, $\forall \lambda \in \R^*$ : $f^{-1}(u) = \lambda u$
 si et seulement si $f(u) = \frac{1}{\lambda} u$.
 Ainsi, $\Sp(f) = \{\frac{1}{k} / k \in \N^*\}$
-et $\forall k \in \N^*$, $\Ker(f - \frac{1}{k} \Id) = \R U^{(k)}$.
+et $\forall k \N^*$, $\Ker(f - \frac{1}{k} \Id) = \R U^{(k)}$.
 \end{solution}
 
 \exercise{26}{}
@@ -340,6 +340,47 @@ D'après le théorème de Cayley-Hamilton et le lemme des noyaux,
 \R^3 = \underbrace{\Ker(u)}_{F_0} \oplus \underbrace{\Ker((u-2\Id)^2)}_{F_2}
 \]
 deux sev stables par $u$.
+
+\begin{lemma*}
+Soit $F$ un sev de $\R^3$ stable par $u$,
+Alors, $F = (F \cap F_0) \oplus (F \cap F_1)$
+% À vérifier sur la photo : la copie écrit F_1 dans le lemme, puis F_2 plus loin pour le même espace.
+\end{lemma*}
+
+Dém : $F \cap F_0 \subset F$ et $F \cap F_1 \subset F$ donc,
+$(F \cap F_0) \oplus (F \cap F_1) \subset F$
+
+Comme $X \land (X-2)^2 = 1$, $\exists (U,V) \in \R[X]^2$,
+$XU + (X-2)^2V = 1$
+D'où $u \circ U(u) + (u-2\Id)^2 \circ V(u) = \Id$
+et $\forall x \in F$, $x = \underbrace{(u \circ U(u))(x)}_{x_1 \in F} + \underbrace{((u-2\Id)^2 \circ V(u))(x)}_{x_0 \in F \text{ par stabilité de } F}$
+
+De plus, $(u-2\Id)^2(x_1) = u \circ (u-2\Id)^2 [U(u)(x)] = 0$
+car $\chi_u(u) = 0$ (T.C.H).
+
+donc $x_1 \in \Ker(u-2\Id)^2 = F_2$
+De même, $u(x_0) = 0$ donc $x_0 \in F_0$.
+
+Ainsi, $F = (F \cap F_0) \oplus (F \cap F_1)$
+$F_0 = \Ker(u)$ de dim 1 car 0 est racine simple de $\chi_u$.
+$F \cap F_0 \in \{\{0\}, F_0\}$
+Comme $\R^3 = F_0 \oplus F_1$, $\dim F_1 = 2$.
+
+$F \cap F_2$ est de dimension 0, 1 ou 2
+Si $\dim F \cap F_2$ est 0, alors $F \cap F_2 = \{0\}$ et alors $F \cap F_2 = F_2$.
+% À vérifier sur la photo : la fin de la phrase "et alors F \cap F_2 = F_2" correspond sans doute au cas dim=2 qui a été mal formulé/raturé.
+
+Si $\dim F \cap F_2 = 1$, alors $F \cap F_2$ est engendré par un vecteur propre de $u_{|F_2}$.
+Or $\Sp(u_{|F_2}) = \{2\}$ car $(X-2)^2$ annule $u_{|F_2}$.
+
+Soit $\begin{pmatrix} x \\ y \\ z \end{pmatrix} \in \M_{3,1}(\R)$
+$(M - 2I_3) \begin{pmatrix} x \\ y \\ z \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}$ ssi $\begin{cases} -x - y = 0 \\ -x + z = 0 \\ x - z = 0 \end{cases}$ ssi $\begin{cases} y = -x \\ z = x \end{cases}$
+ssi $\begin{pmatrix} x \\ y \\ z \end{pmatrix} \in \R \begin{pmatrix} 1 \\ -1 \\ 1 \end{pmatrix}$.
+
+Si $\dim F \cap F_1 = 1$,
+Nécessairement $F \cap F_2 = \R \begin{pmatrix} 1 \\ -1 \\ 1 \end{pmatrix}$
+
+Finalement, il y a exactement 6 sev stables par $u$.
 \end{solution}
 
 \exercise{56}{}
@@ -381,4 +422,124 @@ $F_p = \Vect(e_p, e_{p+2})$
 $F_{p+1} = \Vect(e_{p+1})$
 Les valeurs propres sont les mêmes que dans le cas pair, en ajoutant $x_{p+1}$.
 Dans tous les cas $\chi_u = \prod_{i=1}^p \chi_{u_{|F_i}}$.
+\end{solution}
+
+\exercise{41}{}
+
+\begin{statementbox}
+Soit $n$ réels $0 < a_1 < \dots < a_n$
+$A = (a_{ij})_{1 \leq i,j \leq n}$ avec $\forall i \in \intervalint{1}{n}, a_{ii} = 0$ et $\forall i \neq j \in \intervalint{1}{n}^2, a_{ij} = a_j$
+\[
+A = \begin{pmatrix} 0 & a_2 & \dots & a_n \\ a_1 & \ddots & \dots & \vdots \\ \vdots & & \ddots & a_n \\ a_1 & a_2 & \dots & 0 \end{pmatrix}
+\]
+\begin{enumerate}[label=\alph*)]
+  \item Mq $\lambda \in \R$ est valeur propre de $A$ si $\sum_{k=1}^n \frac{a_k}{\lambda + a_k} = 1$
+  \item En déduire que $A$ possède $n$ valeurs propres réelles distinctes, et qu'elle est semblable à une matrice diagonale.
+\end{enumerate}
+\end{statementbox}
+
+\begin{solution}
+\partanswer{a)}
+$\lambda \in \Sp(A)$ si $\exists X \in \M_{n,1}(\R) \setminus \{0\}$ tq $AX = \lambda X$, $X = \begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix}$.
+
+donc $\lambda \in \Sp(A)$ si
+\[
+\begin{cases}
+a_2 x_2 + \dots + a_n x_n = \lambda x_1 \\
+\vdots \\
+a_1 x_1 + \dots + a_{n-1} x_{n-1} = \lambda x_n
+\end{cases}
+\]
+ssi $\forall i \in \intervalint{1}{n}, \sum_{j=1}^n a_j x_j = (\lambda + a_i) x_i$.
+
+Si c'est le cas, notons $S = \sum_{j=1}^n a_j x_j$
+
+Si $S = 0$ :
+$\forall i \in \intervalint{1}{n}, (\lambda + a_i) x_i = 0$.
+Or $\exists i_0 \in \intervalint{1}{n}$ tel que $x_{i_0} \neq 0$, donc $\lambda = -a_{i_0}$ et $\forall i \neq i_0, \lambda + a_i \neq 0$ car les $(a_i)_{1 \leq i \leq n}$ sont distincts.
+$x_i = 0$, En reportant dans $S$, $a_{i_0} x_{i_0} = 0$, ce qui ne se peut car $a_{i_0} \neq 0$ et $x_{i_0} \neq 0$, donc $S \neq 0$,
+et $\forall i \in \intervalint{1}{n}, \lambda + a_i \neq 0$ et $x_i \neq 0$, d'où $x_i = \frac{S}{\lambda + a_i}$
+et $S = \sum_{i=1}^n a_i x_i = S \times \sum_{i=1}^n \frac{a_i}{\lambda + a_i}$ car $S \neq 0$
+
+Donc $\boxed{\sum_{i=1}^n \frac{a_i}{\lambda + a_i} = 1}$.
+
+Réciproquement, soit $\lambda \in \R$ tq $\sum_{i=1}^n \frac{a_i}{\lambda + a_i} = 1$ (cela implique que $\forall i \in \intervalint{1}{n}, \lambda + a_i \neq 0$).
+Définissons $\forall i \in \intervalint{1}{n}, x_i = \frac{1}{\lambda + a_i}$, $X = \begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix} \neq \begin{pmatrix} 0 \\ \vdots \\ 0 \end{pmatrix}$.
+
+En remontant les calculs précédents ($\sum_{i=1}^n a_i x_i = 1$ par hypothèse sur $\lambda$), on a $AX = \lambda X$, donc $\boxed{\lambda \in \Sp_\R(A)}$.
+
+\partanswer{b)}
+Considérons $f : \R \setminus \{-a_n, \dots, -a_1\} \to \R$, $\lambda \mapsto \sum_{i=1}^n \frac{a_i}{\lambda + a_i}$ (continue).
+
+Posons $a_0 = -\infty, a_{n+1} = +\infty$, ainsi $]-\infty, -a_n[ = ]-a_{n+1}, -a_n[$ et $]-a_1, +\infty[ = ]-a_1, -a_0[$.
+Si $j \in \intervalint{0}{n}$ et $I_j = ]-a_{j+1}, -a_j[$, alors $f$ est strictement décroissante sur $I_j$,
+et $\lim_{\lambda \to -\infty} f(\lambda) = 0 = \lim_{\lambda \to +\infty} f(\lambda)$.
+$\forall j \in \intervalint{1}{n}$, $\lim_{\lambda \to -a_j^-} f(\lambda) = -\infty$ et $\lim_{\lambda \to -a_j^+} f(\lambda) = +\infty$.
+
+D'où le tableau de variation :
+\begin{center}
+\begin{tabular}{|c|lccccccccr|}
+\hline
+$\lambda$ & $-\infty$ & & $-a_n$ & & $-a_{n-1}$ & $\dots$ & $-a_1$ & & $+\infty$ \\
+\hline
+$f(\lambda)$ & $0$ & $\searrow$ & $-\infty \parallel +\infty$ & $\searrow$ & $-\infty \dots +\infty$ & $\searrow$ & $-\infty \parallel +\infty$ & $\searrow$ & $0$ \\
+\hline
+\end{tabular}
+\end{center}
+
+D'après le TVI, $f$ prend une seule fois la valeur 1 sur chaque $I_j$, pour $j \in \intervalint{0}{n-1}$, donc il existe $n$ valeurs de $\lambda$ telles qu'elles soient valeur propre.
+
+Notons que $\forall \lambda \in \Sp_\R(A)$, les calculs précédents montrent que le sous-espace propre associé à $\lambda$ est de dim 1.
+Soit $u \in \Lin(\R^n)$ c.a. à $A$, on peut trouver une base de vecteurs propres de $u$ et donc $A$ est semblable à une matrice diagonale.
+
+\begin{remarkbox}
+Rem : Soit $F \in \R(X)$ définie par :
+\[
+F(X) = 1 - \sum_{k=1}^n \frac{a_k}{X + a_k} = \frac{P(X)}{\prod_{k=1}^n (X + a_k)}
+\]
+avec $P(X) = \prod_{k=1}^n (X + a_k) - \sum_{k=1}^n a_k \prod_{\substack{j=1\\j \neq k}}^n (X + a_j) = \Theta + \dots$ % À vérifier sur la photo, le symbole ressemble à un cercle ou un \Theta.
+
+Avec $\deg \Theta = n$ et $\dots \in \R_{n-1}[X]$
+donc $\deg P = n$ et $\operatorname{dom} P = 1$.
+$P$ s'annule aux $n$ valeurs propres distinctes de $A$, donc $\boxed{\chi_A = P}$.
+\end{remarkbox}
+\end{solution}
+
+\exercise{Mines}{}
+
+\begin{statementbox}
+(Mines) Soit $(A,B) \in \M_n(\C)^2$ et $\varphi_{A,B} : \M_n(\C) \to \M_n(\C)$, $M \mapsto AM - MB$.
+$\varphi_{A,B} \in \Lin(\M_n(\C))$.
+\begin{enumerate}[label=\alph*)]
+  \item Soit $\lambda \in \Sp_\C A, \mu \in \Sp_\C B$, mq $\lambda - \mu \in \Sp_\C(\varphi_{A,B})$.\\
+  ~[On pourra considérer, en justifiant, $(X, Y) \in (\M_{n,1}(\C) \setminus \{0\})^2 / AX = \lambda X \text{ et } Y^{\mathsf T} B = \mu Y^{\mathsf T}$, et former $M = X Y^{\mathsf T}$]
+  \item Soit $\alpha \in \Sp_\C(\varphi_{A,B})$ et $M \in \M_n(\C) \setminus \{0\} / \varphi_{A,B}(M) = \alpha M$.
+  Mq $\forall P \in \C[X]$, $P(A)M = M P(B + \alpha I_n)$.
+  En appliquant le TCH, mq $\chi_A(B + \alpha I_n)$ n'est pas inversible, en déduire que $\exists (\lambda, \mu) \in \Sp_\C A \times \Sp_\C B / \alpha = \lambda - \mu$.
+\end{enumerate}
+\end{statementbox}
+
+\begin{solution}
+\partanswer{a)}
+Comme $\lambda \in \Sp_\C(A)$, $\exists X \in \M_{n,1}(\C) \setminus \{0\} / AX = \lambda X$.
+$\mu \in \Sp_\C B = \Sp_\C B^{\mathsf T}$ donc $\exists Y \in \M_{n,1}(\C) \setminus \{0\} / B^{\mathsf T} Y = \mu Y$ donc $Y^{\mathsf T} B = \mu Y^{\mathsf T}$.
+
+Si $X = \begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix}$, $Y = \begin{pmatrix} y_1 \\ \vdots \\ y_n \end{pmatrix}$, soit $M = X Y^{\mathsf T} = (x_i y_j)_{1 \leq i,j \leq n} \neq 0 \in \M_n(\C)$.
+On a $\varphi_{A,B}(M) = A X Y^{\mathsf T} - X Y^{\mathsf T} B = \lambda X Y^{\mathsf T} - \mu X Y^{\mathsf T} = (\lambda - \mu) M$.
+et $M \neq 0$ donc $\lambda - \mu \in \Sp_\C(\varphi_{A,B})$.
+
+\partanswer{b)}
+$\varphi_{A,B}(M) = \alpha M$, donc $AM = M(\alpha I_n + B)$.
+Soit $k \n$, on a $A^k M = M(\alpha I_n + B)^k$ par récurrence immédiate.
+Par combinaison linéaire, $\forall P \in \C[X]$, $P(A)M = M P(\alpha I_n + B)$.
+
+En particulier pour $\chi_A \in \C[X]$, $\chi_A(A) = 0$ [TCH].
+Donc $M \chi_A(B + \alpha I_n) = 0$.
+Si $\chi_A(B + \alpha I_n)$ était inversible, $M = 0$ ce qui n'est pas.
+Donc $\chi_A(B + \alpha I_n)$ n'est pas inversible.
+
+Si $\chi_A = (X - \lambda_1) \dots (X - \lambda_n)$ avec $\Sp_\C A = \{\lambda_1, \dots, \lambda_n\}$.
+$\prod_{k=1}^n (B + (\alpha - \lambda_k)I_n)$ n'est pas inversible, et
+$\exists k \in \intervalint{1}{n} / B - (\lambda_k - \alpha)I_n$ n'est pas inversible.
+si $\lambda_k - \alpha \in \Sp_\C B$, notons le $\mu$. Alors $\alpha = \underbrace{\lambda_k}_{\in \Sp_\C A} - \underbrace{\mu}_{\in \Sp_\C B}$.
 \end{solution}
