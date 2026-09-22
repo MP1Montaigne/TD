@@ -1,0 +1,1093 @@
+% Transcription littérale des photographies de photos/03.
+% Les abréviations et l'ordre des raisonnements de la copie sont conservés.
+
+\providecommand{\Sp}{\operatorname{Sp}}
+\providecommand{\mat}{\operatorname{mat}}
+\providecommand{\diag}{\operatorname{diag}}
+
+\exercise{20}{}
+
+\begin{statementbox}
+Soit $E$ un $\K$-ev de dim finie, $V$ un sev de
+$\Lin(E)\setminus \{0\}\subset \GL(E)$ [i.e. si $f\in V$ et $f\neq 0$, alors
+$f$ est inversible]
+\begin{enumerate}[label=\alph*)]
+  \item Mq $\dim V\leq \dim E$.
+  \item Élucider $V$ si $\K=\C$, est-ce encore valable si $\K=\R$ ?
+\end{enumerate}
+\end{statementbox}
+
+\begin{solution}
+\partanswer{a)}
+Fixons $x_0\in E\setminus\{0\}$ et
+\[
+\Phi:V\to E,\qquad f\mapsto f(x_0)
+\]
+est linéaire.
+
+$f\in\Ker(\Phi)$ si $f(x_0)=0$ donc $f$ n'est pas injective donc $f=0$.
+
+Ainsi, $\Phi$ est injective et $\boxed{\dim V\leq \dim E}$.
+
+\partanswer{b)}
+Soit $f_0\in\GL(E)$, $V=\C\cdot f_0$ convient.
+
+Soit $V$ un sev de $\Lin(E)$ vérifiant l'hypothèse.
+
+Si $\dim V\geq 2$ : soit $(f_1,f_2)$ une famille libre de $V$.
+
+Alors $\forall \alpha\in\C$, $f_1+\alpha f_2\in V$ et
+$f_1+\alpha f_2\neq0$. D'où $f_1+\alpha f_2\in\GL(E)$.
+
+On peut réécrire $f_1+\alpha f_2$ en
+\[
+f_2\circ(f_2^{-1}\circ f_1+\alpha \Id_E)
+\]
+($f_2\in\GL(E)$ car $V\setminus\{0\}$).
+
+Ainsi $\forall \alpha\in\C$, $f_2^{-1}\circ f_1+\alpha\Id_E\in\GL(E)$ et
+$\Sp(f_2^{-1}\circ f_1)=\emptyset$, ce qui n'est pas.
+
+Nécessairement, $(f_1,f_2)$ est liée et $\dim V=0$ ou $1$.
+
+Si $\K=\R$ : On pose
+\[
+W=\left\{\begin{pmatrix}a&-b\\ b&a\end{pmatrix}/(a,b)\in\R^2\right\}
+=\Vect(I_2,h_{\pi/2})
+\]
+$\forall(a,b)\in\R^2$,
+\[
+\det\begin{pmatrix}a&-b\\ b&a\end{pmatrix}=a^2+b^2=0
+\]
+ssi $a=b=0$.
+
+Rem : $E=\R^2$ et
+\[
+V=\{f\in\Lin(E)/\mat_{(e_1,e_2)}(f)\in W\}
+\]
+($e_1,e_2$ b.c de $\R^2$). On a $\dim V=2$ et $\forall f\in V\setminus\{0\}$,
+$f\in\GL(E)$.
+\end{solution}
+
+\exercise{Alg lin 8}{}
+
+\begin{statementbox}
+Soient $E,F,G$ trois $\K$-ev, $u\in\Lin(E,F)$, $v\in\Lin(E,G)$.
+\[
+\text{mq }(\exists w\in\Lin(F,G)\,/\,v=w\circ u)\ \text{ssi }(\Ker u\subset\Ker v).
+\]
+
+Soit $A\in\M_n(\K)$, on lui associe
+\[
+f_A:\M_n(\K)\to\M_n(\K),\quad M\mapsto AM-MA
+\]
+et
+\[
+g_A:\M_n(\K)\to\K,\quad M\mapsto \tr(AM).
+\]
+
+Mq $A$ nilpotente avec $\Ker f_A\subset\Ker g_A$.
+
+Mq $A\in\M_n(\K)$ est nilpotente ssi $\exists B\in\M_n(\K)$ tq $A=AB-BA$.
+\end{statementbox}
+
+\begin{solution}
+\partanswer{a)}
+Si il existe $w\in\Lin(F,G)$ tq $v=w\circ u$.
+
+Soit $x\in\Ker(u)$, $v(x)=w(u(x))=0$ donc $\Ker(u)\subset\Ker(v)$.
+
+Réciproquement si $\Ker(u)\subset\Ker(v)$.
+
+Soit $y\in\Ima(u)$, $y=u(x)$ avec $x\in E$ ; il faut
+$w(y)=v(x)$. Si $x'$ vérifie $y=u(x')$, alors $x-x'\in\Ker(u)$ donc
+$x-x'\in\Ker(v)$ et $v(x)=v(x')$.
+
+On peut poser $w(y)=v(x)$.
+
+Soit $F_1$ supplémentaire de $\Ima(u)$ dans $F$.
+On définit $\forall y_1\in F_1$, $w(y_1)=0$.
+
+Finalement on a $w$ de $F$ dans $G$ linéaire.
+
+\partanswer{b)}
+Soit $M\in\Ker(f_A)$ : $AM=MA$.
+Soit $k\in\N^*$ tel que $A^k=0$, on a $(AM)^k=A^kM^k=0$.
+
+Donc $AM$ est nilpotente donc triangularisable et $\Sp_\K(AM)=\{0\}$.
+Ainsi $\tr(AM)=0$ et $\Ker f_A\subset\Ker g_A$.
+
+\partanswer{c)}
+S'il existe $B\in\M_n(\K)$ tq $A=AB-BA$, on évalue pour $k\in\N$
+$A^kB-BA^k$.
+
+On a $A^2=A^2B-ABA$ et $A^2=ABA-BA^2$, donc
+$2A^2=A^2B-BA^2$.
+
+Soit $k\in\N^*$ supposons $kA^k=A^kB-BA^k$.
+Alors
+\[
+kA^{k+1}=A^{k+1}B-ABA^k
+\]
+et
+\[
+A^{k+1}=AB A^k-BA^{k+1}.
+\]
+et
+\[
+(k+1)A^{k+1}=A^{k+1}B-BA^{k+1}.
+\]
+
+Donc si $\forall k\in\N^*$, $A^k\neq0$, alors $k\in\Sp(f_B)$
+impossible car $\Sp(f_B)$ fini. Donc $A$ nilpotente.
+
+Si $A$ est nilpotente, d'après b), $\Ker f_A\subset\Ker g_A$.
+D'après a), $\exists\omega\in\Lin(\M_n(\K),\K)$ tel que $g_A=\omega\circ f_A$.
+
+Comme $\omega$ est une forme linéaire sur $\M_n(\K)$, $\exists C\in\M_n(\K)$
+tq $\omega(M)=\tr(CM)$.
+
+Alors $\forall M\in\M_n(\K)$,
+\[
+g_A(M)=\tr(AM)=\tr(C(AM-MA))=\tr(CAM)-\tr(CMA)
+\]
+\[
+=\tr(CAM)-\tr(ACM)=\tr((CA-AC)M).
+\]
+Comme $\tr((A-CA+AC)M)=0$ pour tout $M$, on a $A=CA-AC$ ; on pose $B=-C$.
+\end{solution}
+
+\exercise{66}{}
+
+\begin{statementbox}
+Soit $E$ un $\K$-ev de dim finie $n\in\N^*$, $u\in\Lin(E)$.
+Montrer l'équivalence :
+\[
+(u\text{ diagonalisable})\quad\text{ssi}\quad
+(\forall F\text{ s.e.v de }E,\ F\text{ admet un supplémentaire dans }E
+\text{ stable par }u).
+\]
+\end{statementbox}
+
+\begin{solution}
+On suppose que $u$ est diagonalisable.
+Soit $F$ un s.e.v de $E$ et soit $B_1$ une base de $F$.
+On la complète en base de $E$ avec des vecteurs propres de $u$ [possible, car
+les vecteurs propres de $u$ forment une famille génératrice, et Théorème de la
+base incomplète].
+
+On obtient ainsi un supplémentaire de $F$ dans $E$ stable par $u$.
+Donc (i)$\Rightarrow$(ii).
+
+Soit $m\in\N^*$, $H_m$ : ``si $\dim E=m$ et pour $u\in\Lin(E)$, si $u$
+vérifie (ii), alors $u$ est diagonalisable''.
+
+pour $m=1$ : $H_1$ est vrai, car tout endomorphisme en dim 1 vérifie (ii) et
+(i) [$u$ homothétie].
+
+Soit $m\in\N^*$ et $m\geq2$, on suppose $H_{m-1}$ vraie.
+Soit $E$ un $\K$-ev de dimension $m$, $u\in\Lin(E)$ vérifiant (ii).
+Soit $H$ un hyperplan de $E$, $\exists x_0\in E/E=H\oplus\K x_0$ avec
+$\K x_0$ stable par $u$.
+Alors $\exists H_1$ hyperplan de $E$ stable par $u$ / $E=H_1\oplus\K x_0$ et
+$x_0$ vecteur propre de $u$.
+
+Soit $F_1$ un s.e.v de $H_1$, soit $G$ un supplémentaire de $F_1$ dans $E$
+stable par $u$.
+$G_1=H_1\cap G$.
+
+On a $\dim(G)=m-\dim(F_1)$ par la formule de Grassmann :
+\[
+\dim(H_1+G)=\dim H_1+\dim G-\dim(H_1\cap G).
+\]
+Comme $E=F_1\oplus G$, $G\not\subset H_1$ (sinon $F_1\oplus G\subset H_1$).
+Donc $H_1+G=E$ car $H_1$ est un hyperplan.
+
+Ainsi $m=\dim G+\dim H_1-\dim G_1$, il vient
+\[
+\dim G_1=(m-1)-\dim F_1.
+\]
+Donc $\dim F_1+\dim G_1=\dim H_1$, et $H_1=F_1\oplus G_1$.
+
+$G_1$ est stable par $u_{|H_1}$, on applique $H_{m-1}$ à $u_{|H_1}$.
+Donc $u_{|H_1}$ diagonalisable et comme $E=H_1\oplus\Vect(x_0)$,
+$u$ est diagonalisable.
+
+Remarque : Soit (iii) tout s.e.v de $E$ stable par $u$ admet un supplémentaire
+dans $E$ stable par $u$. On a (ii)$\Rightarrow$(iii).
+
+Si $\K=\R$, soit $E=\R^2$, $u=r_{\pi/2}$, les sous s.e.v de $\R^2$ stables
+par $u$ sont $\{0\}$ et $E$, qui admettent un supplémentaire stable.
+Donc $u$ vérifie (iii), mais pas (i).
+
+En revanche si $\K=\C$ : soit
+\[
+F=\bigoplus_{\lambda\in\Sp(u)}\Ker(u-\lambda\Id_E).
+\]
+Si $u$ vérifie (iii), $\exists G$ s.e.v stable par $u$, supplémentaire de $F$
+dans $E$. Si $G\neq\{0\}$, $u_{|G}$ admet au moins un vecteur propre et ce
+vecteur propre est dans $F$, ce qui ne se peut. Donc $G=\{0\}$, $E=F$ est
+diagonalisable.
+\end{solution}
+
+\exercise{Mines}{}
+
+\begin{statementbox}
+Soit $E$ un $\C$-ev de dim finie $n\in\N^*$, $f$ et $g\in\Lin(E)$ qui
+commutent. Mq $\exists B$ base de $E$ /
+$\mat_B f$ et $\mat_B g$ sont triangulaires supérieures.
+\end{statementbox}
+
+\begin{solution}
+Soit $\lambda\in\Sp f$ (existe car $E$ est un $\C$ e.v de dimension finie
+$\geq1$).
+Alors comme $f\circ g=g\circ f$, $\Ker(f-\lambda\Id_E)$ est stable par $g$.
+
+Donc $g_{|\Ker(f-\lambda\Id_E)}$ admet une valeur propre $\mu\in\C$, et un
+vecteur propre $\varepsilon_1$ associé :
+$g(\varepsilon_1)=\mu\varepsilon_1$, $f(\varepsilon_1)=\lambda\varepsilon_1$.
+
+Soit pour $m\in\N^*$, $H_m$ : ``si $E$ un $\C$-ev de dimension $m$, $f$ et $g$
+2 endomorphismes qui commutent, alors ils sont cotrigonalisables''.
+
+$H_1$ vraie car $f$ et $g$ sont des homothéties.
+
+Soit $m\in\N$, $m\geq2$ : supposons $H_{m-1}$ vraie, soit $E$ un $\C$-ev de
+dim $m$, $f$ et $g$ qui commutent. On vient de voir que
+$\exists(\lambda,\mu,\varepsilon_1)\in\C^2\times E\setminus\{0\}$ /
+$f(\varepsilon_1)=\lambda\varepsilon_1$, $g(\varepsilon_1)=\mu\varepsilon_1$.
+
+On complète $\varepsilon_1$ en une base de $E$ par le théorème de la base
+incomplète : $B=(\varepsilon_1,\dots,\varepsilon_n)$.
+
+Soit $F=\Vect(\varepsilon_2,\dots,\varepsilon_n)$, $\pi$ le projecteur sur $F$
+// à $\K\varepsilon_1$ et
+\[
+f_1:F\to F,\quad x\mapsto \pi(f(x)),\qquad
+g_1:F\to F,\quad x\mapsto \pi(g(x)).
+\]
+\[
+\mat_B(f)=
+\underbrace{
+\begin{pmatrix}
+\lambda&*&\cdots&*\\
+0&&&\\
+\vdots&&A_1&\\
+0&&&
+\end{pmatrix}}_{A},
+\qquad
+\mat_B(g)=
+\underbrace{
+\begin{pmatrix}
+\mu&*&\cdots&*\\
+0&&&\\
+\vdots&&B_1&\\
+0&&&
+\end{pmatrix}}_{B}.
+\]
+
+$A$ et $B$ commutent, et
+$A_1=\mat_{(\varepsilon_2,\dots,\varepsilon_n)}(f_1)$,
+$B_1=\mat_{(\varepsilon_2,\dots,\varepsilon_n)}(g_1)$ ; le produit par blocs
+assure que $A_1B_1=B_1A_1$.
+Donc $f_1$ et $g_1$ commutent, d'après l'hypothèse de récurrence il existe
+$(h_1,\dots,h_n)$ base de $F$ telle que les matrices dans la base
+$(h_1,\dots,h_n)$ de $f_1$ et $g_1$ soient triangulaires supérieures.
+Ainsi $B=(\varepsilon_1,h_1,\dots,h_n)$ convient.
+
+Remarque :
+si $|f\circ g-g\circ f|=1$.
+Si $f$ était inversible, $f\circ g\circ f^{-1}-g=\Id_E$ et
+$\tr(f\circ g\circ f^{-1}-g)=\tr(\Id_E)=\dim E$, ce qui ne peut pas.
+
+Donc $\Ker f\neq\{0\}$, et si $x\in\Ker(f)$, on a
+$f(g(x))=g(f(x))+f(x)=0$, donc $g(x)\in\Ker(f)$.
+$\Ker(f)$ est stable par $g$ ; $f$ et $g$ admettent un vecteur propre commun ;
+de même que supra, $f$ et $g$ sont cotrigonalisables.
+\end{solution}
+
+\exercise{Centrale}{}
+
+\begin{statementbox}
+Soit $m\in\N$, $m\geq2$, et
+\[
+A=\begin{pmatrix}
+2&-1&0& & \\
+1&\ddots&\ddots& & \\
+ &\ddots&\ddots&-1& \\
+ & &1&2&-1\\
+0& & &-1&2
+\end{pmatrix}\in\M_n(\R)
+\]
+Donner les éléments propres de $A$.
+\end{statementbox}
+
+\begin{solution}
+Soit $\lambda\in\C$, $Y=\begin{pmatrix}a_1\\ \vdots\\ a_m\end{pmatrix}
+\in\M_{m,1}(\C)$, on a $(A-\lambda I_m)Y=0$ ssi
+\[
+(I)\quad
+\begin{cases}
+(2-\lambda)a_1-a_2=0,\\
+-a_{k-1}+(2-\lambda)a_k-a_{k+1}=0,\\
+-a_{m-1}+(2-\lambda)a_m=0.
+\end{cases}
+\]
+Définissons $a_0=a_{m+1}=0$.
+
+$(I)$ ssi $\forall k\in\intervalint{1}{m}$,
+\[
+-a_{k-1}+(2-\lambda)a_k-a_{k+1}=0
+\]
+récurrence linéaire double.
+
+Soit $P=X^2-(2-\lambda)X+1$, $\Delta=(2-\lambda)^2-4$.
+
+Si $\lambda\in]0,4[$, alors $|2-\lambda|<2$, donc $\Delta<0$ et
+$P=(X-\mu)(X-\overline\mu)$ avec $\mu\in\C\setminus\R$, $\mu\overline\mu=1$.
+Donc $\exists\theta\in]0,\pi[$ / $\{\mu,\overline\mu\}=\{e^{i\theta},e^{-i\theta}\}$.
+
+Alors $\exists(\alpha,\beta)\in\C^2$ /
+\[
+\forall k\in\intervalint{0}{m+1},\quad
+a_k=\alpha e^{ik\theta}+\beta e^{-ik\theta}.
+\]
+$a_0=0$ donc $\alpha+\beta=0$ et
+$a_k=2i\alpha\sin(k\theta)$.
+
+Si $\lambda\in\Sp(A)$ : $Y\neq0$ ainsi $\alpha\neq0$ et
+$a_{m+1}=0=2i\alpha\sin((m+1)\theta)$.
+
+$\theta\in]0,\pi[$ donc $\exists k\in\intervalint{1}{m}$ /
+$\theta=\dfrac{k\pi}{m+1}$.
+
+De plus
+\[
+(X-e^{i\theta})(X-e^{-i\theta})
+=X^2-2\cos(\theta)X+1
+=X^2-(2-\lambda)X+1
+\]
+donc $\lambda=2-2\cos\theta$.
+
+Posons donc $\forall k\in\intervalint{1}{m}$,
+\[
+\lambda_k=2\left(1-\cos\frac{k\pi}{m+1}\right),
+\quad
+Y_k=\begin{pmatrix}
+\sin\frac{k\pi}{m+1}\\
+\sin\frac{2k\pi}{m+1}\\
+\vdots\\
+\sin\frac{mk\pi}{m+1}
+\end{pmatrix}.
+\]
+Les calculs précédents impliquent (en remontant) $AY_k=\lambda_kY_k$.
+
+On obtient ainsi $m$ valeurs propres distinctes : ce sont les seules.
+Donc $A$ diagonalisable sur $\R$, semblable à
+\[
+\begin{pmatrix}
+2(1-\cos\frac{\pi}{m+1})&0\\
+0&\ddots\\
+&&2(1-\cos\frac{m\pi}{m+1})
+\end{pmatrix}.
+\]
+
+Remarque :
+\[
+\det(A_m)=2\det(A_{m-1})-\det(A_{m-2})
+\]
+(développement 1\iere{} ligne). Il vient par récurrence
+$\forall m\in\N^*$, $\det(A_m)=m+1$.
+\end{solution}
+
+\exercise{49}{}
+
+\begin{statementbox}
+Soit $n\in\N^*$, et $A\in\M_n(\R)$ / $A^2-A+I_n=0$.
+\begin{enumerate}[label=\alph*)]
+  \item Mq $n$ est pair.
+  \item Mq $A$ est semblable à
+  \[
+  A'=\begin{pmatrix}I_{n/2}&I_{n/2}\\-I_{n/2}&0\end{pmatrix}.
+  \]
+\end{enumerate}
+\end{statementbox}
+
+\begin{solution}
+\partanswer{a)}
+On a
+\[
+A^2-A+I_n=\left(A-\frac12I_n\right)^2+\frac34I_n.
+\]
+Donc
+\[
+\left(A-\frac12I_n\right)^2=-\frac34I_n
+\]
+d'où
+\[
+\det\left(A-\frac12I_n\right)^2=\left(-\frac34\right)^n
+\]
+ainsi $n$ est pair.
+
+\partanswer{b)}
+$X^2-X+1$ annule $A$.
+
+$(X-j)(X-\overline j)$ scindé à racines simples sur $\C$.
+
+Donc $A$ est diagonalisable sur $\C$.
+
+Semblable à :
+\[
+\begin{pmatrix}jI_k&0\\0&\overline j I_\ell\end{pmatrix}
+\]
+or $\tr A=kj+\ell\overline j\in\R$ car $A\in\M_n(\R)$ donc $k=\ell=n/2$.
+
+On a
+\[
+(A')^2=
+\begin{pmatrix}0&I_{n/2}\\-I_{n/2}&-I_{n/2}\end{pmatrix}
+=A'-I_n
+\]
+ie $(A')^2-A'+I_n=0$.
+
+D'après ce qu'on vient de voir, $A'$ est semblable à
+\[
+\begin{pmatrix}jI_{n/2}&0\\0&\overline j I_{n/2}\end{pmatrix}
+\]
+sur $\C$.
+
+Donc $A$ et $A'$ sont semblables sur $\C$, donc \underline{sur $\R$}.
+
+\begin{remarkbox}
+\[
+\begin{pmatrix}I_{n/2}&I_{n/2}\\-I_{n/2}&0\end{pmatrix}
+=\begin{pmatrix}1&1\\-1&0\end{pmatrix}\otimes I_{n/2}
+\]
+$\chi=X^2-X+1$ semblable sur $\C$ à $\begin{pmatrix}j&0\\0&\overline j\end{pmatrix}$.
+\end{remarkbox}
+
+\begin{remarkbox}
+Remarque rigolote : Soit $p=n/2$, $(\varepsilon_1,\dots,\varepsilon_{2p})$
+base de $\R^n$, $u\in\Lin(\R^n)$ c.a. à $A$.
+
+\[
+\mat_{(\varepsilon_1,\dots,\varepsilon_{2p})}u
+=\begin{pmatrix}I_p&I_p\\-I_p&0\end{pmatrix}
+\]
+ssi $\forall j\in\intervalint{1}{p}$, $u(\varepsilon_j)=\varepsilon_j-\varepsilon_{p+j}$
+et $u(\varepsilon_{p+j})=\varepsilon_j$.
+
+Pour former une telle base, on choisit $(\varepsilon_1,\dots,\varepsilon_p)$
+famille libre et on pose $\forall j\in\intervalint{1}{p}$,
+$\varepsilon_{p+j}=\varepsilon_j-u(\varepsilon_j)$.
+
+D'où
+\[
+u(\varepsilon_{p+j})=u(\varepsilon_j)-u^2(\varepsilon_j)
+=\varepsilon_j
+\qquad\text{(car $u^2-u+\mathrm{id}=0$)}.
+\]
+
+De plus, si
+\[
+\alpha_1\varepsilon_1+\cdots+\alpha_p\varepsilon_p
++\alpha_{p+1}\varepsilon_{p+1}+\cdots+\alpha_{2p}\varepsilon_{2p}=0,
+\]
+on applique $u$ :
+\[
+\alpha_1u(\varepsilon_1)+\cdots+\alpha_pu(\varepsilon_p)
++\alpha_{p+1}\varepsilon_1+\cdots+\alpha_{2p}\varepsilon_p=0
+\]
+\[
+=(\alpha_1+\alpha_{p+1})\varepsilon_1+\cdots
++(\alpha_p+\alpha_{2p})\varepsilon_p
+-\alpha_1\varepsilon_{p+1}-\cdots-\alpha_p\varepsilon_{2p}=0.
+\]
+$\cdots$ on obtient
+$\alpha_1=\cdots=\alpha_p=\alpha_{p+1}=\cdots=\alpha_{2p}=0$
+trivialement.
+\end{remarkbox}
+\end{solution}
+
+\exercise{53}{}
+
+\begin{statementbox}
+Soit $E$ $\K$-ev de dim finie $>1$, $u\in\Lin(E)$.
+On définit :
+\[
+\Phi_u:\Lin(E)\to\Lin(E),\quad f\mapsto u\circ f.
+\]
+Mq $\Phi_u$ est diagonalisable ssi $u$ l'est, et évaluer $\Sp\Phi_u$ en
+fg de $\Sp u$.
+\end{statementbox}
+
+\begin{solution}
+$\forall k\in\N$ (par réc.), $\forall f\in\Lin(E)$,
+\[
+\Phi_u^k(f)=u^k\circ f.
+\]
+$\forall P\in\K[X]$, $P(\Phi_u)(f)=P(u)\circ f$.
+
+Et
+\[
+\begin{cases}
+\text{si }P(u)=0\text{ alors }P(\Phi_u)=0,\\
+\text{si }P(\Phi_u)=0,\text{ pour }f=\Id_E,\ P(u)=0.
+\end{cases}
+\]
+Ainsi $\Phi_u$ et $u$ ont les mêmes polynômes annulateurs, donc le même
+polynôme minimal. $\Phi_u$ est diagonalisable ssi $u$ l'est et
+$\Sp\Phi_u=\Sp u$.
+
+Remarque : Si $(\varepsilon_1,\dots,\varepsilon_n)$ est une base de vecteurs
+propres de $u$ avec $\forall j\in\intervalint{1}{n}$,
+$u(\varepsilon_j)=\lambda_j\varepsilon_j$.
+
+Soit pour $(i,j)\in\intervalint{1}{n}^2$, $u_{ij}\in\Lin(E)$ /
+$\mat_{(\varepsilon_1,\dots,\varepsilon_n)}u_{ij}=E_{ij}$.
+
+ie $\forall k\in\intervalint{1}{n}$, $u_{ij}(\varepsilon_k)=\delta_{j,k}\varepsilon_i$.
+
+$(u_{ij})_{1\leq i,j\leq n}$ est une base de $\Lin(E)$ et
+\[
+\Phi_u(u_{ij})(\varepsilon_k)=u(u_{ij}(\varepsilon_k))
+=\delta_{j,k}\lambda_i\varepsilon_i
+\]
+donc $\Phi_u(u_{ij})=\lambda_i u_{ij}$.
+
+Les $(u_{ij})$ forment une base de vecteurs propres de $\Phi_u$ et
+$\chi_{\Phi_u}=\chi_u^n$.
+\end{solution}
+
+\exercise{60}{}
+
+\begin{statementbox}
+Soit $(m,p)\in(\N^*)^2$, $A\in\M_m(\C)$ et $u\in\Lin(\C^m)$ c.a. à $A$.
+
+Montrer l'équivalence :
+\[
+A\text{ diagonalisable sur }\C
+\quad\text{ssi}\quad
+\begin{cases}
+A^p\text{ diagonalisable (sur }\C),\\
+\Ker u=\Ker u^2.
+\end{cases}
+\]
+\end{statementbox}
+
+\begin{solution}
+$\Rightarrow$ : $\exists P\in\GL_m(\C)$ / $A=PDP^{-1}$ avec $D$ diagonale.
+et donc $A^p=PD^pP^{-1}$ et $D^p$ diagonale, alors $A^p$ est diagonalisable.
+
+On a $\Ker u\subset\Ker u^2$.
+Si $D=\diag(\underbrace{0,\dots,0}_{m(0)},\alpha_1,\dots,\alpha_r)$ avec
+$\alpha_i\neq0$, $D^2=\diag(0,\dots,0,\alpha_1^2,\dots,\alpha_r^2)$.
+
+Donc $\rg(D)=\rg(D^2)$ et $\dim\Ker u=\dim\Ker u^2$, d'où
+$\Ker u=\Ker u^2$.
+
+$\Leftarrow$ : Soit
+\[
+(X^p-\mu_1)\cdots(X^p-\mu_\ell)
+\]
+scindé à racines simples sur $\C$ qui annule $A^p$.
+Donc $(X^p-\mu_1)\cdots(X^p-\mu_\ell)$ annule $A$.
+
+Si $0\notin\Sp_\C A$, $\forall j\in\intervalint{1}{\ell}$, $\mu_j\neq0$.
+Soit $\alpha_j$ une racine $p$-ième de $\mu_j$, alors
+\[
+(X^p-\mu_j)=\prod_{k=0}^{p-1}(X-\alpha_j e^{i2k\pi/p})
+\]
+et les racines sont deux à deux $\neq$.
+
+Donc un polynôme scindé à racines simples annule $A$, donc $A$ diagonalisable.
+
+Si $0\in\Sp_\C A$ : $\mu_1=0$.
+\[
+X^p\prod_{j=2}^{\ell}\prod_{k=0}^{p-1}
+(X-\alpha_j e^{i2k\pi/p})
+\]
+annule $A$.
+
+Lemme des noyaux :
+\[
+\C^m=\Ker(u^p)\oplus
+\bigoplus_{j=2}^{\ell}\bigoplus_{k=0}^{p-1}
+\Ker(u-\alpha_je^{i2k\pi/p}\Id_E).
+\]
+
+De plus $\Ker u=\Ker u^2$, donc par réc. $\Ker u=\Ker u^p$ et donc $\C^m$ est
+somme directe de sous-espaces propres de $u$, donc $u$ est diagonalisable.
+
+Contre-ex si $\Ker u\neq\Ker u^2$ :
+\[
+A=\begin{pmatrix}0&1\\0&0\end{pmatrix},\quad
+A^2=\begin{pmatrix}0&0\\0&0\end{pmatrix}
+\]
+est diagonalisable, mais pas $A$.
+
+Remarque : Une base de vecteurs propres de $u$ l'est aussi de $u^p$.
+La réciproque est fausse :
+\[
+A=\begin{pmatrix}1&0\\0&-1\end{pmatrix},\ A^2=I_2,
+\quad (e_1,e_2)\text{ b.c. de }\C^2,
+\]
+$\varepsilon_1=e_1+e_2,\ \varepsilon_2=e_1-e_2$ : vecteurs propres de $u^2$,
+mais pas de $u$.
+\end{solution}
+
+\exercise{64}{}
+
+\begin{statementbox}
+Soit $m\in\N^*$, $k\in\N^*$, on suppose qu'il existe
+$(f_1,\dots,f_k)\in\Lin(\C^m)^k$ /
+\[
+(i)\ \forall \ell\in\intervalint{1}{k},\quad f_\ell^2=-\Id_{\C^m}
+\]
+\[
+(ii)\ \forall \ell\neq j\in\intervalint{1}{k}^2,\quad
+f_\ell\circ f_j+f_j\circ f_\ell=0.
+\]
+\begin{enumerate}[label=\alph*)]
+  \item Si $k\geq2$, mq $\forall \ell\in\intervalint{1}{k}$, $f_\ell$ est
+  diagonalisable sur $\C$ et $\tr f_\ell=0$. En déduire que $m$ est pair et
+  qu'il existe $B_\ell$ base de $\C^m$ /
+  $\mat_{B_\ell}(f_\ell)=\begin{pmatrix}iI_{m/2}&0\\0&-iI_{m/2}\end{pmatrix}$.
+  \item Si $m=2$, mq $k\leq3$, peut-on avoir $k=3$ ?
+  \item Si $m=2^p(2q+1)$ avec $(p,q)\in\N^2$, mq $k\leq2p+1$, peut-on avoir
+  $k=2p+1$ ?
+\end{enumerate}
+\end{statementbox}
+
+\begin{solution}
+\partanswer{a)}
+$\forall \ell\in\intervalint{1}{k}$, $X^2+1=(X-i)(X+i)$ scindé en racines
+simples sur $\C$ et annule $f_\ell$.
+
+Ainsi $f_\ell$ est diagonalisable et $\Sp f_\ell\subset\{-i,i\}$.
+
+Si $k\geq2$, soit $j\in\intervalint{1}{k}\setminus\{\ell\}$, on a
+$f_\ell\circ f_j=-f_j\circ f_\ell$ et $f_j^2=-\Id$, donc $f_j$ inversible et
+$f_j^{-1}=-f_j$.
+
+D'où $f_j^{-1}\circ f_\ell\circ f_j=-f_\ell$.
+
+Alors $\tr(f_j^{-1}\circ f_\ell\circ f_j)=\tr(f_\ell)=\tr(-f_\ell)$ donc
+$\tr(f_\ell)=0$.
+
+On peut diagonaliser $f_\ell$ dans une base $B_0$ telle que
+\[
+\mat_{B_0}(f_\ell)=
+\begin{pmatrix}iI_{m_1}&0\\0&-iI_{m_2}\end{pmatrix},
+\quad m_1+m_2=m.
+\]
+Comme $\tr f_\ell=0$, $i(m_1-m_2)=0$, donc $m_1=m_2$.
+Donc $m$ est pair et $m_1=m_2=m/2$.
+
+\partanswer{b)}
+D'après a), $\exists B_1$ base de $\C^2$ telle que
+\[
+\mat_{B_1}f_1=\begin{pmatrix}i&0\\0&-i\end{pmatrix}.
+\]
+Soit $\ell\geq2$, si
+\[
+\mat_{B_1}f_\ell=\begin{pmatrix}a_\ell&c_\ell\\b_\ell&d_\ell\end{pmatrix}.
+\]
+D'après (ii) : $f_1\circ f_\ell=-f_\ell\circ f_1$ et les calculs donnent
+$a_\ell=d_\ell=0$.
+
+De plus
+\[
+\begin{pmatrix}0&c_\ell\\b_\ell&0\end{pmatrix}^2=-I_2
+\]
+donc $c_\ell b_\ell=-1$.
+
+Donc $c_\ell=-b_\ell^{-1}$ et
+\[
+\mat_{B_1}f_\ell=\begin{pmatrix}0&-b_\ell^{-1}\\b_\ell&0\end{pmatrix}.
+\]
+Pour $f_2$, en posant $\varepsilon'_1=\varepsilon_1$ et
+$\varepsilon'_2=b_2\varepsilon_2$, on a
+\[
+\mat_{B_2}f_2=\begin{pmatrix}0&-1\\1&0\end{pmatrix}.
+\]
+Alors pour $\ell\geq3$,
+\[
+\mat_{B_2}f_\ell=\begin{pmatrix}0&-b_\ell^{-1}\\b_\ell&0\end{pmatrix}
+\]
+et la relation avec $f_2$ impose $b_\ell^2=-1$, donc
+$b_\ell\in\{-i,i\}$.
+
+Alors $\forall \ell\geq3$,
+\[
+\mat_{B_2}f_\ell\in
+\left\{
+\begin{pmatrix}0&i\\ i&0\end{pmatrix},
+\begin{pmatrix}0&-i\\ -i&0\end{pmatrix}
+\right\}
+\]
+donc $k\leq4$. Or
+\[
+\begin{pmatrix}0&-i\\-i&0\end{pmatrix}
+=-\begin{pmatrix}0&i\\i&0\end{pmatrix}
+\quad\text{qui commute avec}\quad
+\begin{pmatrix}0&i\\i&0\end{pmatrix}.
+\]
+Donc $k\leq3$.
+
+On peut avoir $k=3$ avec
+\[
+\begin{pmatrix}i&0\\0&-i\end{pmatrix},\quad
+\begin{pmatrix}0&-1\\1&0\end{pmatrix},\quad
+\begin{pmatrix}0&i\\ i&0\end{pmatrix}.
+\]
+
+\partanswer{c)}
+D'après a) si $p=0$, $m$ est impair donc $k\leq1$.
+
+Soit pour $p\in\N$ : $H_p$ : ``$\forall q\in\N$ et $k\in\N$, s'il existe
+$(f_1,\dots,f_k)\in\Lin(\C^{2^p(2q+1)})^k$ vérifiant (i) et (ii), alors
+$k\leq2p+1$ et on peut avoir égalité''.
+
+$H_0$ vraie (pour l'égalité $f_1=i\Id_{\C^{2q+1}}$).
+
+Soit $p\in\N$, $p\geq2$, supposons $H_{p-1}$ vraie.
+Soit $q\in\N$ et $k\in\N$, s'il existe $(f_1,\dots,f_k)$ vérifiant (i) et (ii).
+
+Si $k\geq1$, d'après a), $\exists B_1$ base de $\C^m$ (où
+$m=2^p(2q+1)$) telle que
+\[
+\mat_{B_1}(f_1)=
+\begin{pmatrix}iI_{m/2}&0\\0&-iI_{m/2}\end{pmatrix}.
+\]
+Soit $\ell\geq2$, si
+\[
+\mat_{B_1}(f_\ell)=\begin{pmatrix}A_\ell&C_\ell\\B_\ell&D_\ell\end{pmatrix},
+\]
+les mêmes calculs par blocs qu'au b) imposent
+$A_\ell=D_\ell=0$ et $C_\ell B_\ell=-I_{m/2}$, donc $B_\ell$ inversible et
+$C_\ell=-B_\ell^{-1}$.
+
+Ainsi
+\[
+\mat_{B_1}(f_\ell)=
+\begin{pmatrix}0&-B_\ell^{-1}\\B_\ell&0\end{pmatrix}.
+\]
+D'après b) et les mêmes calculs par blocs, pour $\ell\neq j\geq3$ :
+\[
+B_\ell B_j=-B_jB_\ell
+\]
+et les endomorphismes associés aux $B_\ell$ pour $3\leq\ell\leq k$ vérifient
+(i) et (ii). D'après $H_{p-1}$, $k-2\leq2p-1$ donc $k\leq2p+1$.
+
+Pour l'égalité, on considère dans $H_{p-1}$ $2p-1$ matrices $(B_\ell)$ de
+taille $m/2$ vérifiant (i) et (ii), on forme
+\[
+A_1=\begin{pmatrix}iI_{m/2}&0\\0&-iI_{m/2}\end{pmatrix},\quad
+A_2=\begin{pmatrix}0&-I_{m/2}\\I_{m/2}&0\end{pmatrix}
+\]
+et $\forall \ell\geq3$,
+\[
+A_\ell=\begin{pmatrix}0&B_\ell\\B_\ell&0\end{pmatrix}.
+\]
+\end{solution}
+
+\exercise{40}{}
+
+\begin{statementbox}
+Soit $\K=\R$ ou $\C$, $E$ un $\K$-ev de dim finie $n\in\N^*$,
+$f\in\Lin(E)$ et
+\[
+\Phi_f:\Lin(E)\to\Lin(E),\quad g\mapsto f\circ g-g\circ f
+\]
+$\in\Lin(\Lin(E))$.
+
+On définit
+\[
+\psi_f:\Lin(E)\to\Lin(E),\quad g\mapsto f\circ g
+\]
+et
+\[
+\xi_f:\Lin(E)\to\Lin(E),\quad g\mapsto g\circ f.
+\]
+\begin{enumerate}[label=\alph*)]
+  \item Mq si $f$ est nilpotente, $\Phi_f$ l'est aussi. A-t-on la réciproque ?
+  \item Mq si $f$ diagonalisable, $\Phi_f$ l'est aussi.
+  \item Si $\K=\C$, on suppose $\Phi_f$ diagonalisable ; soit
+  $a\in\Sp(f)$ et $x_0\in E\setminus\{0\}$ $/$ $f(x_0)=ax_0$.
+
+  Si $g$ est un vecteur propre de $\Phi_f$ associé à $\mu$, que peut-on dire de
+  $g(x_0)$ ?
+
+  En déduire que $f$ est diagonalisable.
+  \item Est-ce encore le cas si $\K=\R$ ?
+\end{enumerate}
+\end{statementbox}
+
+\begin{solution}
+\partanswer{a)}
+Si $f$ est nilpotente, soit $k\in\N$ tq $f^k=0$.
+
+$\forall g\in\Lin(E)$ : $\psi_f^k(g)=f^k\circ g=0$, de même
+$\xi_f^k(g)=g\circ f^k=0$.
+
+Donc $\psi_f$ et $\xi_f$ sont nilpotent et $\forall g\in\Lin(E)$,
+$(\psi_f\circ\xi_f)(g)=f\circ g\circ f=(\xi_f\circ\psi_f)(g)$.
+
+Ainsi $\psi_f$ et $\xi_f$ commutent, et on a, en appliquant le binôme :
+\[
+\Phi_f^{2k}=(\psi_f-\xi_f)^{2k}
+=\sum_{j=0}^{2k}\binom{2k}{j}\psi_f^j(-\xi_f)^{2k-j}=0
+\]
+donc $\boxed{\Phi_f\text{ nilpotent}}$.
+
+Réciproque ? Si $f=\Id_E$, $\Phi_f=0$ nilpotente mais $f$ n'est pas nilpotente.
+
+\partanswer{b)}
+$\forall \ell\in\N$, $\forall g\in\Lin(E)$,
+\[
+\psi_f^\ell(g)=f^\ell\circ g,\qquad \xi_f^\ell(g)=g\circ f^\ell.
+\]
+$\forall P\in\K[X]$, $P(\psi_f)(g)=P(f)\circ g$, de même pour $\xi_f$.
+
+Supposons $f$ diagonalisable, alors il existe $P\in\K[X]$ scindé à racines
+simples qui annule $f$. $P$ annule donc aussi $\psi_f$ et $\xi_f$ qui commutent.
+
+On a donc $\psi_f$ et $\xi_f$ diagonalisables, qui commutent, ils sont
+codiagonalisables, donc $\Phi_f=\psi_f-\xi_f$ est diagonalisable.
+
+\partanswer{c)}
+On a $\Phi_f(g)=\mu g$ d'où
+\[
+\mu g(x_0)=f(g(x_0))-g(f(x_0))
+=f(g(x_0))-a\,g(x_0)
+\]
+et $f(g(x_0))=(\mu+a)g(x_0)$.
+
+\begin{lemma*}
+Soit $y\in E$, $\exists u\in\Lin(E)$ / $u(x_0)=y$.
+\end{lemma*}
+Dém : On complète $x_0$ en base $B=(x_0,e_2,\dots,e_n)$. On définit
+$u\in\Lin(E)$ / $u(x_0)=y$ et $\forall i\in\intervalint{2}{n}$, $u(e_i)=0$.
+
+Comme $\Phi_f$ est diagonalisable, $\exists(g_1,\dots,g_{n^2})$ base de
+$\Lin(E)$ formée de vecteurs propres de $\Phi_f$.
+
+Soit $y\in E$ et $u\in\Lin(E)$ ; $u(x_0)=y$.
+
+$\exists(a_1,\dots,a_{n^2})\in\C^{n^2}$ /
+\[
+a_1g_1+\dots+a_{n^2}g_{n^2}=u.
+\]
+Donc
+\[
+y=\sum_i a_i g_i(x_0).
+\]
+
+$(g_i(x_0))_{1\leq i\leq n^2}$ est génératrice de $E$, on en extrait une base
+de vecteurs propres de $f$, donc $f$ est diagonalisable.
+
+\partanswer{d)}
+Si $\K=\R$ : fixons une base $(e_i)_{1\leq i\leq n}$ de $E$.
+
+Soit $A=\mat_{(e_1,\dots,e_n)}(f)\in\M_n(\R)$.
+
+Soit
+\[
+\Delta:\M_n(\R)\to\M_n(\R),\quad M\mapsto AM-MA
+\]
+et
+\[
+\Delta':\M_n(\C)\to\M_n(\C),\quad M\mapsto AM-MA.
+\]
+Dans les b.c $(E_{ij})_{1\leq i,j\leq n}$ de $\M_n(\R)$ et $\M_n(\C)$,
+$\Delta$ et $\Delta'$ ont la même matrice.
+
+Si $\Phi_f$ est diagonalisable sur $\R$, $\Delta'$ l'est aussi donc $A$ est
+diagonalisable sur $\C$ et $\Sp_\C A\subset\R$. Cela implique d'après le cours
+que $A$ est diagonalisable sur $\R$ et $f$ l'est aussi.
+
+Rem : Si $f$ est diagonalisable, soit $(\varepsilon_1,\dots,\varepsilon_n)$ base
+de $E$ / $\forall k\in\intervalint{1}{n}$, $f(\varepsilon_k)=\alpha_k\varepsilon_k$.
+
+Soit pour $(i,j)\in\intervalint{1}{n}^2$, $u_{ij}\in\Lin(E)$ /
+\[
+\forall k\in\intervalint{1}{n},\quad u_{ij}(\varepsilon_k)=\delta_{j,k}\varepsilon_i.
+\]
+Alors
+\[
+\Phi_f(u_{ij})=f(\delta_{j,k}\varepsilon_i)-u_{ij}(\alpha_k\varepsilon_k)
+=(\alpha_i-\alpha_j)\delta_{j,k}\varepsilon_i.
+\]
+D'où $\Phi_f(u_{ij})=(\alpha_i-\alpha_j)u_{ij}$.
+\end{solution}
+
+\exercise{62}{}
+
+\begin{statementbox}
+Soit $G$ un sous-groupe fini abélien de $\GL_2(\Z)$
+\[
+[\GL_2(\Z)=\{M\in\M_2(\Z)/\det M\in\{-1,1\}\}]
+\]
+Mq $|G|\in\{1,2,3,4,6\}$. Exemples ?
+\end{statementbox}
+
+\begin{solution}
+On admet (cf cours) que $\exists P\in\GL_2(\C)$ / $\forall M\in G$,
+$P^{-1}MP=\begin{pmatrix}\alpha&0\\0&\beta\end{pmatrix}$.
+Noter $G'=P^{-1}GP$ sous-groupe de $\GL_2(\C)$ formé de matrices diagonales.
+
+$G'\cap\M_2(\R)\subset\{I_2,-I_2,\begin{pmatrix}1&0\\0&-1\end{pmatrix},
+\begin{pmatrix}-1&0\\0&1\end{pmatrix}\}$.
+
+et $M'\in G'\setminus \M_2(\R)$ : $\exists\theta\in\R\setminus\pi\Z$ /
+\[
+M'=\begin{pmatrix}e^{i\theta}&0\\0&e^{-i\theta}\end{pmatrix}
+\]
+car $\chi_{M'}\in\Z[X]$.
+
+Si $\begin{pmatrix}1&0\\0&-1\end{pmatrix}\in G'$ et si $M'\in G'\setminus\M_2(\R)$,
+alors il vient
+\[
+\begin{pmatrix}e^{i\theta}&0\\0&-e^{-i\theta}\end{pmatrix}\in G'
+\]
+de trace $2i\sin\theta$ ce qui ne se peut car $\tr M\in\Z$.
+De même si $\begin{pmatrix}-1&0\\0&1\end{pmatrix}\in G'$.
+
+1\ier{} cas :
+\[
+\begin{pmatrix}1&0\\0&-1\end{pmatrix}\in G'.
+\]
+$G'\subset\{I_2,-I_2,\begin{pmatrix}-1&0\\0&1\end{pmatrix},
+\begin{pmatrix}1&0\\0&-1\end{pmatrix}\}$.
+On a bien $G'=\{I_2\}$ et $|G|=1$ ; ou bien $G'=\{I_2,-I_2\}$ et $|G|=2$ ;
+ou bien $G'=\{I_2,\begin{pmatrix}1&0\\0&-1\end{pmatrix}\}$ et $|G|=2$ ; ou
+bien $G'$ contient les quatre et $|G|=4$.
+
+2\ieme{} cas :
+\[
+\begin{pmatrix}1&0\\0&-1\end{pmatrix}\notin G',\quad
+\begin{pmatrix}-1&0\\0&1\end{pmatrix}\notin G'.
+\]
+Si $G'\not\subset\M_2(\R)$, soit
+$M'=\begin{pmatrix}e^{i\theta}&0\\0&e^{-i\theta}\end{pmatrix}\in G'$.
+
+$\tr(M')=2\cos\theta\in\Z$, on peut choisir
+\[
+\theta\in\left\{\frac{2\pi}{3},\frac{\pi}{2},\frac{\pi}{3}\right\}.
+\]
+
+Si $\begin{pmatrix}i&0\\0&-i\end{pmatrix}\in G'$, alors
+$G'=\{I_2,\begin{pmatrix}i&0\\0&-i\end{pmatrix},-I_2,
+\begin{pmatrix}-i&0\\0&i\end{pmatrix}\}$ et $|G|=4$.
+
+De même si $\begin{pmatrix}e^{i\pi/3}&0\\0&e^{-i\pi/3}\end{pmatrix}\in G'$ :
+\[
+\left\{
+I_2,
+\begin{pmatrix}e^{2i\pi/3}&0\\0&e^{-2i\pi/3}\end{pmatrix},
+\begin{pmatrix}e^{i\pi/3}&0\\0&e^{-i\pi/3}\end{pmatrix},
+-I_2,
+\underbrace{
+\begin{pmatrix}-e^{i\pi/3}&0\\0&-e^{-i\pi/3}\end{pmatrix}
+}_{\displaystyle =\begin{pmatrix}e^{-2i\pi/3}&0\\0&e^{2i\pi/3}\end{pmatrix}},
+\begin{pmatrix}e^{-i\pi/3}&0\\0&e^{i\pi/3}\end{pmatrix}
+\right\}=G'
+\]
+et $|G|=6$.
+\end{solution}
+
+\exercise{75}{}
+
+\begin{statementbox}
+Soit $E$ $\K$-ev de dimension finie, $f\in\Lin(E)$.
+\begin{enumerate}[label=\alph*)]
+  \item Soit $x\in E$, mq $\exists!P_x$ unitaire $\in\K[X]$ /
+  $\forall P\in\K[X]$, $P(f)(x)=0$ ssi $P_x\mid P$.
+  \item Mq $\mu_f=\bigvee_{x\in E}P_x$.
+  \item Soit $(x,y)\in E^2$, mq si $P_x\wedge P_y=1$ alors $P_{x+y}=P_xP_y$.
+  \item Mq $\exists x\in E$ / $P_x=\mu_f$.
+  \item En déduire l'équivalence
+  $\deg\mu_f=n$ ssi $\mu_f=\chi_f$ ssi $\exists x\in E$ :
+  $(x,u(x),\dots,u^{n-1}(x))$ base de $E$.
+\end{enumerate}
+\end{statementbox}
+
+\begin{solution}
+\partanswer{a)}
+On considère $I_x:=\{P\in\K[X]/P(f)(x)=0\}$.
+
+On mq : c'est un sous-groupe additif de $\K[X]$, absorbant pour $x$,
+$\neq\{0\}$ (car $\mu_f\in I_x$).
+
+On définit $n:=\min\{\deg P/P\in I_x\setminus\{0\}\}$, et $P_x$ unitaire
+$\in I_x$ / $\deg P_x=n$.
+
+\partanswer{b)}
+Soit $P\in\K[X]$.
+\[
+P(f)=0 \text{ ssi } \forall x\in E,\ P(f)(x)=0
+\]
+ssi $\forall x\in E$, $P_x\mid P$ ssi $\bigvee_{x\in E}P_x\mid P$.
+
+Donc $\mu_f=\bigvee_{x\in E}P_x$.
+
+\partanswer{c)}
+\[
+(P_xP_y)(f)(x+y)=(P_xP_y)(f)(x)+(P_xP_y)(f)(y)=0.
+\]
+Donc $P_{x+y}\mid P_xP_y$.
+
+Soit $P\in\K[X]$ / $P(f)(x+y)=0$, $P(f)(x)=-P(f)(y)$.
+Alors $(P_xP)(f)(x)=- (P_xP)(f)(y)=0$ donc $P_y\mid P_xP$.
+
+Comme $P_x\wedge P_y=1$, d'après le th de Gauss : $P_y\mid P$.
+De même $P_x\mid P$. Donc $P_xP_y\mid P$.
+
+Donc $P_xP_y\mid P_{x+y}$ et finalement
+\[
+\boxed{P_xP_y=P_{x+y}}.
+\]
+
+\partanswer{d)}
+Soit, pour $x\in E$ :
+\[
+P_x=\prod_{i=1}^r Q_i^{v_{Q_i}(P_x)}
+\quad(\text{car }\mu_f=\prod_{i=1}^r Q_i^{\alpha_i})
+\]
+Par définition du ppcm : $\forall i\in\intervalint{1}{r}$,
+$\max v_{Q_i}(P_x)=\alpha_i$.
+
+et $\exists y_i\in E/P_{y_i}=Q_i^{\alpha_i}R$.
+Soit $x_i=R(f)(y_i)$ ; soit $P\in\K[X]$ :
+$P(f)(x_i)=0$ ssi $(PR)(f)(y_i)=0$ ssi $Q_i^{\alpha_i}R\mid PR$ ssi
+$Q_i^{\alpha_i}\mid P$.
+
+Donc $P_{x_i}=Q_i^{\alpha_i}$.
+
+Soit $x=\sum_{i=1}^r x_i$, d'après c) (comme
+$Q_1^{\alpha_1}\wedge\cdots\wedge Q_r^{\alpha_r}=1$, par réc.),
+\[
+P_x=\prod_{i=1}^r P_{x_i}=\mu_f.
+\]
+
+\partanswer{e)}
+D'après le TCH : $\mu_f\mid\chi_f$ de degré $n$.
+
+e) $\deg\mu_f=n$ ssi $\chi_f=\mu_f$.
+
+Si $\exists x\in E$ : $(x,f(x),\dots,f^{m-1}(x))$ base de $E$.
+Soit
+\[
+\mu_f=\alpha_0+\alpha_1X+\dots+\alpha_{p-1}X^{p-1}+X^p\quad (p\leq m).
+\]
+On a $\mu_f(f)=0$ et
+\[
+\mu_f(f)(x)=0=\alpha_0x+\dots+\alpha_{p-1}f^{p-1}(x)+f^p(x)
+\]
+nécessairement $p=m$.
+
+Réciproquement, si $\deg\mu_f=m$.
+D'après d) : $\exists x\in E/\mu_f=P_x$ de degré $m$, on a vu au @ que
+$(x,f(x),\dots,f^{m-1}(x))$ est libre, c'est donc une base de $E$.
+\end{solution}
