@@ -5,70 +5,6 @@
 \providecommand{\mat}{\operatorname{mat}}
 \providecommand{\diag}{\operatorname{diag}}
 
-\exercise{20}{}
-
-\begin{statementbox}
-Soit $E$ un $\K$-ev de dim finie, $V$ un sev de
-$\Lin(E)\setminus \{0\}\subset \GL(E)$ [i.e. si $f\in V$ et $f\neq 0$, alors
-$f$ est inversible]
-\begin{enumerate}[label=\alph*)]
-  \item Mq $\dim V\leq \dim E$.
-  \item Élucider $V$ si $\K=\C$, est-ce encore valable si $\K=\R$ ?
-\end{enumerate}
-\end{statementbox}
-
-\begin{solution}
-\partanswer{a)}
-Fixons $x_0\in E\setminus\{0\}$ et
-\[
-\Phi:V\to E,\qquad f\mapsto f(x_0)
-\]
-est linéaire.
-
-$f\in\Ker(\Phi)$ si $f(x_0)=0$ donc $f$ n'est pas injective donc $f=0$.
-
-Ainsi, $\Phi$ est injective et $\boxed{\dim V\leq \dim E}$.
-
-\partanswer{b)}
-Soit $f_0\in\GL(E)$, $V=\C\cdot f_0$ convient.
-
-Soit $V$ un sev de $\Lin(E)$ vérifiant l'hypothèse.
-
-Si $\dim V\geq 2$ : soit $(f_1,f_2)$ une famille libre de $V$.
-
-Alors $\forall \alpha\in\C$, $f_1+\alpha f_2\in V$ et
-$f_1+\alpha f_2\neq0$. D'où $f_1+\alpha f_2\in\GL(E)$.
-
-On peut réécrire $f_1+\alpha f_2$ en
-\[
-f_2\circ(f_2^{-1}\circ f_1+\alpha \Id_E)
-\]
-($f_2\in\GL(E)$ car $V\setminus\{0\}$).
-
-Ainsi $\forall \alpha\in\C$, $f_2^{-1}\circ f_1+\alpha\Id_E\in\GL(E)$ et
-$\Sp(f_2^{-1}\circ f_1)=\emptyset$, ce qui n'est pas.
-
-Nécessairement, $(f_1,f_2)$ est liée et $\dim V=0$ ou $1$.
-
-Si $\K=\R$ : On pose
-\[
-W=\left\{\begin{pmatrix}a&-b\\ b&a\end{pmatrix}/(a,b)\in\R^2\right\}
-=\Vect(I_2,h_{\pi/2})
-\]
-$\forall(a,b)\in\R^2$,
-\[
-\det\begin{pmatrix}a&-b\\ b&a\end{pmatrix}=a^2+b^2=0
-\]
-ssi $a=b=0$.
-
-Rem : $E=\R^2$ et
-\[
-V=\{f\in\Lin(E)/\mat_{(e_1,e_2)}(f)\in W\}
-\]
-($e_1,e_2$ b.c de $\R^2$). On a $\dim V=2$ et $\forall f\in V\setminus\{0\}$,
-$f\in\GL(E)$.
-\end{solution}
-
 \exercise{Alg lin 8}{}
 
 \begin{statementbox}
@@ -157,247 +93,202 @@ g_A(M)=\tr(AM)=\tr(C(AM-MA))=\tr(CAM)-\tr(CMA)
 Comme $\tr((A-CA+AC)M)=0$ pour tout $M$, on a $A=CA-AC$ ; on pose $B=-C$.
 \end{solution}
 
-\exercise{66}{}
+\exercise{20}{}
 
 \begin{statementbox}
-Soit $E$ un $\K$-ev de dim finie $n\in\N^*$, $u\in\Lin(E)$.
-Montrer l'équivalence :
-\[
-(u\text{ diagonalisable})\quad\text{ssi}\quad
-(\forall F\text{ s.e.v de }E,\ F\text{ admet un supplémentaire dans }E
-\text{ stable par }u).
-\]
+Soit $E$ un $\K$-ev de dim finie, $V$ un sev de
+$\Lin(E)\setminus \{0\}\subset \GL(E)$ [i.e. si $f\in V$ et $f\neq 0$, alors
+$f$ est inversible]
+\begin{enumerate}[label=\alph*)]
+  \item Mq $\dim V\leq \dim E$.
+  \item Élucider $V$ si $\K=\C$, est-ce encore valable si $\K=\R$ ?
+\end{enumerate}
 \end{statementbox}
 
 \begin{solution}
-On suppose que $u$ est diagonalisable.
-Soit $F$ un s.e.v de $E$ et soit $B_1$ une base de $F$.
-On la complète en base de $E$ avec des vecteurs propres de $u$ [possible, car
-les vecteurs propres de $u$ forment une famille génératrice, et Théorème de la
-base incomplète].
-
-On obtient ainsi un supplémentaire de $F$ dans $E$ stable par $u$.
-Donc (i)$\Rightarrow$(ii).
-
-Soit $m\in\N^*$, $H_m$ : ``si $\dim E=m$ et pour $u\in\Lin(E)$, si $u$
-vérifie (ii), alors $u$ est diagonalisable''.
-
-pour $m=1$ : $H_1$ est vrai, car tout endomorphisme en dim 1 vérifie (ii) et
-(i) [$u$ homothétie].
-
-Soit $m\in\N^*$ et $m\geq2$, on suppose $H_{m-1}$ vraie.
-Soit $E$ un $\K$-ev de dimension $m$, $u\in\Lin(E)$ vérifiant (ii).
-Soit $H$ un hyperplan de $E$, $\exists x_0\in E/E=H\oplus\K x_0$ avec
-$\K x_0$ stable par $u$.
-Alors $\exists H_1$ hyperplan de $E$ stable par $u$ / $E=H_1\oplus\K x_0$ et
-$x_0$ vecteur propre de $u$.
-
-Soit $F_1$ un s.e.v de $H_1$, soit $G$ un supplémentaire de $F_1$ dans $E$
-stable par $u$.
-$G_1=H_1\cap G$.
-
-On a $\dim(G)=m-\dim(F_1)$ par la formule de Grassmann :
+\partanswer{a)}
+Fixons $x_0\in E\setminus\{0\}$ et
 \[
-\dim(H_1+G)=\dim H_1+\dim G-\dim(H_1\cap G).
+\Phi:V\to E,\qquad f\mapsto f(x_0)
 \]
-Comme $E=F_1\oplus G$, $G\not\subset H_1$ (sinon $F_1\oplus G\subset H_1$).
-Donc $H_1+G=E$ car $H_1$ est un hyperplan.
+est linéaire.
 
-Ainsi $m=\dim G+\dim H_1-\dim G_1$, il vient
+$f\in\Ker(\Phi)$ si $f(x_0)=0$ donc $f$ n'est pas injective donc $f=0$.
+
+Ainsi, $\Phi$ est injective et $\boxed{\dim V\leq \dim E}$.
+
+\partanswer{b)}
+Soit $f_0\in\GL(E)$, $V=\C\cdot f_0$ convient.
+
+Soit $V$ un sev de $\Lin(E)$ vérifiant l'hypothèse.
+
+Si $\dim V\geq 2$ : soit $(f_1,f_2)$ une famille libre de $V$.
+
+Alors $\forall \alpha\in\C$, $f_1+\alpha f_2\in V$ et
+$f_1+\alpha f_2\neq0$. D'où $f_1+\alpha f_2\in\GL(E)$.
+
+On peut réécrire $f_1+\alpha f_2$ en
 \[
-\dim G_1=(m-1)-\dim F_1.
+f_2\circ(f_2^{-1}\circ f_1+\alpha \Id_E)
 \]
-Donc $\dim F_1+\dim G_1=\dim H_1$, et $H_1=F_1\oplus G_1$.
+($f_2\in\GL(E)$ car $V\setminus\{0\}$).
 
-$G_1$ est stable par $u_{|H_1}$, on applique $H_{m-1}$ à $u_{|H_1}$.
-Donc $u_{|H_1}$ diagonalisable et comme $E=H_1\oplus\Vect(x_0)$,
-$u$ est diagonalisable.
+Ainsi $\forall \alpha\in\C$, $f_2^{-1}\circ f_1+\alpha\Id_E\in\GL(E)$ et
+$\Sp(f_2^{-1}\circ f_1)=\emptyset$, ce qui n'est pas.
 
-Remarque : Soit (iii) tout s.e.v de $E$ stable par $u$ admet un supplémentaire
-dans $E$ stable par $u$. On a (ii)$\Rightarrow$(iii).
+Nécessairement, $(f_1,f_2)$ est liée et $\dim V=0$ ou $1$.
 
-Si $\K=\R$, soit $E=\R^2$, $u=r_{\pi/2}$, les sous s.e.v de $\R^2$ stables
-par $u$ sont $\{0\}$ et $E$, qui admettent un supplémentaire stable.
-Donc $u$ vérifie (iii), mais pas (i).
-
-En revanche si $\K=\C$ : soit
+Si $\K=\R$ : On pose
 \[
-F=\bigoplus_{\lambda\in\Sp(u)}\Ker(u-\lambda\Id_E).
+W=\left\{\begin{pmatrix}a&-b\\ b&a\end{pmatrix}/(a,b)\in\R^2\right\}
+=\Vect(I_2,h_{\pi/2})
 \]
-Si $u$ vérifie (iii), $\exists G$ s.e.v stable par $u$, supplémentaire de $F$
-dans $E$. Si $G\neq\{0\}$, $u_{|G}$ admet au moins un vecteur propre et ce
-vecteur propre est dans $F$, ce qui ne se peut. Donc $G=\{0\}$, $E=F$ est
-diagonalisable.
+$\forall(a,b)\in\R^2$,
+\[
+\det\begin{pmatrix}a&-b\\ b&a\end{pmatrix}=a^2+b^2=0
+\]
+ssi $a=b=0$.
+
+\begin{remarkbox}
+$E=\R^2$ et
+\[
+V=\{f\in\Lin(E)/\mat_{(e_1,e_2)}(f)\in W\}
+\]
+($e_1,e_2$ b.c de $\R^2$). On a $\dim V=2$ et $\forall f\in V\setminus\{0\}$,
+$f\in\GL(E)$.
+\end{remarkbox}
 \end{solution}
 
-\exercise{Mines}{}
+\exercise{40}{}
 
 \begin{statementbox}
-Soit $E$ un $\C$-ev de dim finie $n\in\N^*$, $f$ et $g\in\Lin(E)$ qui
-commutent. Mq $\exists B$ base de $E$ /
-$\mat_B f$ et $\mat_B g$ sont triangulaires supérieures.
+Soit $\K=\R$ ou $\C$, $E$ un $\K$-ev de dim finie $n\in\N^*$,
+$f\in\Lin(E)$ et
+\[
+\Phi_f:\Lin(E)\to\Lin(E),\quad g\mapsto f\circ g-g\circ f
+\]
+$\in\Lin(\Lin(E))$.
+
+On définit
+\[
+\psi_f:\Lin(E)\to\Lin(E),\quad g\mapsto f\circ g
+\]
+et
+\[
+\xi_f:\Lin(E)\to\Lin(E),\quad g\mapsto g\circ f.
+\]
+\begin{enumerate}[label=\alph*)]
+  \item Mq si $f$ est nilpotente, $\Phi_f$ l'est aussi. A-t-on la réciproque ?
+  \item Mq si $f$ diagonalisable, $\Phi_f$ l'est aussi.
+  \item Si $\K=\C$, on suppose $\Phi_f$ diagonalisable ; soit
+  $a\in\Sp(f)$ et $x_0\in E\setminus\{0\}$ $/$ $f(x_0)=ax_0$.
+
+  Si $g$ est un vecteur propre de $\Phi_f$ associé à $\mu$, que peut-on dire de
+  $g(x_0)$ ?
+
+  En déduire que $f$ est diagonalisable.
+  \item Est-ce encore le cas si $\K=\R$ ?
+\end{enumerate}
 \end{statementbox}
 
 \begin{solution}
-Soit $\lambda\in\Sp f$ (existe car $E$ est un $\C$ e.v de dimension finie
-$\geq1$).
-Alors comme $f\circ g=g\circ f$, $\Ker(f-\lambda\Id_E)$ est stable par $g$.
+\partanswer{a)}
+Si $f$ est nilpotente, soit $k\in\N$ tq $f^k=0$.
 
-Donc $g_{|\Ker(f-\lambda\Id_E)}$ admet une valeur propre $\mu\in\C$, et un
-vecteur propre $\varepsilon_1$ associé :
-$g(\varepsilon_1)=\mu\varepsilon_1$, $f(\varepsilon_1)=\lambda\varepsilon_1$.
+$\forall g\in\Lin(E)$ : $\psi_f^k(g)=f^k\circ g=0$, de même
+$\xi_f^k(g)=g\circ f^k=0$.
 
-Soit pour $m\in\N^*$, $H_m$ : ``si $E$ un $\C$-ev de dimension $m$, $f$ et $g$
-2 endomorphismes qui commutent, alors ils sont cotrigonalisables''.
+Donc $\psi_f$ et $\xi_f$ sont nilpotent et $\forall g\in\Lin(E)$,
+$(\psi_f\circ\xi_f)(g)=f\circ g\circ f=(\xi_f\circ\psi_f)(g)$.
 
-$H_1$ vraie car $f$ et $g$ sont des homothéties.
-
-Soit $m\in\N$, $m\geq2$ : supposons $H_{m-1}$ vraie, soit $E$ un $\C$-ev de
-dim $m$, $f$ et $g$ qui commutent. On vient de voir que
-$\exists(\lambda,\mu,\varepsilon_1)\in\C^2\times E\setminus\{0\}$ /
-$f(\varepsilon_1)=\lambda\varepsilon_1$, $g(\varepsilon_1)=\mu\varepsilon_1$.
-
-On complète $\varepsilon_1$ en une base de $E$ par le théorème de la base
-incomplète : $B=(\varepsilon_1,\dots,\varepsilon_n)$.
-
-Soit $F=\Vect(\varepsilon_2,\dots,\varepsilon_n)$, $\pi$ le projecteur sur $F$
-// à $\K\varepsilon_1$ et
+Ainsi $\psi_f$ et $\xi_f$ commutent, et on a, en appliquant le binôme :
 \[
-f_1:F\to F,\quad x\mapsto \pi(f(x)),\qquad
-g_1:F\to F,\quad x\mapsto \pi(g(x)).
+\Phi_f^{2k}=(\psi_f-\xi_f)^{2k}
+=\sum_{j=0}^{2k}\binom{2k}{j}\psi_f^j(-\xi_f)^{2k-j}=0
 \]
+donc $\boxed{\Phi_f\text{ nilpotent}}$.
+
+Réciproque ? Si $f=\Id_E$, $\Phi_f=0$ nilpotente mais $f$ n'est pas nilpotente.
+
+\partanswer{b)}
+$\forall \ell\in\N$, $\forall g\in\Lin(E)$,
 \[
-\mat_B(f)=
-\underbrace{
-\begin{pmatrix}
-\lambda&*&\cdots&*\\
-0&&&\\
-\vdots&&A_1&\\
-0&&&
-\end{pmatrix}}_{A},
-\qquad
-\mat_B(g)=
-\underbrace{
-\begin{pmatrix}
-\mu&*&\cdots&*\\
-0&&&\\
-\vdots&&B_1&\\
-0&&&
-\end{pmatrix}}_{B}.
+\psi_f^\ell(g)=f^\ell\circ g,\qquad \xi_f^\ell(g)=g\circ f^\ell.
 \]
+$\forall P\in\K[X]$, $P(\psi_f)(g)=P(f)\circ g$, de même pour $\xi_f$.
 
-$A$ et $B$ commutent, et
-$A_1=\mat_{(\varepsilon_2,\dots,\varepsilon_n)}(f_1)$,
-$B_1=\mat_{(\varepsilon_2,\dots,\varepsilon_n)}(g_1)$ ; le produit par blocs
-assure que $A_1B_1=B_1A_1$.
-Donc $f_1$ et $g_1$ commutent, d'après l'hypothèse de récurrence il existe
-$(h_1,\dots,h_n)$ base de $F$ telle que les matrices dans la base
-$(h_1,\dots,h_n)$ de $f_1$ et $g_1$ soient triangulaires supérieures.
-Ainsi $B=(\varepsilon_1,h_1,\dots,h_n)$ convient.
+Supposons $f$ diagonalisable, alors il existe $P\in\K[X]$ scindé à racines
+simples qui annule $f$. $P$ annule donc aussi $\psi_f$ et $\xi_f$ qui commutent.
 
-Remarque :
-si $|f\circ g-g\circ f|=1$.
-Si $f$ était inversible, $f\circ g\circ f^{-1}-g=\Id_E$ et
-$\tr(f\circ g\circ f^{-1}-g)=\tr(\Id_E)=\dim E$, ce qui ne peut pas.
+On a donc $\psi_f$ et $\xi_f$ diagonalisables, qui commutent, ils sont
+codiagonalisables, donc $\Phi_f=\psi_f-\xi_f$ est diagonalisable.
 
-Donc $\Ker f\neq\{0\}$, et si $x\in\Ker(f)$, on a
-$f(g(x))=g(f(x))+f(x)=0$, donc $g(x)\in\Ker(f)$.
-$\Ker(f)$ est stable par $g$ ; $f$ et $g$ admettent un vecteur propre commun ;
-de même que supra, $f$ et $g$ sont cotrigonalisables.
-\end{solution}
-
-\exercise{Centrale}{}
-
-\begin{statementbox}
-Soit $m\in\N$, $m\geq2$, et
+\partanswer{c)}
+On a $\Phi_f(g)=\mu g$ d'où
 \[
-A=\begin{pmatrix}
-2&-1&0& & \\
-1&\ddots&\ddots& & \\
- &\ddots&\ddots&-1& \\
- & &1&2&-1\\
-0& & &-1&2
-\end{pmatrix}\in\M_n(\R)
+\mu g(x_0)=f(g(x_0))-g(f(x_0))
+=f(g(x_0))-a\,g(x_0)
 \]
-Donner les éléments propres de $A$.
-\end{statementbox}
+et $f(g(x_0))=(\mu+a)g(x_0)$.
 
-\begin{solution}
-Soit $\lambda\in\C$, $Y=\begin{pmatrix}a_1\\ \vdots\\ a_m\end{pmatrix}
-\in\M_{m,1}(\C)$, on a $(A-\lambda I_m)Y=0$ ssi
+\begin{lemma*}
+Soit $y\in E$, $\exists u\in\Lin(E)$ / $u(x_0)=y$.
+\end{lemma*}
+Dém : On complète $x_0$ en base $B=(x_0,e_2,\dots,e_n)$. On définit
+$u\in\Lin(E)$ / $u(x_0)=y$ et $\forall i\in\intervalint{2}{n}$, $u(e_i)=0$.
+
+Comme $\Phi_f$ est diagonalisable, $\exists(g_1,\dots,g_{n^2})$ base de
+$\Lin(E)$ formée de vecteurs propres de $\Phi_f$.
+
+Soit $y\in E$ et $u\in\Lin(E)$ ; $u(x_0)=y$.
+
+$\exists(a_1,\dots,a_{n^2})\in\C^{n^2}$ /
 \[
-(I)\quad
-\begin{cases}
-(2-\lambda)a_1-a_2=0,\\
--a_{k-1}+(2-\lambda)a_k-a_{k+1}=0,\\
--a_{m-1}+(2-\lambda)a_m=0.
-\end{cases}
+a_1g_1+\dots+a_{n^2}g_{n^2}=u.
 \]
-Définissons $a_0=a_{m+1}=0$.
-
-$(I)$ ssi $\forall k\in\intervalint{1}{m}$,
+Donc
 \[
--a_{k-1}+(2-\lambda)a_k-a_{k+1}=0
-\]
-récurrence linéaire double.
-
-Soit $P=X^2-(2-\lambda)X+1$, $\Delta=(2-\lambda)^2-4$.
-
-Si $\lambda\in]0,4[$, alors $|2-\lambda|<2$, donc $\Delta<0$ et
-$P=(X-\mu)(X-\overline\mu)$ avec $\mu\in\C\setminus\R$, $\mu\overline\mu=1$.
-Donc $\exists\theta\in]0,\pi[$ / $\{\mu,\overline\mu\}=\{e^{i\theta},e^{-i\theta}\}$.
-
-Alors $\exists(\alpha,\beta)\in\C^2$ /
-\[
-\forall k\in\intervalint{0}{m+1},\quad
-a_k=\alpha e^{ik\theta}+\beta e^{-ik\theta}.
-\]
-$a_0=0$ donc $\alpha+\beta=0$ et
-$a_k=2i\alpha\sin(k\theta)$.
-
-Si $\lambda\in\Sp(A)$ : $Y\neq0$ ainsi $\alpha\neq0$ et
-$a_{m+1}=0=2i\alpha\sin((m+1)\theta)$.
-
-$\theta\in]0,\pi[$ donc $\exists k\in\intervalint{1}{m}$ /
-$\theta=\dfrac{k\pi}{m+1}$.
-
-De plus
-\[
-(X-e^{i\theta})(X-e^{-i\theta})
-=X^2-2\cos(\theta)X+1
-=X^2-(2-\lambda)X+1
-\]
-donc $\lambda=2-2\cos\theta$.
-
-Posons donc $\forall k\in\intervalint{1}{m}$,
-\[
-\lambda_k=2\left(1-\cos\frac{k\pi}{m+1}\right),
-\quad
-Y_k=\begin{pmatrix}
-\sin\frac{k\pi}{m+1}\\
-\sin\frac{2k\pi}{m+1}\\
-\vdots\\
-\sin\frac{mk\pi}{m+1}
-\end{pmatrix}.
-\]
-Les calculs précédents impliquent (en remontant) $AY_k=\lambda_kY_k$.
-
-On obtient ainsi $m$ valeurs propres distinctes : ce sont les seules.
-Donc $A$ diagonalisable sur $\R$, semblable à
-\[
-\begin{pmatrix}
-2(1-\cos\frac{\pi}{m+1})&0\\
-0&\ddots\\
-&&2(1-\cos\frac{m\pi}{m+1})
-\end{pmatrix}.
+y=\sum_i a_i g_i(x_0).
 \]
 
-Remarque :
+$(g_i(x_0))_{1\leq i\leq n^2}$ est génératrice de $E$, on en extrait une base
+de vecteurs propres de $f$, donc $f$ est diagonalisable.
+
+\partanswer{d)}
+Si $\K=\R$ : fixons une base $(e_i)_{1\leq i\leq n}$ de $E$.
+
+Soit $A=\mat_{(e_1,\dots,e_n)}(f)\in\M_n(\R)$.
+
+Soit
 \[
-\det(A_m)=2\det(A_{m-1})-\det(A_{m-2})
+\Delta:\M_n(\R)\to\M_n(\R),\quad M\mapsto AM-MA
 \]
-(développement 1\iere{} ligne). Il vient par récurrence
-$\forall m\in\N^*$, $\det(A_m)=m+1$.
+et
+\[
+\Delta':\M_n(\C)\to\M_n(\C),\quad M\mapsto AM-MA.
+\]
+Dans les b.c $(E_{ij})_{1\leq i,j\leq n}$ de $\M_n(\R)$ et $\M_n(\C)$,
+$\Delta$ et $\Delta'$ ont la même matrice.
+
+Si $\Phi_f$ est diagonalisable sur $\R$, $\Delta'$ l'est aussi donc $A$ est
+diagonalisable sur $\C$ et $\Sp_\C A\subset\R$. Cela implique d'après le cours
+que $A$ est diagonalisable sur $\R$ et $f$ l'est aussi.
+
+\begin{remarkbox}
+Si $f$ est diagonalisable, soit $(\varepsilon_1,\dots,\varepsilon_n)$ base
+de $E$ / $\forall k\in\intervalint{1}{n}$, $f(\varepsilon_k)=\alpha_k\varepsilon_k$.
+
+Soit pour $(i,j)\in\intervalint{1}{n}^2$, $u_{ij}\in\Lin(E)$ /
+\[
+\forall k\in\intervalint{1}{n},\quad u_{ij}(\varepsilon_k)=\delta_{j,k}\varepsilon_i.
+\]
+Alors
+\[
+\Phi_f(u_{ij})=f(\delta_{j,k}\varepsilon_i)-u_{ij}(\alpha_k\varepsilon_k)
+=(\alpha_i-\alpha_j)\delta_{j,k}\varepsilon_i.
+\]
+D'où $\Phi_f(u_{ij})=(\alpha_i-\alpha_j)u_{ij}$.
+\end{remarkbox}
 \end{solution}
 
 \exercise{49}{}
@@ -518,7 +409,7 @@ On définit :
 \Phi_u:\Lin(E)\to\Lin(E),\quad f\mapsto u\circ f.
 \]
 Mq $\Phi_u$ est diagonalisable ssi $u$ l'est, et évaluer $\Sp\Phi_u$ en
-fg de $\Sp u$.
+fonction de $\Sp u$.
 \end{statementbox}
 
 \begin{solution}
@@ -626,7 +517,8 @@ A^2=\begin{pmatrix}0&0\\0&0\end{pmatrix}
 \]
 est diagonalisable, mais pas $A$.
 
-Remarque : Une base de vecteurs propres de $u$ l'est aussi de $u^p$.
+\begin{remarkbox}
+Une base de vecteurs propres de $u$ l'est aussi de $u^p$.
 La réciproque est fausse :
 \[
 A=\begin{pmatrix}1&0\\0&-1\end{pmatrix},\ A^2=I_2,
@@ -634,6 +526,7 @@ A=\begin{pmatrix}1&0\\0&-1\end{pmatrix},\ A^2=I_2,
 \]
 $\varepsilon_1=e_1+e_2,\ \varepsilon_2=e_1-e_2$ : vecteurs propres de $u^2$,
 mais pas de $u$.
+\end{remarkbox}
 \end{solution}
 
 \exercise{64}{}
@@ -792,136 +685,6 @@ A_\ell=\begin{pmatrix}0&B_\ell\\B_\ell&0\end{pmatrix}.
 \]
 \end{solution}
 
-\exercise{40}{}
-
-\begin{statementbox}
-Soit $\K=\R$ ou $\C$, $E$ un $\K$-ev de dim finie $n\in\N^*$,
-$f\in\Lin(E)$ et
-\[
-\Phi_f:\Lin(E)\to\Lin(E),\quad g\mapsto f\circ g-g\circ f
-\]
-$\in\Lin(\Lin(E))$.
-
-On définit
-\[
-\psi_f:\Lin(E)\to\Lin(E),\quad g\mapsto f\circ g
-\]
-et
-\[
-\xi_f:\Lin(E)\to\Lin(E),\quad g\mapsto g\circ f.
-\]
-\begin{enumerate}[label=\alph*)]
-  \item Mq si $f$ est nilpotente, $\Phi_f$ l'est aussi. A-t-on la réciproque ?
-  \item Mq si $f$ diagonalisable, $\Phi_f$ l'est aussi.
-  \item Si $\K=\C$, on suppose $\Phi_f$ diagonalisable ; soit
-  $a\in\Sp(f)$ et $x_0\in E\setminus\{0\}$ $/$ $f(x_0)=ax_0$.
-
-  Si $g$ est un vecteur propre de $\Phi_f$ associé à $\mu$, que peut-on dire de
-  $g(x_0)$ ?
-
-  En déduire que $f$ est diagonalisable.
-  \item Est-ce encore le cas si $\K=\R$ ?
-\end{enumerate}
-\end{statementbox}
-
-\begin{solution}
-\partanswer{a)}
-Si $f$ est nilpotente, soit $k\in\N$ tq $f^k=0$.
-
-$\forall g\in\Lin(E)$ : $\psi_f^k(g)=f^k\circ g=0$, de même
-$\xi_f^k(g)=g\circ f^k=0$.
-
-Donc $\psi_f$ et $\xi_f$ sont nilpotent et $\forall g\in\Lin(E)$,
-$(\psi_f\circ\xi_f)(g)=f\circ g\circ f=(\xi_f\circ\psi_f)(g)$.
-
-Ainsi $\psi_f$ et $\xi_f$ commutent, et on a, en appliquant le binôme :
-\[
-\Phi_f^{2k}=(\psi_f-\xi_f)^{2k}
-=\sum_{j=0}^{2k}\binom{2k}{j}\psi_f^j(-\xi_f)^{2k-j}=0
-\]
-donc $\boxed{\Phi_f\text{ nilpotent}}$.
-
-Réciproque ? Si $f=\Id_E$, $\Phi_f=0$ nilpotente mais $f$ n'est pas nilpotente.
-
-\partanswer{b)}
-$\forall \ell\in\N$, $\forall g\in\Lin(E)$,
-\[
-\psi_f^\ell(g)=f^\ell\circ g,\qquad \xi_f^\ell(g)=g\circ f^\ell.
-\]
-$\forall P\in\K[X]$, $P(\psi_f)(g)=P(f)\circ g$, de même pour $\xi_f$.
-
-Supposons $f$ diagonalisable, alors il existe $P\in\K[X]$ scindé à racines
-simples qui annule $f$. $P$ annule donc aussi $\psi_f$ et $\xi_f$ qui commutent.
-
-On a donc $\psi_f$ et $\xi_f$ diagonalisables, qui commutent, ils sont
-codiagonalisables, donc $\Phi_f=\psi_f-\xi_f$ est diagonalisable.
-
-\partanswer{c)}
-On a $\Phi_f(g)=\mu g$ d'où
-\[
-\mu g(x_0)=f(g(x_0))-g(f(x_0))
-=f(g(x_0))-a\,g(x_0)
-\]
-et $f(g(x_0))=(\mu+a)g(x_0)$.
-
-\begin{lemma*}
-Soit $y\in E$, $\exists u\in\Lin(E)$ / $u(x_0)=y$.
-\end{lemma*}
-Dém : On complète $x_0$ en base $B=(x_0,e_2,\dots,e_n)$. On définit
-$u\in\Lin(E)$ / $u(x_0)=y$ et $\forall i\in\intervalint{2}{n}$, $u(e_i)=0$.
-
-Comme $\Phi_f$ est diagonalisable, $\exists(g_1,\dots,g_{n^2})$ base de
-$\Lin(E)$ formée de vecteurs propres de $\Phi_f$.
-
-Soit $y\in E$ et $u\in\Lin(E)$ ; $u(x_0)=y$.
-
-$\exists(a_1,\dots,a_{n^2})\in\C^{n^2}$ /
-\[
-a_1g_1+\dots+a_{n^2}g_{n^2}=u.
-\]
-Donc
-\[
-y=\sum_i a_i g_i(x_0).
-\]
-
-$(g_i(x_0))_{1\leq i\leq n^2}$ est génératrice de $E$, on en extrait une base
-de vecteurs propres de $f$, donc $f$ est diagonalisable.
-
-\partanswer{d)}
-Si $\K=\R$ : fixons une base $(e_i)_{1\leq i\leq n}$ de $E$.
-
-Soit $A=\mat_{(e_1,\dots,e_n)}(f)\in\M_n(\R)$.
-
-Soit
-\[
-\Delta:\M_n(\R)\to\M_n(\R),\quad M\mapsto AM-MA
-\]
-et
-\[
-\Delta':\M_n(\C)\to\M_n(\C),\quad M\mapsto AM-MA.
-\]
-Dans les b.c $(E_{ij})_{1\leq i,j\leq n}$ de $\M_n(\R)$ et $\M_n(\C)$,
-$\Delta$ et $\Delta'$ ont la même matrice.
-
-Si $\Phi_f$ est diagonalisable sur $\R$, $\Delta'$ l'est aussi donc $A$ est
-diagonalisable sur $\C$ et $\Sp_\C A\subset\R$. Cela implique d'après le cours
-que $A$ est diagonalisable sur $\R$ et $f$ l'est aussi.
-
-Rem : Si $f$ est diagonalisable, soit $(\varepsilon_1,\dots,\varepsilon_n)$ base
-de $E$ / $\forall k\in\intervalint{1}{n}$, $f(\varepsilon_k)=\alpha_k\varepsilon_k$.
-
-Soit pour $(i,j)\in\intervalint{1}{n}^2$, $u_{ij}\in\Lin(E)$ /
-\[
-\forall k\in\intervalint{1}{n},\quad u_{ij}(\varepsilon_k)=\delta_{j,k}\varepsilon_i.
-\]
-Alors
-\[
-\Phi_f(u_{ij})=f(\delta_{j,k}\varepsilon_i)-u_{ij}(\alpha_k\varepsilon_k)
-=(\alpha_i-\alpha_j)\delta_{j,k}\varepsilon_i.
-\]
-D'où $\Phi_f(u_{ij})=(\alpha_i-\alpha_j)u_{ij}$.
-\end{solution}
-
 \exercise{62}{}
 
 \begin{statementbox}
@@ -995,6 +758,82 @@ I_2,
 \right\}=G'
 \]
 et $|G|=6$.
+\end{solution}
+
+\exercise{66}{}
+
+\begin{statementbox}
+Soit $E$ un $\K$-ev de dim finie $n\in\N^*$, $u\in\Lin(E)$.
+Montrer l'équivalence :
+\[
+(u\text{ diagonalisable})\quad\text{ssi}\quad
+(\forall F\text{ s.e.v de }E,\ F\text{ admet un supplémentaire dans }E
+\text{ stable par }u).
+\]
+\end{statementbox}
+
+\begin{solution}
+On suppose que $u$ est diagonalisable.
+Soit $F$ un s.e.v de $E$ et soit $B_1$ une base de $F$.
+On la complète en base de $E$ avec des vecteurs propres de $u$ [possible, car
+les vecteurs propres de $u$ forment une famille génératrice, et Théorème de la
+base incomplète].
+
+On obtient ainsi un supplémentaire de $F$ dans $E$ stable par $u$.
+Donc (i)$\Rightarrow$(ii).
+
+Soit $m\in\N^*$, $H_m$ : ``si $\dim E=m$ et pour $u\in\Lin(E)$, si $u$
+vérifie (ii), alors $u$ est diagonalisable''.
+
+pour $m=1$ : $H_1$ est vrai, car tout endomorphisme en dim 1 vérifie (ii) et
+(i) [$u$ homothétie].
+
+Soit $m\in\N^*$ et $m\geq2$, on suppose $H_{m-1}$ vraie.
+Soit $E$ un $\K$-ev de dimension $m$, $u\in\Lin(E)$ vérifiant (ii).
+Soit $H$ un hyperplan de $E$, $\exists x_0\in E/E=H\oplus\K x_0$ avec
+$\K x_0$ stable par $u$.
+Alors $\exists H_1$ hyperplan de $E$ stable par $u$ / $E=H_1\oplus\K x_0$ et
+$x_0$ vecteur propre de $u$.
+
+Soit $F_1$ un s.e.v de $H_1$, soit $G$ un supplémentaire de $F_1$ dans $E$
+stable par $u$.
+$G_1=H_1\cap G$.
+
+On a $\dim(G)=m-\dim(F_1)$ par la formule de Grassmann :
+\[
+\dim(H_1+G)=\dim H_1+\dim G-\dim(H_1\cap G).
+\]
+Comme $E=F_1\oplus G$, $G\not\subset H_1$ (sinon $F_1\oplus G\subset H_1$).
+Donc $H_1+G=E$ car $H_1$ est un hyperplan.
+
+Ainsi $m=\dim G+\dim H_1-\dim G_1$, il vient
+\[
+\dim G_1=(m-1)-\dim F_1.
+\]
+Donc $\dim F_1+\dim G_1=\dim H_1$, et $H_1=F_1\oplus G_1$.
+
+$G_1$ est stable par $u_{|H_1}$, on applique $H_{m-1}$ à $u_{|H_1}$.
+Donc $u_{|H_1}$ diagonalisable et comme $E=H_1\oplus\Vect(x_0)$,
+$u$ est diagonalisable.
+
+
+\begin{remarkbox}
+Soit (iii) tout s.e.v de $E$ stable par $u$ admet un supplémentaire
+dans $E$ stable par $u$. On a (ii)$\Rightarrow$(iii).
+
+Si $\K=\R$, soit $E=\R^2$, $u=r_{\pi/2}$, les sous s.e.v de $\R^2$ stables
+par $u$ sont $\{0\}$ et $E$, qui admettent un supplémentaire stable.
+Donc $u$ vérifie (iii), mais pas (i).
+
+En revanche si $\K=\C$ : soit
+\[
+F=\bigoplus_{\lambda\in\Sp(u)}\Ker(u-\lambda\Id_E).
+\]
+Si $u$ vérifie (iii), $\exists G$ s.e.v stable par $u$, supplémentaire de $F$
+dans $E$. Si $G\neq\{0\}$, $u_{|G}$ admet au moins un vecteur propre et ce
+vecteur propre est dans $F$, ce qui ne se peut. Donc $G=\{0\}$, $E=F$ est
+diagonalisable.
+\end{remarkbox}
 \end{solution}
 
 \exercise{75}{}
@@ -1090,4 +929,176 @@ nécessairement $p=m$.
 Réciproquement, si $\deg\mu_f=m$.
 D'après d) : $\exists x\in E/\mu_f=P_x$ de degré $m$, on a vu au @ que
 $(x,f(x),\dots,f^{m-1}(x))$ est libre, c'est donc une base de $E$.
+\end{solution}
+
+\exercise{Mines}{}
+
+\begin{statementbox}
+Soit $E$ un $\C$-ev de dim finie $n\in\N^*$, $f$ et $g\in\Lin(E)$ qui
+commutent. Mq $\exists B$ base de $E$ /
+$\mat_B f$ et $\mat_B g$ sont triangulaires supérieures.
+\end{statementbox}
+
+\begin{solution}
+Soit $\lambda\in\Sp f$ (existe car $E$ est un $\C$ e.v de dimension finie
+$\geq1$).
+Alors comme $f\circ g=g\circ f$, $\Ker(f-\lambda\Id_E)$ est stable par $g$.
+
+Donc $g_{|\Ker(f-\lambda\Id_E)}$ admet une valeur propre $\mu\in\C$, et un
+vecteur propre $\varepsilon_1$ associé :
+$g(\varepsilon_1)=\mu\varepsilon_1$, $f(\varepsilon_1)=\lambda\varepsilon_1$.
+
+Soit pour $m\in\N^*$, $H_m$ : ``si $E$ un $\C$-ev de dimension $m$, $f$ et $g$
+2 endomorphismes qui commutent, alors ils sont cotrigonalisables''.
+
+$H_1$ vraie car $f$ et $g$ sont des homothéties.
+
+Soit $m\in\N$, $m\geq2$ : supposons $H_{m-1}$ vraie, soit $E$ un $\C$-ev de
+dim $m$, $f$ et $g$ qui commutent. On vient de voir que
+$\exists(\lambda,\mu,\varepsilon_1)\in\C^2\times E\setminus\{0\}$ /
+$f(\varepsilon_1)=\lambda\varepsilon_1$, $g(\varepsilon_1)=\mu\varepsilon_1$.
+
+On complète $\varepsilon_1$ en une base de $E$ par le théorème de la base
+incomplète : $B=(\varepsilon_1,\dots,\varepsilon_n)$.
+
+Soit $F=\Vect(\varepsilon_2,\dots,\varepsilon_n)$, $\pi$ le projecteur sur $F$
+// à $\K\varepsilon_1$ et
+\[
+f_1:F\to F,\quad x\mapsto \pi(f(x)),\qquad
+g_1:F\to F,\quad x\mapsto \pi(g(x)).
+\]
+\[
+\mat_B(f)=
+\underbrace{
+\begin{pmatrix}
+\lambda&*&\cdots&*\\
+0&&&\\
+\vdots&&A_1&\\
+0&&&
+\end{pmatrix}}_{A},
+\qquad
+\mat_B(g)=
+\underbrace{
+\begin{pmatrix}
+\mu&*&\cdots&*\\
+0&&&\\
+\vdots&&B_1&\\
+0&&&
+\end{pmatrix}}_{B}.
+\]
+
+$A$ et $B$ commutent, et
+$A_1=\mat_{(\varepsilon_2,\dots,\varepsilon_n)}(f_1)$,
+$B_1=\mat_{(\varepsilon_2,\dots,\varepsilon_n)}(g_1)$ ; le produit par blocs
+assure que $A_1B_1=B_1A_1$.
+Donc $f_1$ et $g_1$ commutent, d'après l'hypothèse de récurrence il existe
+$(h_1,\dots,h_n)$ base de $F$ telle que les matrices dans la base
+$(h_1,\dots,h_n)$ de $f_1$ et $g_1$ soient triangulaires supérieures.
+Ainsi $B=(\varepsilon_1,h_1,\dots,h_n)$ convient.
+
+\begin{remarkbox}
+si $|f\circ g-g\circ f|=1$.
+Si $f$ était inversible, $f\circ g\circ f^{-1}-g=\Id_E$ et
+$\tr(f\circ g\circ f^{-1}-g)=\tr(\Id_E)=\dim E$, ce qui ne peut pas.
+
+Donc $\Ker f\neq\{0\}$, et si $x\in\Ker(f)$, on a
+$f(g(x))=g(f(x))+f(x)=0$, donc $g(x)\in\Ker(f)$.
+$\Ker(f)$ est stable par $g$ ; $f$ et $g$ admettent un vecteur propre commun ;
+de même que supra, $f$ et $g$ sont cotrigonalisables.
+\end{remarkbox}
+\end{solution}
+
+\exercise{Centrale}{}
+
+\begin{statementbox}
+Soit $m\in\N$, $m\geq2$, et
+\[
+A=\begin{pmatrix}
+2&-1&0& & \\
+-1&\ddots&\ddots& & \\
+ &\ddots&\ddots&-1& \\
+ & &-1&2&-1\\
+0& & &-1&2
+\end{pmatrix}\in\M_n(\R)
+\]
+Donner les éléments propres de $A$.
+\end{statementbox}
+
+\begin{solution}
+Soit $\lambda\in\C$, $Y=\begin{pmatrix}a_1\\ \vdots\\ a_m\end{pmatrix}
+\in\M_{m,1}(\C)$, on a $(A-\lambda I_m)Y=0$ ssi
+\[
+(I)\quad
+\begin{cases}
+(2-\lambda)a_1-a_2=0,\\
+-a_{k-1}+(2-\lambda)a_k-a_{k+1}=0,\\
+-a_{m-1}+(2-\lambda)a_m=0.
+\end{cases}
+\]
+Définissons $a_0=a_{m+1}=0$.
+
+$(I)$ ssi $\forall k\in\intervalint{1}{m}$,
+\[
+-a_{k-1}+(2-\lambda)a_k-a_{k+1}=0
+\]
+récurrence linéaire double.
+
+Soit $P=X^2-(2-\lambda)X+1$, $\Delta=(2-\lambda)^2-4$.
+
+Si $\lambda\in]0,4[$, alors $|2-\lambda|<2$, donc $\Delta<0$ et
+$P=(X-\mu)(X-\overline\mu)$ avec $\mu\in\C\setminus\R$, $\mu\overline\mu=1$.
+Donc $\exists\theta\in]0,\pi[$ / $\{\mu,\overline\mu\}=\{e^{i\theta},e^{-i\theta}\}$.
+
+Alors $\exists(\alpha,\beta)\in\C^2$ /
+\[
+\forall k\in\intervalint{0}{m+1},\quad
+a_k=\alpha e^{ik\theta}+\beta e^{-ik\theta}.
+\]
+$a_0=0$ donc $\alpha+\beta=0$ et
+$a_k=2i\alpha\sin(k\theta)$.
+
+Si $\lambda\in\Sp(A)$ : $Y\neq0$ ainsi $\alpha\neq0$ et
+$a_{m+1}=0=2i\alpha\sin((m+1)\theta)$.
+
+$\theta\in]0,\pi[$ donc $\exists k\in\intervalint{1}{m}$ /
+$\theta=\dfrac{k\pi}{m+1}$.
+
+De plus
+\[
+(X-e^{i\theta})(X-e^{-i\theta})
+=X^2-2\cos(\theta)X+1
+=X^2-(2-\lambda)X+1
+\]
+donc $\lambda=2-2\cos\theta$.
+
+Posons donc $\forall k\in\intervalint{1}{m}$,
+\[
+\lambda_k=2\left(1-\cos\frac{k\pi}{m+1}\right),
+\quad
+Y_k=\begin{pmatrix}
+\sin\frac{k\pi}{m+1}\\
+\sin\frac{2k\pi}{m+1}\\
+\vdots\\
+\sin\frac{mk\pi}{m+1}
+\end{pmatrix}.
+\]
+Les calculs précédents impliquent (en remontant) $AY_k=\lambda_kY_k$.
+
+On obtient ainsi $m$ valeurs propres distinctes : ce sont les seules.
+Donc $A$ diagonalisable sur $\R$, semblable à
+\[
+\begin{pmatrix}
+2(1-\cos\frac{\pi}{m+1})&0\\
+0&\ddots\\
+&&2(1-\cos\frac{m\pi}{m+1})
+\end{pmatrix}.
+\]
+
+\begin{remarkbox}
+\[
+\det(A_m)=2\det(A_{m-1})-\det(A_{m-2})
+\]
+(développement 1\iere{} ligne). Il vient par récurrence
+$\forall m\in\N^*$, $\det(A_m)=m+1$.
+\end{remarkbox}
 \end{solution}
