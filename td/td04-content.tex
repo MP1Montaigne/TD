@@ -1,0 +1,570 @@
+% Transcription littérale du TD 04.
+% Les abréviations et l'ordre des raisonnements de la copie sont conservés.
+
+\exercise{5}{}
+
+\begin{statementbox}
+Lundi 28 septembre
+
+Soit la suite définie par $a_0 = 1$ et $\forall n \in \N, a_n = 2 a_{\lfloor n/3 \rfloor} + 3 a_{\lfloor n/9 \rfloor}$.
+\begin{enumerate}[label=\alph*)]
+  \item Vérifier que $(a_n)_{n \in \N}$ est bien définie ; on pose $\forall p \in \N, b_p = a_{3^p}$ ; exprimer $b_p$ en fonction de $p$, et mq
+  \[
+  \left. \begin{aligned} \forall n \in \N \\ \forall p \in \N \end{aligned} \right\} \text{ si } 3^p \leq n < 3^{p+1}, \text{ on a } a_n = b_p
+  \]
+  \item Déterminer l'ensemble de v.a. de $\left( \frac{a_n}{n} \right)_{n \in \N}$.
+\end{enumerate}
+\end{statementbox}
+
+\begin{solution}
+\partanswer{a)}
+$\forall n \in \N^*, \left\lfloor \frac{n}{3} \right\rfloor \leq \frac{n}{3} < n$ et $\left\lfloor \frac{n}{9} \right\rfloor \leq \frac{n}{9} < n$ donc $(a_n)_{n \in \N}$ est définie par récurrence :
+\[
+a_0 = 1, \quad a_1 = 5, \quad a_2 = 5, \quad a_3 = 2a_1 + 3a_0 = 13
+\]
+Soit $p \in \N, b_p = a_{3^p}$. Si $p \geq 2$ : $b_p = 2b_{p-1} + 3b_{p-2}$.
+Comme $X^2 - 2X - 3 = (X - 3)(X + 1)$, $\exists (\alpha, \beta) \in \R^2 / \forall p \in \N, b_p = \alpha 3^p + \beta (-1)^p$.
+\[
+\left. \begin{aligned}
+b_0 = a_1 = 5 &= \alpha + \beta \\
+b_1 = a_3 = 13 &= 3\alpha - \beta
+\end{aligned} \right\}
+\quad \text{D'où } 4\alpha = 18 \implies \alpha = \frac{9}{2} \quad \text{et} \quad \beta = \frac{1}{2}
+\]
+Ainsi $\forall p \in \N$,
+\[
+b_p = \frac{9}{2} 3^p + \frac{(-1)^p}{2}
+\]
+Soit pour $p \in \N$, $H_p : \text{“} \forall n \in \N, \text{ si } 3^p \leq n < 3^{p+1}, a_n = b_p \text{”}$.
+\begin{itemize}
+  \item Pour $n \in \llbracket 1, 2 \rrbracket$ : $a_1 = a_2 = 5 = b_0$, donc $H_0$ est vraie.
+  \item Soit $p \in \N$, supposons que $\forall k \in \llbracket 0, p \rrbracket$, $H_k$ est vraie.
+\end{itemize}
+Soit $n \in \N / 3^{p+1} \leq n < 3^{p+2}$, alors
+\[
+3^p \leq \frac{n}{3} < 3^{p+1}, \quad \text{donc } 3^p \leq \left\lfloor \frac{n}{3} \right\rfloor < 3^{p+1}
+\]
+\[
+3^{p-1} \leq \frac{n}{9} < 3^p, \quad 3^{p-1} \leq \left\lfloor \frac{n}{9} \right\rfloor < 3^p
+\]
+Ainsi, par hypothèse : $a_{\lfloor n/3 \rfloor} = b_p$ et $a_{\lfloor n/9 \rfloor} = b_{p-1}$ (si $p=0$, $a_{\lfloor n/9 \rfloor} = b_0$).
+Or
+\begin{align*}
+a_n &= 2 a_{\lfloor n/3 \rfloor} + 3 a_{\lfloor n/9 \rfloor} \\
+&= 2b_p + 3b_{p-1} = b_{p+1} \quad (\text{1 si } p=0)
+\end{align*}
+Donc $H_{p+1}$ est vraie, ainsi $\forall p \in \N, H_p$ est vraie, et $\forall n \in \N, \forall p \in \N$, si $3^p \leq n < 3^{p+1}$, $a_n = b_p = \frac{9}{2} 3^p + \frac{(-1)^p}{2}$.
+
+Notons que cela implique que $p = \lfloor \log_3 n \rfloor$.
+\begin{remarkbox}
+$\log_a t = \frac{\ln t}{\ln a}$, $x > 1$ et $t > 0$.
+\end{remarkbox}
+
+\partanswer{b)}
+Soit $n \in \N^*$ et $p = \lfloor \log_3 n \rfloor$ ; on a : $3^p \leq n < 3^{p+1}$,
+donc $a_n = b_p = \frac{9}{2} 3^p + \frac{(-1)^p}{2}$.
+\[
+\frac{b_p}{3^{p+1}} < \frac{a_n}{n} = \frac{b_p}{n} \leq \frac{b_p}{3^p}
+\]
+Or $\frac{b_p}{3^p} = \frac{9}{2} + \frac{(-1)^p}{2 \times 3^p} \xrightarrow[p \to \infty]{} \frac{9}{2}$.
+
+Soit $\lambda$ une v.a. de $\left( \frac{a_n}{n} \right)_{n \geq 1}$ et $\sigma : \N \to \N$ strictement croissante, $\lim_{n \to +\infty} \frac{a_{\sigma(n)}}{\sigma(n)} = \lambda$ ; on a :
+\[
+\frac{b_{\lfloor \log_3 \sigma(n) \rfloor}}{3^{\lfloor \log_3 \sigma(n) \rfloor + 1}} \leq \frac{a_{\sigma(n)}}{\sigma(n)} < \frac{b_{\lfloor \log_3 \sigma(n) \rfloor}}{3^{\lfloor \log_3 \sigma(n) \rfloor}}
+\]
+extrait de $\left( \frac{b_p}{3^p} \right)_{p \in \N}$.
+Donc en faisant tendre $n$ vers $+\infty$,
+\[
+\frac{3}{2} \leq \lambda \leq \frac{9}{2}
+\]
+\begin{itemize}
+  \item Pour $\sigma_1(n) = 3^n$ : $\frac{a_{\sigma_1(n)}}{\sigma_1(n)} = \frac{b_n}{3^n} \xrightarrow[n \to +\infty]{} \frac{9}{2}$.
+  \item Pour $\sigma_2(n) = 3^{n+1} - 1$ : $\frac{a_{\sigma_2(n)}}{\sigma_2(n)} = \frac{b_n}{3^{n+1} - 1} \xrightarrow[n \to +\infty]{} \frac{3}{2}$.
+\end{itemize}
+Donc $\frac{3}{2}$ et $\frac{9}{2}$ sont des valeurs d'adhérence.
+
+* Soit $\lambda \in \left] \frac{3}{2}, \frac{9}{2} \right[$, soit $c \in \left] 1, 3 \right[$ et $\sigma(m) = \lfloor c 3^m \rfloor$.
+\[
+3^m < c 3^m < 3^{m+1} \implies 3^m \leq \sigma(m) < 3^{m+1}
+\]
+donc $\frac{a_{\sigma(m)}}{\sigma(m)} = \frac{b_m}{\lfloor c 3^m \rfloor}$, comme $\forall x > 0, x - 1 < \lfloor x \rfloor \leq x \implies 1 - \frac{1}{x} < \frac{\lfloor x \rfloor}{x} \leq 1$,
+\[
+\lim_{x \to +\infty} \frac{\lfloor x \rfloor}{x} = 1
+\]
+D'où
+\[
+\frac{a_{\sigma(m)}}{\sigma(m)} = \frac{b_m}{c 3^m} \times \frac{c 3^m}{\lfloor c 3^m \rfloor} \xrightarrow[m \to +\infty]{} \frac{9}{2c}
+\]
+On pose ($\lambda$ étant fixé $\in \left] \frac{3}{2}, \frac{9}{2} \right[$) $c = \frac{9}{2\lambda} \in \left] 1, 3 \right[$.
+Ainsi l'ensemble de v.a. de $\left( \frac{a_n}{n} \right)_{n \in \N^*}$ est $\left[ \frac{3}{2}, \frac{9}{2} \right]$.
+\end{solution}
+
+\exercise{11}{}
+
+\begin{statementbox}
+Soit $(a,b) \in (\R_+^*)^2$, et $m \in \N^*$. $u_n = \left( \frac{\sqrt[n]{a} + \sqrt[n]{b}}{2} \right)^{n^2}$.
+Étudier $(u_n)_{n \geq 1}$.
+\end{statementbox}
+
+\begin{solution}
+$u_n = \exp\left( n^2 \ln \left( \frac{\sqrt[n]{a} + \sqrt[n]{b}}{2} \right) \right)$.
+\[
+\text{et } \frac{\sqrt[n]{a} + \sqrt[n]{b}}{2} = \frac{e^{\frac{1}{n} \ln a} + e^{\frac{1}{n} \ln b}}{2} = 1 + E_n \quad \text{avec } \lim_{n \to +\infty} E_n = 0
+\]
+\begin{remarkbox}
+$x^y = e^{y \ln x}$ \\
+$e^u = 1 + u + \frac{u^2}{2} + o(u^2)$ quand $u \to 0$ \\
+$\ln(1+x) = x - \frac{x^2}{2} + o(x^2)$ quand $x \to 0$
+\end{remarkbox}
+\[
+= 1 + \underbrace{\frac{1}{n} \left( \frac{\ln a + \ln b}{2} \right) + \frac{1}{4n^2} (\ln^2 a + \ln^2 b) + o\left(\frac{1}{n^2}\right)}_{E_n}
+\]
+$\ln(1 + E_n) = E_n - \frac{E_n^2}{2} + o(E_n^2)$.
+
+\textbf{Cas 1 : si $\ln a + \ln b > 0$ (ssi $ab > 1$)}
+\[
+E_n \sim \frac{\ln a + \ln b}{2n}
+\]
+donc $n^2 \ln(1 + E_n) \sim n \left( \frac{\ln(ab)}{2} \right) \xrightarrow[n \to +\infty]{} +\infty$.
+\[
+\left( \exists N_0 \in \N, \forall n \geq N_0 : n^2 \ln(1 + E_n) \geq \frac{n \ln(ab)}{4} \right)
+\]
+Ainsi $\lim_{n \to +\infty} n^2 \ln(1 + E_n) = +\infty$ et $\lim_{n \to +\infty} u_n = +\infty$.
+
+\textbf{Cas 2 : si $\ln(ab) < 0$ i.e. $ab < 1$}
+De même, $n^2 \ln(1 + E_n) \sim \frac{n \ln(ab)}{2} \xrightarrow[n \to +\infty]{} -\infty$,
+et $\lim_{n \to +\infty} u_n = 0$.
+
+\textbf{Cas 3 : si $\ln(ab) = 0$ ssi $ab = 1$}
+\[
+E_n \underset{n \to +\infty}{=} \frac{1}{2n^2} \ln^2 a + o\left(\frac{1}{n^2}\right)
+\]
+\[
+\ln(1 + E_n) = E_n + o(E_n) = \frac{\ln^2 a}{2n^2} + o\left(\frac{1}{n^2}\right)
+\]
+\[
+u_n = \exp(n^2 \ln(1 + E_n)) = \exp\left( \frac{\ln^2 a}{2} + o(1) \right) \xrightarrow[n \to +\infty]{} \exp\left( \frac{\ln^2 a}{2} \right)
+\]
+\end{solution}
+
+\exercise{18}{}
+
+\begin{statementbox}
+Soit $(a_n)_{n \in \N}, (b_n)_{n \in \N}, (c_n)_{n \in \N}$ 3 suites réelles /
+$\lim_{n \to +\infty} (e^{a_n} + e^{b_n} + e^{c_n}) = 3$ et $\lim_{n \to +\infty} (a_n + b_n + c_n) = 0$.
+Mq $\lim_{n \to +\infty} a_n = \lim_{n \to +\infty} b_n = \lim_{n \to +\infty} c_n = 0$.
+\begin{remarkbox}
+On pourra étudier $\varphi : \R \to \R, x \mapsto e^x - x - 1$.
+\end{remarkbox}
+\end{statementbox}
+
+\begin{solution}
+Posons $\varphi : x \mapsto e^x - x - 1$.
+$\varphi$ est dérivable sur $\R$ et $\forall x \in \R, \varphi'(x) = e^x - 1$.
+\begin{center}
+\begin{tabular}{|c|ccccc|}
+\hline
+$x$ & $-\infty$ & & $0$ & & $+\infty$ \\
+\hline
+$\varphi'(x)$ & & $-$ & $0$ & $+$ & \\
+\hline
+$\varphi(x)$ & $+\infty$ & $\searrow$ & $0$ & $\nearrow$ & $+\infty$ \\
+\hline
+\end{tabular}
+\end{center}
+
+On a : $\varphi(a_n) + \varphi(b_n) + \varphi(c_n) \xrightarrow[n \to +\infty]{} 0$.
+et $0 \leq \varphi(a_n) \leq \underbrace{\varphi(a_n) + \varphi(b_n) + \varphi(c_n)}_{\geq 0}$.
+donc $\lim_{n \to +\infty} \varphi(a_n) = 0$, idem pour $(\varphi(b_n))$ et $(\varphi(c_n))_{n \in \N}$.
+
+Si $(a_n)_{n \in \N}$ ne tend pas vers 0 : $\exists \varepsilon_0 > 0, \forall N \in \N, \exists n \in \N / |a_n| > \varepsilon_0$.
+Par récurrence : $\exists \sigma : \N \to \N$ strictement croissante / $\forall n \in \N, |a_{\sigma(n)}| > \varepsilon_0$.
+Or $\varphi$ est décroissante sur $\R_-$ et croissante sur $\R_+$.
+Si $a_{\sigma(n)} < -a_{\sigma(n)} < -\varepsilon_0$ et $\varphi(a_{\sigma(n)}) > \varphi(-\varepsilon_0)$.
+Si $a_{\sigma(n)} > 0$, $a_{\sigma(n)} > \varepsilon_0$ et $\varphi(a_{\sigma(n)}) > \varphi(\varepsilon_0)$.
+Ainsi $\forall n \in \N$,
+\[
+\underbrace{\varphi(a_{\sigma(n)})}_{\xrightarrow[n \to +\infty]{} 0} \geq \min(\varphi(\varepsilon_0), \varphi(-\varepsilon_0)) > 0
+\]
+ce qui ne se peut.
+Ainsi, $\lim_{n \to +\infty} a_n = 0$. De même pour $(b_n)_{n \in \N}$ et $(c_n)_{n \in \N}$.
+
+\textbf{2\textsuperscript{e} méthode : Mq $(a_n)_{n \in \N}$ est bornée.}
+Si $(a_n)_{n \in \N}$ n'est pas bornée, alors $\exists \sigma : \N \to \N$ strictement croissante tq : $\lim_{n \to +\infty} a_{\sigma(n)} \in \{-\infty, +\infty\}$, alors $\lim_{n \to +\infty} \varphi(a_{\sigma(n)}) = +\infty$ ce qui ne se peut.
+Donc $(a_n)_{n \in \N}$ est bornée.
+Soit $\lambda \in \R$ v.a. de $(a_n)_{n \in \N}$ et $\psi : \N \to \N$ strictement croissante / $\lim_{n \to +\infty} a_{\psi(n)} = \lambda$.
+Comme $\varphi$ est continue, $\lim_{n \to +\infty} \varphi(a_{\psi(n)}) = \varphi(\lambda) = 0$, d'où $\lambda = 0$.
+Donc $(a_n)_{n \in \N}$ possède une unique v.a. Donc $\boxed{\lim_{n \to +\infty} a_n = 0}$.
+\end{solution}
+
+\exercise{37}{}
+
+\begin{statementbox}
+Soit $(p,q) \in (\R^*)^2 / \frac{p}{q} \notin \Q$ et $(x_n)_{n \in \N} \in \R^\N$.
+\begin{enumerate}[label=\alph*)]
+  \item On suppose que $(x_n)_{n \in \N}$ est bornée et que $(e^{i p x_n})_{n \in \N}$ et $(e^{i q x_n})_{n \in \N}$ cv.
+  Mq $(a_n)_{n \in \N}$ cv.
+  \item Contre-ex si $(x_n)_{n \in \N}$ n'est pas bornée [on pourra utiliser $\sqrt{2} \notin \Q$ et le fait que $\forall n \in \N^*, \exists (x_n, y_n) \in \llbracket 1, n \rrbracket \times \Z / |\sqrt{2} x_n - y_n| < \frac{1}{n}$].
+\end{enumerate}
+\end{statementbox}
+
+\begin{solution}
+\partanswer{a)}
+Supposons l'existence de $\lambda_1 \neq \lambda_2$ deux v.a. de $(x_n)_{n \in \N}$.
+Soit $\sigma_1, \sigma_2 : \N \to \N$ strictement croissantes /
+\[
+\lim_{n \to +\infty} x_{\sigma_1(n)} = \lambda_1 \quad \text{et} \quad \lim_{n \to +\infty} x_{\sigma_2(n)} = \lambda_2
+\]
+Comme $(e^{i p x_n})_{n \in \N}$ cv, on a :
+\[
+\lim_{n \to +\infty} e^{i p x_{\sigma_1(n)}} = \lim_{n \to +\infty} e^{i p x_{\sigma_2(n)}} \quad \left(= \lim_{n \to +\infty} e^{i p x_n}\right)
+\]
+\[
+e^{i p \lambda_1} = e^{i p \lambda_2} \implies e^{i p (\lambda_1 - \lambda_2)} = 1 \implies i p (\lambda_1 - \lambda_2) \in i \R
+\]
+\[
+\left. \begin{aligned}
+\exists k \in \Z / p(\lambda_1 - \lambda_2) &= 2k\pi \\
+\text{De même } \exists k' \in \Z / q(\lambda_1 - \lambda_2) &= 2k'\pi
+\end{aligned} \right] \quad \text{avec } \lambda_1 \neq \lambda_2 \implies k \neq 0 \text{ et } k' \neq 0
+\]
+D'où $\frac{p}{q} = \frac{k}{k'} \in \Q$, ce qui ne se peut.
+
+Donc $(x_n)_{n \in \N}$ bornée ne possède qu'une v.a.
+Donc $(x_n)_{n \in \N}$ converge.
+
+\partanswer{b)}
+Soit pour $n \in \N^*, (x_n, y_n) \in \llbracket 1, n \rrbracket \times \Z / |\sqrt{2} x_n - y_n| < \frac{1}{n}$.
+\[
+\left. \begin{aligned} p &= 2\pi \\ q &= 2\pi\sqrt{2} \end{aligned} \right\} \quad \frac{p}{q} = \frac{1}{\sqrt{2}} \notin \Q
+\]
+$e^{i 2\pi x_n} = 1$ et $e^{i 2\pi \sqrt{2} x_n} = e^{i 2\pi (\sqrt{2}x_n - y_n)} \times \underbrace{e^{i 2\pi y_n}}_{=1} = e^{i 2\pi (\sqrt{2}x_n - y_n)}$.
+
+Or $\lim_{n \to +\infty} \sqrt{2} x_n - y_n = 0$, donc $\lim_{n \to +\infty} e^{i 2\pi \sqrt{2} x_n} = 1$.
+
+Si $(x_n)_{n \in \N}$ était bornée, on pourrait extraire une sous-suite stationnaire :
+$x_{\sigma(n)} = k \in \N^*$. Comme $\lim_{n \to +\infty} (x_{\sigma(n)}\sqrt{2} - y_{\sigma(n)}) = 0$, $| < \frac{1}{\sigma(n)}$.
+$y_{\sigma(n)}$ converge donc stationnaire : $y_{\sigma(n)} = k' \in \Z$ pour $n$ suffisamment grand, et $\sqrt{2} = \frac{k'}{k} \in \Q$, ce qui n'est pas.
+$(x_n)_{n \in \N}$ n'est pas bornée.
+\end{solution}
+
+\exercise{7}{}
+
+\begin{statementbox}
+Soit $a < b \in \R^2, f : [a,b] \to [a,b]$ continue.
+\begin{enumerate}[label=\alph*)]
+  \item Mq $f$ admet au moins un point fixe (i.e. $\exists x \in [a,b] / f(x) = x$).
+  \item Soit $x_0 \in [a,b]$ et $\forall n \in \N, x_{n+1} = f(x_n)$, $x_n$ cv ssi $\lim_{n \to +\infty} x_{n+1} - x_n = 0$.
+  (on montrera le lemme : soit $(u_n)_{n \in \N} \in \R^\N$ bornée, avec $\lim_{n \to +\infty} u_{n+1} - u_n = 0$ ; si $\lambda < \mu$ sont deux v.a. de $(u_n)_{n \in \N}$, alors $\forall v \in \left] \lambda, \mu \right[$, $v$ est v.a. de $(u_n)_{n \in \N}$).
+\end{enumerate}
+\end{statementbox}
+
+\begin{solution}
+\partanswer{Correction : a)}
+Soit $g : [a,b] \to \R, x \mapsto f(x) - x$. $g$ est continue et $g(a) \geq 0$ (car $f(a) \in [a,b]$) et $g(b) \leq 0$ (car $f(b) \in [a,b]$).
+Donc d'après le TVI, $\exists x \in [a,b] / g(x) = 0$, i.e. $f(x) = x$.
+
+\partanswer{b)}
+* Supposons $(x_n)_{n \in \N}$ converge. Alors $\lim_{n \to +\infty} x_{n+1} - x_n = 0$.
+
+\begin{lemma*}
+Démonstration du lemme : Soient $\lambda < \mu$ deux v.a. de $(u_n)_{n \in \N}$.
+Soit $v \in \left] \lambda, \mu \right[$ ; si $v$ n'est pas v.a. de $(u_n)_{n \in \N}$, alors $\{n \in \N / |u_n - v| \leq \varepsilon_0\}$ est fini.
+\end{lemma*}
+On peut supposer que $\varepsilon_0 < \min(v - \lambda, \mu - v)$.
+\[
+\exists N_0 \in \N / \forall n > N_0, |u_n - v| > \varepsilon_0, \quad \text{i.e. } \forall n > N_0, \begin{cases} u_n < v - \varepsilon_0 \\ \text{ou } u_n > v + \varepsilon_0 \end{cases}
+\]
+Comme $\lim_{n \to +\infty} u_{n+1} - u_n = 0, \exists N_1 \in \N / \forall n > N_1, |u_{n+1} - u_n| \leq \varepsilon_0$.
+et $\forall n > \max(N_0, N_1) = N_2$, si $u_n < v - \varepsilon_0$, nécessairement $u_{n+1} < v - \varepsilon_0$.
+Par récurrence : si $u_{N_2} < v - \varepsilon_0$, on a $\forall n > N_2, u_n < v - \varepsilon_0$, ce qui contredit $\mu$ v.a.
+De même, si $u_{N_2} > v + \varepsilon_0, \forall n > N_2, u_n > v + \varepsilon_0$, ce qui contredit $\lambda$ v.a.
+
+Donc $v$ v.a. de $(u_n)_{n \in \N}$.
+
+* Réciproquement, supposons $\lim_{n \to +\infty} x_{n+1} - x_n = 0$.
+$(x_n)_{n \in \N} \in [a,b]^\N$ donc $(x_n)_{n \in \N}$ est bornée.
+
+Soit $v$ une v.a. de $(x_n)_{n \in \N}$. Soit $\sigma : \N \to \N$ strictement croissante telle que $x_{\sigma(n)} \to v$.
+Comme $f$ est continue, $f(x_{\sigma(n)}) \to f(v) = x_{\sigma(n)+1}$.
+Or, $\lim_{n \to +\infty} x_{\sigma(n)+1} - x_{\sigma(n)} = 0$, donc $\lim_{n \to +\infty} x_{\sigma(n)+1} = v$.
+Alors, $f(v) = v$.
+
+Supposons $\exists \lambda < \mu$, v.a. de $(x_n)_{n \in \N}$. Alors, $\frac{\lambda + \mu}{2}$ est v.a. de $(x_n)_{n \in \N}$ (d'après le Lemme).
+Et, $\exists N_0 \in \N / x_{N_0} \in \left] \lambda, \mu \right[$.
+Alors, $x_{N_0}$ est une v.a. donc point fixe et $(x_n)_{n \in \N}$ est stationnaire, donc converge.
+\end{solution}
+
+\exercise{12}{}
+
+\begin{statementbox}
+Soit pour $n \in \N^*$, $u_n = \left( \sum_{k=1}^n \operatorname{ch}\left( \frac{1}{\sqrt{k+n}} \right) \right) - n$.
+Étudier $(u_n)_{n \geq 1}$.
+\end{statementbox}
+
+\begin{solution}
+Correction : Soit $n \geq 1$.
+\[
+u_n = \sum_{k=1}^n \left( \operatorname{ch}\left( \frac{1}{\sqrt{k+n}} \right) - 1 \right)
+\]
+\[
+\operatorname{ch}(x) \underset{x \to 0}{=} 1 + \frac{x^2}{2} + O(x^4)
+\]
+Et, $\exists \varepsilon_0 > 0, \exists M > 0 / \forall x \in [-\varepsilon_0, \varepsilon_0], \left| \operatorname{ch}(x) - 1 - \frac{x^2}{2} \right| \leq M x^4$.
+
+Or, $u_n - \sum_{k=1}^n \frac{1}{2} \frac{1}{k+n} = \sum_{k=1}^n \left( \operatorname{ch}\left( \frac{1}{\sqrt{k+n}} \right) - 1 - \frac{1}{2} \frac{1}{k+n} \right)$.
+
+Soit $N_0 \in \N / \forall n > N_0, \frac{1}{\sqrt{n}} \leq \varepsilon_0$, on a :
+$\forall n > N_0, \forall k \in \llbracket 1, n \rrbracket, \frac{1}{\sqrt{k+n}} \leq \varepsilon_0$ donc
+\[
+\left| u_n - \sum_{k=1}^n \frac{1}{2} \frac{1}{k+n} \right| \leq \sum_{k=1}^n \left| \operatorname{ch}\left( \frac{1}{\sqrt{k+n}} \right) - 1 - \frac{1}{2} \frac{1}{k+n} \right|
+\]
+\[
+\leq M \sum_{k=1}^n \frac{1}{(k+n)^2} \leq \frac{M n}{(n+1)^2} \xrightarrow[n \to +\infty]{} 0
+\]
+De plus, $\sum_{k=1}^n \frac{1}{k+n} = \frac{1}{n} \sum_{k=1}^n \frac{1}{1 + \frac{k}{n}} \xrightarrow[n \to +\infty]{} \int_0^1 \frac{1}{1+t} dt$ (Somme de Riemann)
+\[
+= [\ln(1+t)]_0^1 = \ln(2)
+\]
+Ainsi, $\lim_{n \to +\infty} u_n = \frac{\ln(2)}{2}$.
+
+\begin{remarkbox}
+On peut aussi former, $\forall n \geq 2$, $u_n - u_{n-1} = \operatorname{ch}\left( \frac{1}{\sqrt{2n}} \right) + \operatorname{ch}\left( \frac{1}{\sqrt{2n-1}} \right) - \operatorname{ch}\left( \frac{1}{\sqrt{n}} \right) - 1$
+\[
+= \frac{1}{4n} + \frac{1}{2(2n-1)} - \frac{1}{2n} + O\left(\frac{1}{n^2}\right) \quad \text{terme général d'une série abs. c.v.}
+\]
+\[
+= \frac{1}{2} \left( \frac{1}{2n-1} - \frac{1}{2n} \right) \quad \text{(terme général d'une série télescopique convergente)}
+\]
+Donc, $\sum u_n - u_{n-1}$ C.V et $(u_n)_{n \geq 1}$ C.V.
+\end{remarkbox}
+\end{solution}
+
+\exercise{32}{}
+
+\begin{statementbox}
+Soit $(a_n)_{n \in \N^*} \in (\R_+^*)^{\N^*}$, on lui associe $\forall n \in \N$,
+\[
+\widehat{a}_n = \sqrt{a_1 + \sqrt{a_2 + \sqrt{\dots + \sqrt{a_n}}}}
+\]
+[i.e. $\widehat{a}_1 = \sqrt{a_1}$ et soit pour $x > 0, f_x : \R_+ \to \R_+, f_x(t) = \sqrt{x+t}$, $\widehat{a}_n = f_{a_1}(\dots f_{a_{n-2}}(f_{a_{n-1}}(\sqrt{a_n})) \dots)$]
+\begin{enumerate}[label=\alph*)]
+  \item Étudier les cas où $\forall n \geq 1, a_n = 1$ et $\exists l > 0 / \forall n \in \N^*, a_n = l^{2^n}$.
+  \item Mq $(\widehat{a}_n)_{n \in \N^*}$ converge ssi $(a_n^{1/2^n})_{n \geq 1}$ est majorée.
+  \item Soit pour $n \in \N^*, a_n = n$ puis $a_n = e^{3^n}$, $(\widehat{a}_n)_{n \in \N^*}$ c.v t-elle ?
+\end{enumerate}
+\end{statementbox}
+
+\begin{solution}
+\partanswer{Correction : a)}
+Si $\forall n \in \N^*, a_n = 1$. Alors, $\widehat{a}_1 = 1$ et $\forall n \in \N^*, \widehat{a}_{n+1} = \sqrt{1 + \widehat{a}_n}$.
+
+Soit $f : \R_+ \to \R, x \mapsto \sqrt{1+x}$ et $g : \R_+ \to \R, x \mapsto f(x) - x$.
+
+Soit $x \geq 0$. On a $\sqrt{1+x} - x \geq 0$ ssi $\sqrt{1+x} \geq x$
+\[
+\begin{aligned}
+&\text{ssi } 1+x \geq x^2 \\
+&\text{ssi } x^2 - x - 1 \leq 0
+\end{aligned}
+\]
+On a $\Delta = 5$ et $x_1, x_2 = \frac{1 \pm \sqrt{5}}{2}$.
+$\forall x \in \left[0, \frac{1+\sqrt{5}}{2}\right[, x^2 - x - 1 < 0$ donc $\sqrt{1+x} > x$.
+et $g\left( \frac{1+\sqrt{5}}{2} \right) = 0$.
+$\forall x \in \left[ \frac{1+\sqrt{5}}{2}, +\infty \right[, \sqrt{1+x} < x$.
+
+Par récurrence, $\forall n \in \N^*, \widehat{a}_n \in \left[0, \frac{1+\sqrt{5}}{2}\right]$, et $\forall n \geq 1, \widehat{a}_n \leq \widehat{a}_{n+1} = f(\widehat{a}_n)$. Donc $(\widehat{a}_n)_{n \in \N}$ est croissante et majorée par $\frac{1+\sqrt{5}}{2}$ donc elle converge.
+Notons $l \in \R$ sa limite. Par continuité de $f, f(l) = l$, d'où
+\[
+l = \frac{1+\sqrt{5}}{2}
+\]
+
+Si $\exists l > 0 / \forall n \in \N^*, a_n = l^{2^n}$.
+\[
+\widehat{a}_1 = \sqrt{l^2} = l
+\]
+\[
+\widehat{a}_2 = \sqrt{l^2 + \sqrt{l^4}} = l \sqrt{1 + \sqrt{1}}
+\]
+\[
+\forall n \in \N^*, \widehat{a}_n = \sqrt{l^2 + \sqrt{l^4 + \dots + \sqrt{l^{2^{n-1}} + \sqrt{l^{2^n}}}}} = l \sqrt{1 + \sqrt{1 + \dots + \sqrt{1}}} \xrightarrow[n \to +\infty]{} l \left( \frac{1+\sqrt{5}}{2} \right)
+\]
+
+Comme $\forall n \in \N^*, a_n + \sqrt{a_{n+1}} \geq a_n$ on a $(\widehat{a}_n)_{n \geq 1}$ est croissante. Donc si $(\widehat{a}_n)_{n \in \N^*}$ est majorée, soit $l > 0$ tel que $\forall n \in \N^*, \widehat{a}_n^2 \leq l$.
+Alors, $\forall n \geq 1, a_n \leq l^{2^n}$ et $\widehat{a}_n \leq l^{\frac{1}{2^n}} \to l \left( \frac{1+\sqrt{5}}{2} \right)$.
+$\widehat{a}_n$ est majorée et croissante donc elle converge.
+
+Réciproquement, si $(\widehat{a}_n)_{n \in \N^*}$ converge, on a $\forall n \geq 1, \widehat{a}_n > a_n^{\frac{1}{2^n}}$. Ainsi, $\left( a_n^{\frac{1}{2^n}} \right)_{n \in \N^*}$ est majorée.
+
+\partanswer{c)}
+* Si $\forall n \in \N^*, a_n = n$. Alors $a_n^{\frac{1}{2^n}} = e^{\frac{1}{2^n} \ln(n)} \xrightarrow[n \to +\infty]{} 1$.
+Donc $\left( a_n^{\frac{1}{2^n}} \right)_{n \in \N^*}$ est bornée et $(\widehat{a}_n)_{n \in \N^*}$ converge.
+
+* Si $\forall n \in \N^*, a_n = e^{3^n}$, alors $a_n^{\frac{1}{2^n}} = e^{\left(\frac{3}{2}\right)^n} \xrightarrow[n \to +\infty]{} +\infty$.
+Donc $(\widehat{a}_n)_{n \in \N^*}$ diverge.
+\end{solution}
+
+\exercise{33}{}
+
+\begin{statementbox}
+Soient $(a_0, b_0) \in (\R_+^*)^2$. On définit, $\forall n \in \N$,
+\[
+\begin{cases}
+a_{n+1} = \frac{a_n+b_n}{2} \\
+b_{n+1} = \sqrt{a_{n+1}b_n}
+\end{cases}
+\]
+Étudier $(a_n)_{n \in \N}$ et $(b_n)_{n \in \N}$. [Pour obtenir la limite, on se ramènera aux cas où $a_0 = 1, b_0 = \cos(\theta)$ ($\theta \in \left]0, \frac{\pi}{2}\right[$) ou, $a_0 = 1, b_0 = \operatorname{ch}(t)$ $t > 0$]
+\end{statementbox}
+
+\begin{solution}
+* Si $a_0 = b_0$, par récurrence, $\forall n \in \N, a_n = b_n = a_0$.
+
+* Si $a_0 < b_0$ :
+Par récurrence, $\forall n \in \N, a_n < b_n$.
+Et $a_n < a_{n+1} = \frac{a_n+b_n}{2} < b_{n+1} < b_n$
+(car si $0 < x < y, x < \sqrt{xy} < y$).
+
+Il s'ensuit que $0 < b_{n+1} - a_{n+1} < b_n - a_{n+1} = \frac{b_n - a_n}{2}$.
+D'où, par récurrence, $\forall n \in \N, 0 < b_n - a_n < \frac{b_0 - a_0}{2^n}$.
+Et, $(a_n)_{n \in \N}$ est croissante, $(b_n)_{n \in \N}$ est décroissante, $\lim_{n \to +\infty} b_n - a_n = 0$.
+
+On peut écrire $a_0 = b_0 \cos(\theta)$ avec $\theta \in \left] 0, \frac{\pi}{2} \right[$.
+Alors, $a_1 = b_0 \frac{1+\cos(\theta)}{2} = b_0 \cos^2\left(\frac{\theta}{2}\right)$
+$b_1 = b_0 \cos\left(\frac{\theta}{2}\right)$
+$a_2 = b_0 \cos\left(\frac{\theta}{2}\right) \left(\frac{1+\cos(\theta/2)}{2}\right) = b_0 \cos\left(\frac{\theta}{2}\right) \cos^2\left(\frac{\theta}{4}\right)$
+$b_2 = b_0 \cos\left(\frac{\theta}{2}\right) \cos\left(\frac{\theta}{4}\right)$
+
+Par récurrence, $\forall n \in \N, \quad b_n = b_0 \cos\left(\frac{\theta}{2}\right) \dots \cos\left(\frac{\theta}{2^n}\right)$
+$a_n = b_n \cos\left(\frac{\theta}{2^n}\right)$.
+
+On a $\sin\left(\frac{\theta}{2^n}\right) b_n = b_0 \frac{\sin(\theta)}{2^n}$ et $b_n = \frac{b_0 \sin(\theta)}{2^n \sin\left(\frac{\theta}{2^n}\right)} \xrightarrow[n \to +\infty]{} b_0 \frac{\sin(\theta)}{\theta}$.
+
+* Si $a_0 > b_0$ : on peut écrire $a_0 = b_0 \operatorname{ch}(t)$ avec $t > 0$.
+$\frac{1+\operatorname{ch}(t)}{2} = \frac{2 + e^t + e^{-t}}{4} = \operatorname{ch}^2\left(\frac{t}{2}\right) = \left(\frac{e^{t/2} + e^{-t/2}}{2}\right)^2$
+$\operatorname{sh}(t) \operatorname{ch}(t) = \frac{1}{4} (e^{2t} - e^{-2t}) = \frac{\operatorname{sh}(2t)}{2}$
+
+De même, $b_n = b_0 \frac{\operatorname{sh}(t)}{2^n \operatorname{sh}\left(\frac{t}{2^n}\right)} \xrightarrow[n \to +\infty]{} b_0 \frac{\operatorname{sh}(t)}{t}$.
+\end{solution}
+
+\exercise{4}{}
+
+\begin{statementbox}
+\begin{enumerate}[label=\alph*)]
+  \item Soit $x \in \R \setminus \Q$ ; montrer que $\forall N \in \N^*, \exists q \in \llbracket 1, N \rrbracket, \exists p \in \Z / 0 < \left| x - \frac{p}{q} \right| \leq \frac{1}{N q}$.
+  En déduire que $\exists (p_n)_{n \in \N} \in \Z^\N, (q_n)_{n \in \N} \in (\N^*)^\N$ avec $\lim_{n \to +\infty} q_n = +\infty$ tel que $\forall n \in \N, 0 < \left| x - \frac{p_n}{q_n} \right| \leq \frac{1}{q_n^2}$.
+  \item La suite $u_n = \left( \frac{1}{n \sin(n)} \right)_{n \in \N}$ converge-t-elle ? [on admettra $\pi \notin \Q$]
+\end{enumerate}
+\end{statementbox}
+
+\begin{solution}
+\partanswer{a)}
+Soit pour $k \in \llbracket 0, N \rrbracket, x_k = k x - \lfloor k x \rfloor$ ; ce sont $N+1$ nombres appartenant à $[0, 1[$, $2$ à $2$ distincts car $x \notin \Q$.
+Comme $[0, 1[ = \bigcup_{j=0}^{N-1} \left[ \frac{j}{N}, \frac{j+1}{N} \right[$, $\exists j \in \llbracket 0, N-1 \rrbracket$ tel que $\exists k \neq k' \in \llbracket 0, N \rrbracket^2 / x_k \text{ et } x_{k'} \in \left[ \frac{j}{N}, \frac{j+1}{N} \right[$, alors $0 < |x_k - x_{k'}| < \frac{1}{N}$.
+
+Soit $q = |k - k'| \in \llbracket 1, N \rrbracket$, alors $|q x - p| = |q x - p| < \frac{1}{N}$ avec $p \in \Z$.
+
+* On choisit $q_1 = 1$ et $p_1 = \lfloor x \rfloor$ et on a bien $\left| x - \frac{p_1}{q_1} \right| \leq \frac{1}{q_1^2} = 1$.
+* Soit $n \in \N^*$, supposons construit $q_1 < q_2 < \dots < q_n$ et $(p_1, \dots, p_n)$ tels que $\forall k \in \llbracket 1, n \rrbracket, \left| x - \frac{p_k}{q_k} \right| \leq \frac{1}{q_k^2}$.
+
+Observons que si $q \in \N^*, p \in \Z$ vérifiant $\left| x - \frac{p}{q} \right| < \frac{1}{q}$, alors $|q x - p| < 1$ donc $p \in \{ \lfloor q x \rfloor, \lfloor q x \rfloor + 1 \}$.
+
+Considérons $\min \left\{ \left| x - \frac{p}{q} \right| / q \in \llbracket 1, q_n \rrbracket, p \in \{ \lfloor q x \rfloor, \lfloor q x \rfloor + 1 \} \right\}$.
+
+Soit $N \in \N^* / \frac{1}{N} < \alpha$.
+D'après ce qui précède, $\exists (q_{n+1}, p_{n+1}) \in \llbracket 1, N \rrbracket \times \Z / \left| x - \frac{p_{n+1}}{q_{n+1}} \right| \leq \frac{1}{q_{n+1} N} \leq \frac{1}{N} < \alpha$, donc $p_{n+1} \in \{ \lfloor q_{n+1} x \rfloor, \lfloor q_{n+1} x \rfloor + 1 \}$.
+
+Donc $q_{n+1} \notin \llbracket 1, q_n \rrbracket$, i.e. $q_{n+1} > q_n$.
+On construit ainsi $(p_n)_{n \in \N}$ et $(q_n)_{n \in \N}$ par récurrence.
+
+\partanswer{b)}
+$\forall n \in \N^*, \sin(n) \neq 0$ [car $\pi \notin \Q$].
+Comme $\frac{1}{\pi} \notin \Q$, il existe $(p_n) \in \Z^\N$ et $(q_n) \in (\N^*)^\N$ avec $q_n \xrightarrow[n \to +\infty]{} +\infty$ et $|\sin(q_n)| = |\sin(p_n \pi - q_n)|$ car $|\sin|$ est $\pi$-périodique et paire.
+
+Or $\forall t \in \R, |\sin t| \leq |t|$ (par concavité de $\sin$ sur $[0, \pi]$), donc $|\sin(q_n)| \leq \left| \frac{\pi}{q_n} \right|$ d'où $|q_n \sin(q_n)| \leq \pi \implies |u_{q_n}| \geq \frac{1}{\pi}$.
+
+$\pi$ étant irrationnel, $\pi \Z + \Z$ est dense dans $\R$, dès lors $\exists (n_k, m_k) \in (\Z^2)^\N / \lim_{k \to +\infty} n_k \pi + m_k = \frac{\pi}{2}$,
+et alors $|\sin(n_k \pi + m_k)| \to 1 \implies |\sin(m_k)| = |\sin(m_k)| \to 1$.
+
+$(m_k)$ n'est pas bornée sinon on pourrait extraire une sous-suite stationnaire $= m$, et $n_{\sigma(k)} \pi = \frac{\pi}{2} m \implies \text{cela contredit } \pi \notin \Q$.
+On peut donc extraire $|m_{\sigma(k)}| \xrightarrow[k \to +\infty]{} +\infty$, alors $|u_{m_{\sigma(k)}}| = \frac{1}{|m_{\sigma(k)}| \cdot |\sin(m_{\sigma(k)})|} \xrightarrow[k \to +\infty]{} 0$.
+
+Si $(u_n)$ convergeait on aurait $u_n \to 0$, ce qui ne se peut car $\{ n \in \N / |u_n| \geq \frac{1}{\pi} \}$ est infini.
+Ainsi $(u_n)_n$ diverge.
+\end{solution}
+
+\exercise{Mines}{}
+
+\begin{statementbox}
+(Mines)
+\begin{enumerate}[label=\alph*)]
+  \item Montrer que $\forall n \geq 2, \exists! x_n > 0 / x_n^n = x_n + n$.
+  \item Déterminer $\lim_{n \to +\infty} x_n$ (on montrera d'abord $\forall n \geq 2, x_n \in \left] 1, 2 \right]$ puis on observera que $n \ln(x_n) = \ln(n + x_n)$).
+  \item Donner un équivalent de $x_n - 1$, puis un D.A. à 3 termes :
+  \[
+  x_n = 1 + a_n + b_n + o(b_n) \quad \text{avec } b_n \underset{n \to +\infty}{=} o(a_n) \text{ et } a_n \underset{n \to +\infty}{=} o(1)
+  \]
+\end{enumerate}
+\end{statementbox}
+
+\begin{solution}
+\partanswer{a)}
+Soit pour $n \geq 2, f_n : x \mapsto x^n - x - n$ de classe $\mathcal{C}^1$ et $\forall x \geq 0, f_n'(x) = n x^{n-1} - 1$.
+\begin{center}
+\begin{tabular}{|c|lcr|}
+\hline
+$x$ & $0$ & $(1/n)^{\frac{1}{n-1}}$ & $+\infty$ \\
+\hline
+$f_n'(x)$ & & $-$ & $0$ & $+$ \\
+\hline
+$f_n$ & $-n$ & $\searrow$ & $\nearrow$ & $+\infty$ \\
+\hline
+\end{tabular}
+\end{center}
+Par stricte croissance de $f_n$ sur $\left[ \left(\frac{1}{n}\right)^{\frac{1}{n-1}}, +\infty \right[$ et d'après le corollaire du TVI, $\exists! x_n \geq 0, x_n^n = x_n + n$.
+
+\partanswer{b)}
+$f_n(1) = -n < 0$ et $f_n(2) = 2^n - 2 - n$.
+Soit pour $n \geq 2, H_n : \text{“} 2^n \geq n + 2 \text{”}$.
+\begin{itemize}
+  \item $H_2$ est vraie.
+  \item Soit $n \in \N$ fixé / $H_n$ est vraie :
+  \[
+  2^{n+1} = 2 \times 2^n \geq 2(n+2) = 2n + 4 \geq n + 3
+  \]
+\end{itemize}
+Par récurrence $\forall n \in \llbracket 2, +\infty \llbracket, 2^n \geq n + 2$.
+Et $f_n(2) \geq 0$, d'où d'après l'étude de $f_n$, $x_n \in \left] 1, 2 \right]$.
+Par ailleurs $0 < \ln(x_n) = \ln(n + x_n) \leq \ln(n+2)$, d'où $0 < \ln(x_n) \leq \frac{\ln(n+2)}{n}$, ainsi $\lim_{n \to +\infty} \ln(x_n) = 0$ et $\lim_{n \to +\infty} x_n = 1$.
+
+\partanswer{c)}
+Posons $x_n = 1 + E_n$ avec $\lim_{n \to +\infty} E_n = 0$, on cherche un équivalent de $E_n$.
+Or $n \ln(x_n) = \ln(n + x_n)$,
+et $\ln(n + x_n) = \ln(n+1 + E_n) = \ln\left( n \left( 1 + \frac{1 + E_n}{n} \right) \right) = \ln(n) + \ln\left( 1 + \frac{1 + E_n}{n} \right) \sim \ln(n)$.
+Et $n \ln(1 + E_n) \sim n E_n$.
+
+Donc $E_n \underset{n \to +\infty}{\sim} \frac{\ln(n)}{n}$, et $x_n = 1 + \underbrace{\frac{\ln(n)}{n} + o\left(\frac{\ln(n)}{n}\right)}_{E_n}$.
+
+Soit donc $a_n = \frac{\ln(n)}{n} = o(1)$ et $x_n = 1 + \frac{\ln(n)}{n} + b_n \quad \left(\text{avec } b_n = o\left(\frac{\ln(n)}{n}\right)\right)$.
+
+Alors $n \ln(x_n) = \ln(n + x_n) \implies n \ln(1+E_n) = \ln(n+x_n)$.
+\begin{align*}
+\ln(1 + E_n) &= E_n - \frac{E_n^2}{2} + o(E_n^2) \quad \text{et} \quad \frac{E_n^2}{2} \sim \frac{\ln^2(n)}{2n^2}, \quad o(E_n^2) = o\left(\frac{\ln^2(n)}{n^2}\right) \\
+&\underset{n \to +\infty}{=} \frac{\ln(n)}{n} + b_n - \frac{\ln^2(n)}{2n^2} + o\left(\frac{\ln^2(n)}{n^2}\right)
+\end{align*}
+Ainsi $n \ln(1 + E_n) = \ln(n) + n b_n - \frac{\ln^2(n)}{2n} + o\left(\frac{\ln^2(n)}{n}\right)$.
+
+De plus, 
+\begin{align*}
+\ln(n + x_n) &= \ln\left(n + 1 + \underbrace{E_n}_{= o(1)}\right) \\
+&= \ln\left( n \left[ 1 + \frac{1}{n} + o\left(\frac{1}{n}\right) \right] \right) \\
+&= \ln(n) + \ln\underbrace{\left( 1 + \frac{1}{n} + o\left(\frac{1}{n}\right) \right)}_{\substack{\sim u_n \\ \sim \frac{1}{n}}} \quad \text{avec } u_n = \frac{1}{n} + o\left(\frac{1}{n}\right) \xrightarrow[n \to +\infty]{} 0 \\
+&= \ln(n) + \underbrace{\frac{1}{n} + o\left(\frac{1}{n}\right)}_{\substack{\sim \frac{1}{n} \\ = o\left(\frac{\ln^2(n)}{n}\right)}}
+\end{align*}
+
+D'où $n b_n = \frac{\ln^2(n)}{2n} + o\left(\frac{\ln^2(n)}{n}\right) \sim \frac{\ln^2(n)}{2n}$
+
+et $b_n \sim \frac{\ln^2(n)}{2n^2}$.
+
+Donc $\boxed{x_n = 1 + \frac{\ln(n)}{n} + \frac{\ln^2(n)}{2n^2} + o\left(\frac{\ln^2(n)}{n^2}\right)}$
+\end{solution}
