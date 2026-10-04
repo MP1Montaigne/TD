@@ -4,15 +4,13 @@
 \exercise{5}{}
 
 \begin{statementbox}
-Lundi 28 septembre
-
 Soit la suite définie par $a_0 = 1$ et $\forall n \in \N, a_n = 2 a_{\lfloor n/3 \rfloor} + 3 a_{\lfloor n/9 \rfloor}$.
 \begin{enumerate}[label=\alph*)]
   \item Vérifier que $(a_n)_{n \in \N}$ est bien définie ; on pose $\forall p \in \N, b_p = a_{3^p}$ ; exprimer $b_p$ en fonction de $p$, et mq
   \[
   \left. \begin{aligned} \forall n \in \N \\ \forall p \in \N \end{aligned} \right\} \text{ si } 3^p \leq n < 3^{p+1}, \text{ on a } a_n = b_p
   \]
-  \item Déterminer l'ensemble de v.a. de $\left( \frac{a_n}{n} \right)_{n \in \N}$.
+  \item Déterminer l'ensemble des v.a. de $\left( \frac{a_n}{n} \right)_{n \in \N}$.
 \end{enumerate}
 \end{statementbox}
 
@@ -153,9 +151,7 @@ u_n = \exp(n^2 \ln(1 + E_n)) = \exp\left( \frac{\ln^2 a}{2} + o(1) \right) \xrig
 Soit $(a_n)_{n \in \N}, (b_n)_{n \in \N}, (c_n)_{n \in \N}$ 3 suites réelles /
 $\lim_{n \to +\infty} (e^{a_n} + e^{b_n} + e^{c_n}) = 3$ et $\lim_{n \to +\infty} (a_n + b_n + c_n) = 0$.
 Mq $\lim_{n \to +\infty} a_n = \lim_{n \to +\infty} b_n = \lim_{n \to +\infty} c_n = 0$.
-\begin{remarkbox}
-On pourra étudier $\varphi : \R \to \R, x \mapsto e^x - x - 1$.
-\end{remarkbox}
+[On pourra étudier $\varphi : \R \to \R, x \mapsto e^x - x - 1$.]
 \end{statementbox}
 
 \begin{solution}
@@ -260,7 +256,7 @@ Soit $a < b \in \R^2, f : [a,b] \to [a,b]$ continue.
 \end{statementbox}
 
 \begin{solution}
-\partanswer{Correction : a)}
+\partanswer{a)}
 Soit $g : [a,b] \to \R, x \mapsto f(x) - x$. $g$ est continue et $g(a) \geq 0$ (car $f(a) \in [a,b]$) et $g(b) \leq 0$ (car $f(b) \in [a,b]$).
 Donc d'après le TVI, $\exists x \in [a,b] / g(x) = 0$, i.e. $f(x) = x$.
 
@@ -303,7 +299,7 @@ Soit pour $n \in \N^*$, $u_n = \left( \sum_{k=1}^n \operatorname{ch}\left( \frac
 \end{statementbox}
 
 \begin{solution}
-Correction : Soit $n \geq 1$.
+Soit $n \geq 1$.
 \[
 u_n = \sum_{k=1}^n \left( \operatorname{ch}\left( \frac{1}{\sqrt{k+n}} \right) - 1 \right)
 \]
@@ -356,7 +352,7 @@ Soit $(a_n)_{n \in \N^*} \in (\R_+^*)^{\N^*}$, on lui associe $\forall n \in \N$
 \end{statementbox}
 
 \begin{solution}
-\partanswer{Correction : a)}
+\partanswer{a)}
 Si $\forall n \in \N^*, a_n = 1$. Alors, $\widehat{a}_1 = 1$ et $\forall n \in \N^*, \widehat{a}_{n+1} = \sqrt{1 + \widehat{a}_n}$.
 
 Soit $f : \R_+ \to \R, x \mapsto \sqrt{1+x}$ et $g : \R_+ \to \R, x \mapsto f(x) - x$.
@@ -496,7 +492,6 @@ Ainsi $(u_n)_n$ diverge.
 \exercise{Mines}{}
 
 \begin{statementbox}
-(Mines)
 \begin{enumerate}[label=\alph*)]
   \item Montrer que $\forall n \geq 2, \exists! x_n > 0 / x_n^n = x_n + n$.
   \item Déterminer $\lim_{n \to +\infty} x_n$ (on montrera d'abord $\forall n \geq 2, x_n \in \left] 1, 2 \right]$ puis on observera que $n \ln(x_n) = \ln(n + x_n)$).
