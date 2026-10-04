@@ -10,7 +10,7 @@
 \begin{statementbox}
 Soient $E,F,G$ trois $\K$-ev, $u\in\Lin(E,F)$, $v\in\Lin(E,G)$.
 \[
-\text{mq }(\exists w\in\Lin(F,G)\,/\,v=w\circ u)\ \text{ssi }(\Ker u\subset\Ker v).
+\text{a) mq }(\exists w\in\Lin(F,G)\,/\,v=w\circ u)\ \text{ssi }(\Ker u\subset\Ker v).
 \]
 
 Soit $A\in\M_n(\K)$, on lui associe
@@ -22,9 +22,9 @@ et
 g_A:\M_n(\K)\to\K,\quad M\mapsto \tr(AM).
 \]
 
-Mq $A$ nilpotente avec $\Ker f_A\subset\Ker g_A$.
+b) Mq si $A$ est nilpotente alors $\Ker f_A\subset\Ker g_A$.
 
-Mq $A\in\M_n(\K)$ est nilpotente ssi $\exists B\in\M_n(\K)$ tq $A=AB-BA$.
+c) Mq $A\in\M_n(\K)$ est nilpotente ssi $\exists B\in\M_n(\K)$ tq $A=AB-BA$.
 \end{statementbox}
 
 \begin{solution}
@@ -430,7 +430,8 @@ Ainsi $\Phi_u$ et $u$ ont les mêmes polynômes annulateurs, donc le même
 polynôme minimal. $\Phi_u$ est diagonalisable ssi $u$ l'est et
 $\Sp\Phi_u=\Sp u$.
 
-Remarque : Si $(\varepsilon_1,\dots,\varepsilon_n)$ est une base de vecteurs
+\begin{remarkbox}
+Si $(\varepsilon_1,\dots,\varepsilon_n)$ est une base de vecteurs
 propres de $u$ avec $\forall j\in\intervalint{1}{n}$,
 $u(\varepsilon_j)=\lambda_j\varepsilon_j$.
 
@@ -448,6 +449,7 @@ donc $\Phi_u(u_{ij})=\lambda_i u_{ij}$.
 
 Les $(u_{ij})$ forment une base de vecteurs propres de $\Phi_u$ et
 $\chi_{\Phi_u}=\chi_u^n$.
+\end{remarkbox}
 \end{solution}
 
 \exercise{60}{}
