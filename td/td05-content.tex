@@ -1,0 +1,325 @@
+% Transcription littérale du TD 05.
+% Les abréviations et l'ordre des raisonnements de la copie sont conservés.
+
+\exercise{9}{}
+
+\begin{statementbox}
+Soit $(u_n)_{n \in \N} \in \R_+^\N / \lim_{n \to +\infty} u_n \sum_{k=0}^n u_k^2 = 1$. Mq $u_n \sim \frac{1}{\sqrt[3]{3n}}$. A-t-on une réciproque ?
+\end{statementbox}
+
+\begin{solution}
+Pour $n \in \N$, posons $S_n = \sum_{k=0}^n u_k^2$.
+On a $(S_n)_n$ croissante et $u_n^2 = S_n - S_{n-1}$. Par hypothèse, $\lim_{n \to +\infty} (S_n - S_{n-1}) S_n^2 = 1$.
+Comme $(S_n)_n$ est croissante elle admet une limite $l \in \R_+ \cup \{+\infty\}$.
+Si $l$ est finie, $\lim_{n \to +\infty} u_n = \frac{1}{l} > 0$ d'où $(S_n)_n$ diverge grossièrement, ce qui n'est pas.
+Donc $l = +\infty$.
+De plus $S_n^3 - S_{n-1}^3 = (S_n - S_{n-1})(S_n^2 + S_n S_{n-1} + S_{n-1}^2)$.
+Et $S_n = S_{n-1} + u_n^2 = S_{n-1} + o(S_{n-1})$ car $\lim S_{n-1} = +\infty$, ainsi $S_{n-1} \sim S_n$.
+Alors $S_n^3 - S_{n-1}^3 = (S_n - S_{n-1}) \underbrace{S_n^2}_{\sim S_n^2} + (S_n - S_{n-1}) \underbrace{S_n S_{n-1}}_{\sim S_n^2} + (S_n - S_{n-1}) \underbrace{S_{n-1}^2}_{\sim S_n^2}$.
+Or on a $\lim_{n \to +\infty} (S_n - S_{n-1}) S_n^2 = 1$ on a donc $\lim_{n \to +\infty} S_n^3 - S_{n-1}^3 = 3$.
+Par le théorème de Cesàro $\lim_{n \to +\infty} \frac{S_n^3}{n} = 3$. D'où $S_n \sim \sqrt[3]{3n}$ et $u_n \sim \frac{1}{\sqrt[3]{3n}}$.
+
+Réciproquement si $u_n \sim \frac{1}{\sqrt[3]{3n}}$. On pose $f : [1, +\infty[ \to \R, t \mapsto \frac{1}{3 \sqrt[3]{t^2}}$ décroissant.
+Pour $n \geq 1$, soit $t \in [n, n+1]$, $f(n+1) \leq f(t) \leq f(n)$.
+D'où $f(n+1) \leq \int_n^{n+1} f(t) dt \leq f(n)$.
+Soit $N > 1$, on somme pour $n \in \llbracket 1, N \rrbracket$ :
+D'où : $\int_1^{N+1} \frac{dt}{t^{2/3}} \leq \sum_{k=1}^N \frac{1}{k^{2/3}} \leq \int_1^N \frac{dt}{t^{2/3}} + 1$.
+$\sim 3(N+1)^{1/3} \sim 3N^{1/3}$ et $[3t^{1/3}]_1^N \sim 3N^{1/3}$.
+D'où $\sum_{k=1}^N \frac{1}{k^{2/3}} \sim 3N^{1/3}$.
+Par sommation des relations de comparaison (si $u_n \sim \frac{1}{\sqrt[3]{3n}} > 0$ tg de SATP dv) :
+$\sum_{k=0}^n u_k^2 \sim \frac{1}{\sqrt[3]{9}} \times 3 n^{1/3} = \sqrt[3]{3n}$.
+D'où $\lim_{n \to +\infty} u_n \sum_{k=0}^n u_k^2 = 1$.
+
+\begin{remarkbox}
+Rem : On a $(S_n - S_{n-1}) S_n^2 \to 1$ d'où :
+$S_n - S_{n-1} \sim \frac{1}{S_n^2} \to 0 : S_n \sim S_{n-1}$ et $S_n - S_{n-1} \sim \frac{1}{S_{n-1}^2} + o\left(\frac{1}{S_{n-1}^2}\right)$.
+On cherche $\alpha \in \R / S_n^\alpha - S_{n-1}^\alpha$ ait un équivalent "simple".
+On a :
+\begin{align*}
+S_n^\alpha &= S_{n-1}^\alpha \left(1 + \frac{1}{S_{n-1}^3}\right)^{\alpha/3} = S_{n-1}^\alpha \left( 1 + \alpha \frac{1}{S_{n-1}^3} + o\left(\frac{1}{S_{n-1}^3}\right) \right) \\
+&= S_{n-1}^\alpha + \alpha S_{n-1}^{\alpha-3} + o(S_{n-1}^{\alpha-3})
+\end{align*}
+Pour $\alpha = 3 : S_n^3 - S_{n-1}^3 \to 3$.
+\end{remarkbox}
+\end{solution}
+
+\exercise{25}{}
+
+\begin{statementbox}
+Lundi 5/10
+
+Soit $u_0 \in \left]0; 1\right[$ ; on définit par récurrence $\forall n \in \N, u_{n+1} = u_n - u_n^2$
+\begin{enumerate}[label=\alph*.]
+  \item Étudier $(u_n)_{n \in \N}$.
+  \item On pose $\forall n \in \N, v_n = \frac{1}{u_n}$ ; mq $v_n = n + \ln n + \mathcal{O}(1)$.
+  \item En déduire un D.A à 2 termes de $u_n$.
+  \item Que dire si $u_0 \notin \left]0; 1\right[$ ?
+\end{enumerate}
+\end{statementbox}
+
+\begin{solution}
+\partanswer{a.}
+Soit $f : [0; 1] \longrightarrow \R, x \longmapsto x - x^2$ de classe $\mathcal{C}^1$.
+$\forall x \in [0; 1], f'(x) = 1 - 2x$.
+On déduit du tableau de variation que $f([0; 1]) \subset [0; 1]$.
+\begin{center}
+\begin{tabular}{|c|lcccr|}
+\hline
+$x$ & $0$ & & $\frac{1}{2}$ & & $1$ \\
+\hline
+$f'(x)$ & & $+$ & $0$ & $-$ & \\
+\hline
+$f(x)$ & $0$ & $\nearrow$ & $1/4$ & $\searrow$ & $0$ \\
+\hline
+\end{tabular}
+\end{center}
+Et donc par récurrence immédiate, $\forall n \in \N, u_n \in [0; 1]$.
+Et $\forall n \in \N, u_{n+1} = u_n - u_n^2 \leq u_n$ donc $(u_n)$ décroit, et est minorée par 0 : elle \boxed{CV} vers $l \in [0; 1]$.
+Par continuité de $f, l = f(l)$
+$l = l - l^2$ d'où $\boxed{l = 0}$.
+
+\partanswer{b.}
+Par récurrence $\forall n \in \N, u_n \in \left]0; 1\right]$, donc $v_n = \frac{1}{u_n}$ est bien défini.
+On a : $\forall n \in \N, v_{n+1} - v_n = \frac{1}{u_{n+1}} - \frac{1}{u_n} = \frac{1}{u_n - u_n^2} - \frac{1}{u_n}$
+Or $\lim_{n \to +\infty} u_n = 0$ donc $u_n^2 = o(u_n)$ et $v_{n+1} - v_n = \frac{1}{u_n} \left( \frac{1}{1-u_n} - 1 \right)$.
+On développe : $\frac{1}{1-u} = 1 + u + u^2 + \mathcal{O}(u^3)$
+d'où $v_{n+1} - v_n = 1 + u_n + \mathcal{O}(u_n^2) \xrightarrow[n \to +\infty]{} 1$.
+
+D'après Cesaro : $\frac{\sum_{m=0}^{N-1} v_{m+1} - v_m}{N} \xrightarrow[N \to +\infty]{} 1$ d'où $\lim_{n \to +\infty} \frac{v_N}{N} = 1$ et $v_n \sim n$.
+Ainsi $u_n \sim \frac{1}{n}$ et $\mathcal{O}(u_n^2) = \mathcal{O}(\frac{1}{n^2})$ tg d'une série abs \boxed{CV}.
+Il vient $v_{n+1} - v_n - 1 \sim u_n \sim \frac{1}{n} > 0$ à partir d'un certain rang.
+D'après le théorème de sommation des relations de comparaison, comme $\sum \frac{1}{k}$ \boxed{DV} :
+\[
+\sum_{k=1}^n \underbrace{(v_{k+1} - v_k - 1)}_{v_{n+1} - v_1 - n} \sim \sum_{k=1}^n \frac{1}{k} \sim \ln(n)
+\]
+Ainsi $v_{n+1} = n + \ln n + o(\ln n)$ et $v_n = n + \ln n + o(\ln n)$ (car $n - (n-1) = o(\ln n)$ et $\ln n - \ln(n-1) = o(\ln n)$).
+Il vient $u_n = \frac{1}{n + \ln n + o(\ln n)}$
+\[
+= \frac{1}{n} \times \frac{1}{1 + \frac{\ln n}{n} + o\left(\frac{\ln n}{n}\right)} = \frac{1}{n} \left( 1 - \frac{\ln n}{n} + o\left(\frac{\ln n}{n}\right) \right) = \frac{1}{n} - \underbrace{\frac{\ln n}{n^2}}_{= \mathcal{O}\left(\frac{1}{n^{3/2}}\right)} + o\left(\frac{\ln n}{n^2}\right)
+\]
+Ainsi $u_n = \frac{1}{n} + \mathcal{O}\left(\frac{1}{n^{3/2}}\right)$ tg d'une série abs \boxed{CV}.
+En reportant : $v_{n+1} - v_n = 1 + \frac{1}{n} + \mathcal{O}\left(\frac{1}{n^{3/2}}\right)$. Il vient alors : $v_{n+1} - v_1 = \sum_{k=1}^n (v_{k+1} - v_k) = n + \underbrace{H_n}_{\sim \ln n + \gamma} + \underbrace{\sum_{k=1}^n \mathcal{O}\left(\frac{1}{k^{3/2}}\right)}_{\to S}$
+$v_{n+1} - v_1 = n + \ln n + \gamma + S + o(1)$
+Finalement : $\boxed{v_n = n + \ln n + \mathcal{O}(1)}$ [car $n - (n-1) = \mathcal{O}(1)$ et $\ln n - \ln(n-1) = \mathcal{O}(1)$].
+
+\partanswer{c.}
+$\boxed{u_n = \frac{1}{n} - \frac{\ln n}{n^2} + o\left(\frac{\ln n}{n^2}\right)}$
+
+\partanswer{d.}
+Si $u_0 \in \{0, 1\} : \forall n \geq 1, u_n = 0$.
+Si $u_0 < 0$ : Par récurrence : $\forall n \in \N, u_n < 0$, de plus $u_{n+1} < u_n$ : décroissante, strictement négative.
+Si $\lim_{n \to +\infty} u_n = l \in \R$ alors $l = 0$, ce qui n'est pas donc $\boxed{\lim_{n \to +\infty} u_n = -\infty}$.
+Si $u_0 > 1$, $u_1 < 0$, on en revient au cas précédent.
+
+Rq : Dans ce cas, si on pose $\forall n \in \N, W_n = -u_n$ ; on a $\forall n \in \N, W_{n+1} = -u_{n+1} = -u_n + u_n^2 = W_n + W_n^2 \sim W_n^2$.
+On peut espérer que $\exists C > 0 / W_n \sim C^{2^n}$.
+Formons $\forall n \in \N, x_n = \frac{\ln W_n}{2^n}$, on a $x_{n+1} = \frac{\ln W_{n+1}}{2^{n+1}} = \frac{\ln(W_n^2 + W_n)}{2^{n+1}} = \frac{\ln W_n^2}{2^{n+1}} + \frac{\ln\left(1 + \frac{1}{W_n}\right)}{2^{n+1}} = \underbrace{\frac{2\ln W_n}{2^{n+1}}}_{x_n} + \underbrace{\frac{\ln\left(1 + \frac{1}{W_n}\right)}{2^{n+1}}}_{\sim \frac{1}{2^{n+1} W_n} = o\left(\frac{1}{2^{n+1}}\right)}$
+Ainsi $x_{n+1} - x_n \sim \frac{1}{2^{n+1} W_n} = o\left(\frac{1}{2^{n+1}}\right)$ car $\lim_{n \to +\infty} W_n = +\infty$.
+$\sum (x_{n+1} - x_n)$ \boxed{CV} et $(x_n)$ \boxed{CV} vers une limite $K$.
+Plus précisément : $W_n = \exp(2^n x_n)$ et $\sum_{k=n}^{+\infty} (x_{k+1} - x_k) = K - x_n = o\underbrace{\left(\sum_{k=n}^{+\infty} \frac{1}{2^{k+1}}\right)}_{= \frac{1}{2^n}}$ car $x_{k+1} - x_k = o\left(\frac{1}{2^{k+1}}\right)$ à partir d'un certain rang.
+Ainsi : $2^n x_n = 2^n K + o(1)$ et $\boxed{W_n \sim (e^K)^{2^n}}$.
+\end{solution}
+
+\exercise{30}{}
+
+\begin{statementbox}
+Soit $u_0 > 0$ et la suite définie par la relation de récurrence $u_{n+1} = u_n + u_n^2$. Mq $\exists C > 0 / u_n \sim C^{2^n}$.
+(on pourra former $v_n = \frac{\ln(u_n)}{2^n}$)
+\end{statementbox}
+
+\begin{solution}
+$f(x) = x + x^2$. $\forall n \in \N, u_{n+1} > u_n$. Par récurrence comme $u_0 > 0$, $\forall n \in \N, u_n > 0$.
+Donc la suite admet une limite $l \in \R_+ \cup \{+\infty\}$.
+Si $l \in \R$, par continuité de $f : l = l + l^2$ donc $l^2 = 0$ ce qui n'est pas.
+Ainsi $\lim_{n \to +\infty} u_n = +\infty$. Et $u_{n+1} = u_n + u_n^2 \sim u_n^2$ $\left( = u_n^2(1 + \frac{1}{u_n}) \right)$.
+On pose $v_n = \frac{\ln(u_n)}{2^n}$.
+Il vient
+\begin{align*}
+v_{n+1} &= \frac{\ln(u_{n+1})}{2^{n+1}} = \frac{\ln(u_n^2) + \ln(1+\frac{1}{u_n})}{2^{n+1}} \\
+&= \underbrace{\frac{2\ln(u_n)}{2^{n+1}}}_{v_n} + \underbrace{\frac{\ln\left(1+\frac{1}{u_n}\right)}{2^{n+1}}}_{\sim \frac{1}{u_n 2^{n+1}} = o\left(\frac{1}{2^n}\right) \text{ car } \lim_{n \to \infty} u_n = +\infty}
+\end{align*}
+Ainsi il vient $v_{n+1} - v_n = o\left(\frac{1}{2^{n+1}}\right)$ et $v_{n+1} - v_n > 0$ au delà d'un certain rang. Ainsi $v_{n+1} - v_n \to 0$ donc $(v_{n+1} - v_n)$ \boxed{CV}.
+D'après le thm de sommation des relations par comparaison, $\sum_{k=n}^{+\infty} (v_{k+1}-v_k) = o\left( \sum_{k=n}^{+\infty} \frac{1}{2^{k+1}} \right)$ et $\sum (v_{n+1}-v_n)$ \boxed{CV} donc $(v_n)$ converge vers une limite $L \in \R$.
+$L - v_n = o\left(\frac{1}{2^n}\right)$ et $v_n = L + o\left(\frac{1}{2^n}\right)$.
+Or $u_n = e^{2^n v_n} = (e^L)^{2^n} \times \underbrace{e^{o(1)}}_{\to 1} \sim (e^L)^{2^n}$ d'où le résultat avec $\boxed{C = e^L}$.
+
+\begin{remarkbox}
+NB : il ne suffit pas que $\left(\frac{\ln(u_n)}{2^n}\right)_{n \in \N}$ cv vers $L \in \R$ pour que $u_n \sim e^{L 2^n}$. \\
+Ex : $u_n = C^{2^n} \times n$.
+\end{remarkbox}
+\end{solution}
+
+\exercise{48}{}
+
+\begin{statementbox}
+Nature de la série $\sum u_n$ avec $\forall n \geq 1$ :
+\begin{enumerate}[label=\alph*)]
+  \item $u_n = \frac{1}{n^{1+\frac{1}{n}}}$
+  \item Soit $(a,b) \in \R^2, u_n = \sin\left(\pi \sqrt{n^2+an+b}\right)$ \quad [$\exists N_0 \in \N, \forall n \geq N_0, n^2+an+b > 0$]
+  \setcounter{enumi}{3}
+  \item $u_n = e^{- \sum_{k=1}^n \frac{1}{k}}$
+  \setcounter{enumi}{5}
+  \item $n \geq 2, \quad u_n = (\ln(n \ln n))^{-(\ln n)^\alpha}$
+  \item $u_n = \sin\left(\frac{2\pi n!}{e}\right)$ \quad [Rappel : $\frac{1}{e} = \sum_{k=0}^{+\infty} \frac{(-1)^k}{k!}$]
+  \item $u_n = \sin(n! \pi e)$
+\end{enumerate}
+\end{statementbox}
+
+\begin{solution}
+\partanswer{a)}
+$u_n = \frac{1}{n} \left( \underbrace{\exp\left(-\frac{\ln n}{n}\right)}_{\to 1} \right) \sim \frac{1}{n}$ : $\sum u_n$ \boxed{DV}.
+
+\partanswer{b)}
+Pour $n \geq N_0$
+$u_n = \sin\left( \pi n \sqrt{1 + \frac{a}{n} + \frac{b}{n^2}} \right), \quad \varepsilon_n = \mathcal{O}\left(\frac{1}{n}\right) \to 0$
+On a $\sqrt{1+\varepsilon_n} = 1 + \frac{1}{2}\varepsilon_n - \frac{1}{8}\varepsilon_n^2 + \mathcal{O}(\varepsilon_n^3)$
+\begin{align*}
+&= 1 + \frac{a}{2n} + \frac{b}{2n^2} - \frac{1}{8}\left( \frac{a^2}{n^2} + \mathcal{O}\left(\frac{1}{n^3}\right) \right) + \mathcal{O}\left(\frac{1}{n^3}\right) \\
+&= 1 + \frac{a}{2n} + \frac{1}{n^2} \left( \frac{-a^2 + 4b}{8} \right) + \mathcal{O}\left(\frac{1}{n^3}\right)
+\end{align*}
+D'où $u_n = \sin\left( \pi n \left( 1 + \frac{a}{2n} + \frac{4b-a^2}{8n^2} + \mathcal{O}\left(\frac{1}{n^3}\right) \right) \right)$
+$= \sin\left( n\pi + \frac{\pi a}{2} + \frac{\pi(4b-a^2)}{8n} + \mathcal{O}\left(\frac{1}{n^2}\right) \right)$
+$= (-1)^n \sin\left( \frac{\pi a}{2} + \frac{\pi(4b-a^2)}{8n} + \mathcal{O}\left(\frac{1}{n^2}\right) \right)$
+Si $a \notin 2\Z : \sin\left( \frac{\pi a}{2} + \frac{\pi(4b-a^2)}{8n} + \mathcal{O}\left(\frac{1}{n^2}\right) \right) \to \sin\frac{\pi a}{2} \neq 0$ et $\sum u_n$ \boxed{DV}.
+
+S'il existe $k \in \Z / a = 2k$.
+\begin{align*}
+u_n &= (-1)^n (-1)^k \sin\left( \frac{\pi(4b-a^2)}{8n} + \mathcal{O}\left(\frac{1}{n^2}\right) \right) \\
+&= (-1)^k \times \underbrace{(-1)^n \frac{\pi(4b-a^2)}{8n}}_{\text{tg d'une série alternée \boxed{CV}}} + \underbrace{\mathcal{O}\left(\frac{1}{n^2}\right)}_{\text{tg d'une série abs \boxed{CV}}} \quad \text{donc } \sum u_n \text{ \boxed{CV}}
+\end{align*}
+
+\partanswer{d)}
+$u_n = e^{- \sum_{k=1}^n \frac{1}{k}} \sim e^{-\ln(n)} = \frac{1}{n} \xrightarrow[n \to +\infty]{} 0$ ; $\sum \text{DV}$.\\
+Par sommation de relations de comparaison : $u_n \sim \frac{1}{n}$, $\sum u_n$ \boxed{\text{DV}}.
+
+\partanswer{f)}
+$n \geq 2 \quad u_n = (\ln(n \ln n))^{-(\ln n)^\alpha}$
+
+$u_n = \exp\left( -(\ln n)^\alpha \ln(\ln(n \ln n)) \right)$
+
+$\ln(\ln(n \ln n)) = \ln(\ln n + \ln \ln n) = \ln \ln n + \ln\left(1 + \frac{\ln \ln n}{\ln n}\right) \sim \ln \ln n$
+
+Donc $\exists N_0 \in \N, \forall n \geq N_0, \quad \frac{1}{2} \ln \ln n \leq \ln(\ln n + \ln \ln n) \leq \frac{3}{2} \ln \ln n$
+
+$\forall n \geq N_0, \quad \underbrace{\exp\left(-\frac{3}{2}(\ln n)^\alpha \ln \ln n\right)}_{v_n} \leq u_n \leq \underbrace{\exp\left(-\frac{1}{2}(\ln n)^\alpha \ln \ln n\right)}_{w_n}$
+
+\begin{itemize}
+  \item Si $\alpha < 0$ : $\lim_{n \to +\infty} (\ln n)^\alpha \ln \ln n = 0$.
+  Donc $\lim v_n = \lim w_n = 1$ et $\lim u_n = 1$. Donc DV grossière.
+  
+  \item Si $\alpha = 0$ : $\exp\left(-\frac{1}{2}\ln \ln n\right) = \frac{1}{(\ln n)^{1/2}}$ et $\lim_{n \to +\infty} \frac{1}{(\ln n)^{1/2}} = 0$.
+  Donc $\sum w_n$ DV donc $\sum u_n$ DV.
+  
+  \item Si $\alpha > 1$ : $\exists N_1 \in \N, \forall n \geq N_1, \quad (\ln n)^{\alpha-1} \geq 4$\\
+  D'où $\forall n \geq \max(N_1, N_0), w_n \leq \exp\left(-2 \ln n\right) = \frac{1}{n^2}$.\\
+  Donc $\sum w_n$ CV donc $\sum u_n$ CV.
+  
+  \item Si $\alpha \in \left]0, 1\right[$ : on a $\frac{1-\alpha}{2} > 0$.\\
+  Or $\ln \ln n = o\left( (\ln n)^{\frac{1-\alpha}{2}} \right)$. Donc $\exists N_2 \in \N / \forall n \geq N_2$, 
+  $\ln \ln n \leq \frac{2}{3} (\ln n)^{\frac{1-\alpha}{2}}$.\\
+  D'où $\forall n \geq N_2, \quad -\frac{3}{2}(\ln n)^\alpha \ln \ln n \geq -(\ln n)^\alpha (\ln n)^{\frac{1-\alpha}{2}} = -(\ln n)^{\frac{1+\alpha}{2}}$ car $\frac{1+\alpha}{2} < 1$.\\
+  Alors $\forall n \geq N_2, \quad v_n \geq \exp\left(-(\ln n)^{\frac{1+\alpha}{2}}\right) \geq \frac{1}{n}$.\\
+  Donc $\sum v_n$ DV donc $\sum u_n$ DV.
+\end{itemize}
+Finalement $\sum u_n$ CV ssi $\alpha > 1$.
+
+\textbf{Autre méthode :} on peut essayer d'appliquer un D.A. :\\
+On écrit $\ln(\ln(n \ln n)) = \ln(\ln n) + \ln\left( 1 + \frac{\ln \ln n}{\ln n} \right)$
+$= \ln \ln n + \frac{\ln \ln n}{\ln n} + \mathcal{O}\left(\left(\frac{\ln \ln n}{\ln n}\right)^2\right)$
+
+$\ln(u_n) = -(\ln n)^\alpha \left( \ln \ln n + \frac{\ln \ln n}{\ln n} + \mathcal{O}\left(\left(\frac{\ln \ln n}{\ln n}\right)^2\right) \right)$
+$= -(\ln n)^\alpha \ln \ln n - (\ln n)^{\alpha-1} \ln \ln n + \mathcal{O}\left( \frac{(\ln n)^{\alpha-2}}{(\ln \ln n)^{-2}} \right)$
+
+\partanswer{g)}
+$\frac{2\pi n!}{e} = \underbrace{2\pi \sum_{k=0}^n \frac{(-1)^k n!}{k!}}_{\in 2\Z} + \frac{(-1)^{n+1} 2\pi}{n+1} + 2\pi n! \sum_{k=n+2}^{+\infty} \frac{(-1)^k}{k!}$.
+Par le CSSA, $\left| \sum_{k=n+2}^{+\infty} \frac{(-1)^k}{k!} \right| \leq \frac{1}{(n+2)!}$, et $2\pi n! \sum_{k=n+2}^{+\infty} \frac{(-1)^k}{k!} = \mathcal{O}\left(\frac{1}{n^2}\right)$
+Ainsi $u_n = \sin\left( \frac{(-1)^{n+1} 2\pi}{n+1} + \mathcal{O}\left(\frac{1}{n^2}\right) \right)$
+$= \underbrace{(-1)^{n+1} \frac{2\pi}{n+1}}_{\text{tg série alt, \boxed{CV} par CSSA}} + \underbrace{\mathcal{O}\left(\frac{1}{n^2}\right)}_{\text{tg d'une série abs \boxed{CV}}}$.
+
+Et pour $v_n = \sin\left(\frac{\pi n!}{e}\right)$ ??
+$\frac{\pi n!}{e} = \pi \underbrace{\sum_{k=0}^{n-2} \frac{(-1)^k n!}{k!}}_{\in 2\Z} + \pi(-1)^{n-1} n + \pi(-1)^n + \frac{(-1)^{n+1}\pi}{n+1} + \mathcal{O}\left(\frac{1}{n^2}\right)$
+\begin{align*}
+v_n &= (-1)^{n-1} \sin\left( \pi(n-1) + \frac{\pi}{n+1} + \mathcal{O}\left(\frac{1}{n^2}\right) \right) \\
+&= + \sin\left( \frac{\pi}{n+1} + \mathcal{O}\left(\frac{1}{n^2}\right) \right) \\
+&= \underbrace{\frac{\pi}{n+1}}_{\text{tg d'une série \boxed{DV}}} + \underbrace{\mathcal{O}\left(\frac{1}{n^2}\right)}_{\text{tg d'une série abs \boxed{CV}}}, \quad \text{donc } \sum v_n \text{ \boxed{DV}}
+\end{align*}
+
+\partanswer{h)}
+$u_n = \sin(n! \pi e) \quad e = \sum_{k=0}^{+\infty} \frac{1}{k!}$
+
+$n! \pi e = \pi \sum_{k=0}^{n-2} \frac{n!}{k!} + \pi n + \pi + \pi n! \sum_{k=n+1}^{+\infty} \frac{1}{k!}$
+$= M \pi + \pi n + \pi + \underbrace{\frac{\pi}{n+1} + \mathcal{O}\left(\frac{1}{n^2}\right)}_{= \pi n! \sum_{k=n+1}^{+\infty} \frac{1}{k!}}$ \quad (avec $M \in 2\Z$)
+
+D'où $u_n = \sin\left( \pi(n+1) + \frac{\pi}{n+1} + \mathcal{O}\left(\frac{1}{n^2}\right) \right)$
+$= (-1)^{n+1} \sin\left( \frac{\pi}{n+1} + \mathcal{O}\left(\frac{1}{n^2}\right) \right)$
+$= \underbrace{(-1)^{n+1} \frac{\pi}{n+1}}_{\text{tg d'une série alternée CV}} + \underbrace{\mathcal{O}\left(\frac{1}{n^2}\right)}_{\text{tg d'une série abs CV}}$
+
+Donc $\sum u_n$ \boxed{\text{CV}}.
+\end{solution}
+
+\exercise{49}{}
+
+\begin{statementbox}
+\begin{enumerate}
+  \item[a.] Montrer la CV et calculer la somme $S = \sum_{m=1}^{+\infty} \left( \sum_{h=m}^{+\infty} \frac{(-1)^{h-1}}{h} \right)$
+  \item[j.] Montrer la CV et calculer la somme $\sum_{n=1}^\infty \frac{1}{\binom{n+q}{q+1}}$ où $q \in \N^*$
+  \item[2.] Montrer la convergence et calculer la somme de $\sum_{m=1}^{+\infty} \frac{\lfloor m^{1/3} \rfloor - \lfloor (m-1)^{1/3} \rfloor}{4m - m^{1/3}}$
+\end{enumerate}
+\end{statementbox}
+
+\begin{solution}
+\partanswer{a.}
+Soit $m \in \N^*, N > m$ :
+\begin{align*}
+\sum_{h=m}^N \frac{(-1)^{h-1}}{h} &= \sum_{h=m-1}^{N-1} \frac{(-1)^h}{h+1} = \int_0^1 \sum_{h=m-1}^{N-1} (-t)^h dt \\
+&= \int_0^1 \frac{(-t)^{m-1} - (-t)^N}{1+t} dt = \int_0^1 \frac{(-t)^{m-1}}{1+t} dt - \underbrace{\int_0^1 \frac{(-t)^N}{1+t} dt}_{|\cdot| \leq \int_0^1 t^N dt = \frac{1}{N+1} \to 0}
+\end{align*}
+d'où $\sum_{h=m}^{+\infty} \frac{(-1)^{h-1}}{h} = \int_0^1 \frac{(-t)^{m-1}}{1+t} dt$.
+Et, soit $N > 1$,
+\begin{align*}
+\sum_{m=1}^N \left( \sum_{h=m}^{+\infty} \frac{(-1)^{h-1}}{h} \right) &= \int_0^1 \sum_{m=1}^N \frac{(-t)^{m-1}}{1+t} dt \\
+&= \int_0^1 \frac{1 - (-t)^N}{(1+t)^2} dt = \int_0^1 \frac{dt}{(1+t)^2} - \underbrace{\int_0^1 \frac{(-t)^N}{(1+t)^2} dt}_{|\cdot| \leq \int_0^1 t^N dt = \frac{1}{N+1} \to 0}
+\end{align*}
+D'où la \boxed{CV}, et $\sum_{m=1}^{+\infty} \left( \sum_{h=m}^{+\infty} \frac{(-1)^{h-1}}{h} \right) = \int_0^1 \frac{dt}{(1+t)^2} = \left[ -\frac{1}{1+t} \right]_0^1 = \boxed{\frac{1}{2}}$.
+
+\partanswer{j.}
+$\forall n \in \N^*, \binom{n+q}{q+1} = \frac{(n+q)!}{(q+1)!(n-1)!} = \frac{(n+q) \times \dots \times n}{(q+1)!} \sim \frac{n^{q+1}}{(q+1)!}$
+Ainsi $\frac{1}{\binom{n+q}{q+1}} = \mathcal{O}\left(\frac{1}{n^{q+1}}\right)$ tg d'une série \boxed{CV} d'après Riemann.
+Décomposons $\frac{1}{X(X+1)\dots(X+q)} = \sum_{h=0}^q \frac{a_h}{X+h}$
+Soit $h \in \llbracket 0, q \rrbracket$. On multiplie par $(X+h)$ et on évalue en $-h$.
+$a_h = \frac{1}{(-h)(-h+1)\dots(-h+h-1)(-h+h+1)\dots(-h+q)} = \frac{1}{(-1)^h h! (q-h)!}$
+Ainsi $\frac{1}{\binom{n+q}{q+1}} = (q+1)! \sum_{h=0}^q \frac{(-1)^h}{h!(q-h)!} \times \frac{1}{n+h} = (q+1) \sum_{h=0}^q (-1)^h \binom{q}{h} \times \frac{1}{n+h}$
+
+Soit $N > 1$.
+\begin{align*}
+\sum_{m=1}^N \frac{1}{\binom{m+q}{q+1}} &= (q+1) \sum_{h=0}^q (-1)^h \binom{q}{h} \underbrace{\sum_{m=1}^N \frac{1}{m+h}}_{= H_{h+N} - H_h} \\
+&= (q+1) \left[ \sum_{h=0}^q (-1)^h \binom{q}{h} H_{h+N} - \sum_{h=0}^q (-1)^h \binom{q}{h} H_h \right]
+\end{align*}
+Or pour $h \in \llbracket 0, q \rrbracket$ :
+$H_{h+N} = \ln(h+N) + \gamma + o(1) = \ln N + \gamma + \ln\left(1 + \frac{h}{N}\right) + o(1) = \ln N + \gamma + o(1)$
+D'où $\sum_{m=1}^N \frac{1}{\binom{m+q}{q+1}} = (q+1) \left[ (\ln N + \gamma) \underbrace{\sum_{h=0}^q (-1)^h \binom{q}{h}}_{(1-1)^q = 0 \text{ car } q \in \N^*} + o(1) - \sum_{h=0}^q (-1)^h \binom{q}{h} H_h \right]$
+\[
+\xrightarrow[N \to +\infty]{} (q+1) \sum_{h=0}^q (-1)^{h+1} \binom{q}{h} H_h
+\]
+
+\partanswer{2.}
+Soit $(k,m) \in \N^2$, on a $k = \lfloor m^{1/3} \rfloor$ ssi $k \leq m^{1/3} < k+1$ ssi $k^3 \leq m < (k+1)^3$.
+Si $\forall k \in \N, m \neq k^3$ : $k^3 < m < (k+1)^3$
+donc $k^3 \leq m-1 < (k+1)^3$
+et $\lfloor (m-1)^{1/3} \rfloor = \lfloor m^{1/3} \rfloor$.
+
+Or si $m = k^3$ : $\lfloor m^{1/3} \rfloor = k$, $\lfloor (m-1)^{1/3} \rfloor = k-1$.
+Ainsi $\lfloor m^{1/3} \rfloor - \lfloor (m-1)^{1/3} \rfloor = \begin{cases} 1 & \text{si } m = k^3 \\ 0 & \text{sinon} \end{cases}$.
+
+Il vient (dans $\R_+ \cup \{+\infty\}$) : $\sum_{m=1}^{+\infty} u_m = \sum_{k=1}^{+\infty} \frac{1}{4k^3 - k}$ CV 
+car $\frac{1}{4k^3 - k} = \mathcal{O}\left(\frac{1}{k^3}\right)$.
+
+On décompose en éléments simples $\frac{1}{4X^3 - X} = \frac{1}{X(4X^2 - 1)} = \frac{1}{X(2X-1)(2X+1)}$
+$= \frac{a}{X} + \frac{b}{2X-1} + \frac{c}{2X+1}$
+On a $\begin{cases} a = -1 \\ b = 1 \\ c = 1 \end{cases}$
+
+Soit $N \geq 1$ : $\sum_{k=1}^N \frac{1}{4k^3 - k} = \sum_{k=1}^N -\frac{1}{k} + \sum_{k=1}^N \frac{1}{2k-1} + \sum_{k=1}^N \frac{1}{2k+1}$
+\[
+= -H_N + \underbrace{1 + \frac{1}{3} + \dots + \frac{1}{2N-1}}_{H_{2N} - \frac{1}{2}H_N} + \underbrace{\frac{1}{3} + \frac{1}{5} + \dots + \frac{1}{2N+1}}_{H_{2N} - 1 - \frac{1}{2}H_N + \frac{1}{2N+1}}
+\]
+\end{solution}
