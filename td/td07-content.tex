@@ -1,0 +1,603 @@
+% Transcription littérale du TD 07 intégral.
+% Les abréviations et l'ordre des raisonnements de la copie sont conservés.
+
+\exercise{8}{}
+
+\begin{statementbox}
+Soit $(G, \cdot)$ un groupe abélien fini.
+\begin{enumerate}[label=\alph*)]
+  \item Soit $H = \{x \in G \mid x^2 = e\} = \{x \in G \mid x = x^{-1}\}$. Justifier que $H$ est un sous-groupe de $G$, et qu'il existe $m \in \N^*$ tel que $H$ est isomorphe à $\left((\Z/2\Z)^m, +\right)$. \\
+  $\big[$On considérera $m := \min \{p \in \N^* \mid \exists (x_1, \dots, x_p) \in H^p, \operatorname{gr}(x_1, \dots, x_p) = H\}$, $(x_1, \dots, x_m)$ génératrice de $H$, et $\varphi : \left((\Z/2\Z)^m, +\right) \to (H, \cdot), (\bar{k}_1, \dots, \bar{k}_m) \mapsto x_1^{k_1} \dots x_m^{k_m}.\big]$
+  \item Soit $\pi = \prod_{x \in G} x$ ; déterminer $\pi$ en fonction de $|H|$.
+  \item Cas où $G = \left((\Z/2^m\Z)^*, \times\right)$ [inversibles dans l'anneau $\Z/2^m\Z$, avec $m \in \N^*$]. \\
+  $\big[$On observera que pour $m \geq 3$, $(1+2^{m-1})^2 \equiv 1 [2^m]$ et $1+2^{m-1} \not\equiv 1 [2^m], \not\equiv -1 [2^m].\big]$
+\end{enumerate}
+\end{statementbox}
+
+\begin{solution}
+\partanswer{a)}
+Soit $\psi : G \to G, x \mapsto x^2$. $\psi$ est un morphisme car $G$ est abélien.
+$H = \operatorname{Ker} \psi$ est donc un sous-groupe de $G$.
+
+Soit $\mathcal{A} = \{p \in \N^* \mid \exists (x_1, \dots, x_p) \in H^p, \operatorname{gr}(\{x_1, \dots, x_p\}) = H\}$. Comme $H$ est fini, $\mathcal{A}$ est une partie non vide de $\N$, on peut considérer :
+\[ m = \min \mathcal{A} \]
+Soit $(x_1, \dots, x_m)$ une famille génératrice de $H$.
+Comme $\forall x \in H, x^2 = e$, pour $k \in \Z$ :
+\[ x^k = \begin{cases} e & \text{si } k \text{ est pair} \\ x & \text{si } k \text{ est impair} \end{cases} \]
+On peut ainsi définir :
+\[ \varphi : \left((\Z/2\Z)^m, +\right) \longrightarrow (H, \cdot) \]
+\[ (\bar{k}_1, \dots, \bar{k}_m) \longmapsto x_1^{k_1} \dots x_m^{k_m} \]
+De plus, $\forall (\bar{k}_1, \dots, \bar{k}_m), (\bar{k}'_1, \dots, \bar{k}'_m) \in (\Z/2\Z)^m$ :
+\begin{align*}
+\varphi((\bar{k}_1, \dots, \bar{k}_m) + (\bar{k}'_1, \dots, \bar{k}'_m)) &= \varphi((\overline{k_1+k'_1}, \dots, \overline{k_m+k'_m})) \\
+&= x_1^{k_1+k'_1} \dots x_m^{k_m+k'_m} \\
+&= x_1^{k_1} \dots x_m^{k_m} x_1^{k'_1} \dots x_m^{k'_m} \quad (\text{car } G \text{ est abélien}) \\
+&= \varphi((\bar{k}_1, \dots, \bar{k}_m)) \cdot \varphi((\bar{k}'_1, \dots, \bar{k}'_m))
+\end{align*}
+Donc $\varphi$ est un morphisme de groupes.
+
+Soit $(\bar{k}_1, \dots, \bar{k}_m) \in \operatorname{Ker} \varphi$. On a $x_1^{k_1} \dots x_m^{k_m} = e$.
+Si $\exists i \in \llbracket 1, m \rrbracket$ tel que $k_i$ est impair, alors :
+\[ x_i^{k_i} = x_i = \prod_{j=1, j \neq i}^m x_j^{k_j} \in \operatorname{gr}\left(\{x_j\}_{j \in \llbracket 1, m \rrbracket \setminus \{i\}}\right) \]
+Ce qui contredit le caractère minimal de $m$.
+Donc $\forall i \in \llbracket 1, m \rrbracket, k_i$ est pair, et $\operatorname{Ker} \varphi = \{(\bar{0}, \dots, \bar{0})\}$, donc $\varphi$ est injectif.
+
+$\operatorname{Im} \varphi$ est un sous-groupe de $H$, et $H \subset \operatorname{Im} \varphi$ car $\forall i \in \llbracket 1, m \rrbracket, x_i = \varphi(\bar{0}, \dots, \bar{1}, \dots, \bar{0}) \in \operatorname{Im} \varphi$.
+Donc $\varphi$ est surjectif. C'est bien un isomorphisme.
+
+\partanswer{b)}
+On a :
+\[ \pi = \prod_{x \in G} x = \prod_{x \in H} x \cdot \prod_{x \in G \setminus H} x \]
+Or si $x \in G \setminus H$, $x^{-1} \neq x$ et $x \cdot x^{-1} = e$. Ainsi :
+\[ \pi = \prod_{x \in H} x \]
+\begin{itemize}
+  \item Si $|H| = 1$ : $H = \{e\}$, d'où $\pi = e$.
+  \item Si $|H| = 2$ : $H = \{e, x_1\}$ avec $x_1 \neq e$, d'où $\pi = x_1 \neq e$.
+  \item Si $|H| > 2$ : $\exists m \in \N, m \geq 2$ tel que $H$ est isomorphe à $((\Z/2\Z)^m, +)$, et avec les notations précédentes :
+  \[ \prod_{x \in H} x = \varphi\left( \sum_{(\bar{k}_1, \dots, \bar{k}_m) \in (\Z/2\Z)^m} (\bar{k}_1, \dots, \bar{k}_m) \right) \]
+  Or dans $(\Z/2\Z)^m$, pour chaque coordonnée, il y a $2^{m-1}$ fois $\bar{0}$ et $2^{m-1}$ fois $\bar{1}$. Et $2^{m-1}$ est pair car $m \geq 2$.
+  \[ \sum_{(\bar{k}_1, \dots, \bar{k}_m) \in (\Z/2\Z)^m} (\bar{k}_1, \dots, \bar{k}_m) = (\bar{0}, \dots, \bar{0}) \]
+  D'où $\pi = \varphi(\bar{0}, \dots, \bar{0}) = e$.
+\end{itemize}
+
+\partanswer{c)}
+$G = \left((\Z/2^m\Z)^*, \times\right) = \{\bar{k} \mid k \in \llbracket 1, 2^m \rrbracket \text{ et } k \text{ impair}\}$. On a $|G| = 2^{m-1} = \varphi(2^m)$.
+\begin{itemize}
+  \item Si $m = 1$ : $(\Z/2\Z)^* = \{\bar{1}\}$, $|H| = 1$, d'où $\prod_{x \in (\Z/2\Z)^*} x = \bar{1}$.
+  \item Si $m = 2$ : $(\Z/4\Z)^* = \{\bar{1}, \bar{3}\} = \{\bar{1}, -\bar{1}\}$, $|H| = 2$, d'où $\prod_{x \in (\Z/4\Z)^*} x = -\bar{1}$.
+  \item Si $m \geq 3$ : $\bar{1}^2 = (-\bar{1})^2 = \bar{1}$ donc $\bar{1} \in H$ et $-\bar{1} \in H$.
+  Or $(1+2^{m-1})^2 = 1 + 2^m + 2^{2(m-1)} \equiv 1 [2^m]$, donc $\overline{1+2^{m-1}} \in H$.
+  De plus, $1+2^{m-1} \not\equiv 1 [2^m]$ et $1+2^{m-1} \not\equiv -1 [2^m]$.
+  Donc $|H| > 2$.
+  Ainsi, $\boxed{\prod_{x \in (\Z/2^m\Z)^*} x = \bar{1}}$.
+\end{itemize}
+
+\begin{remarkbox}
+i.e. $\prod_{j=1}^{2^{m-2}} (2j-1) \equiv 1 [2^m]$. \\
+$\frac{(2^m-1)!}{2 \times 4 \times \dots \times (2^m-2)} = \frac{(2^m-1)!}{2^{2^{m-1}-1} \times (2^{m-1}-1)!} \equiv 1 [2^m]$. \\
+Rem : Soit $p$ premier, $p \geq 3$. $\mathbb{F}_p$ étant un corps, $\forall x \in \mathbb{F}_p, x^2 = \bar{1} \iff x \in \{\bar{1}, -\bar{1}\}$. Ici $|H| = 2$ et $\prod_{x \in \mathbb{F}_p^*} x = -\bar{1}$ (Théorème de Wilson).
+\end{remarkbox}
+\end{solution}
+
+\exercise{17}{}
+
+\begin{statementbox}
+Trouver tous les morphismes de groupe $f : (\mathbb{Q}, +) \to (\mathbb{Q}_+^*, \times)$.
+\end{statementbox}
+
+\begin{solution}
+Soit $f$ un tel morphisme. On a :
+\[ \forall m \in \Z, \forall x \in \mathbb{Q} : \quad f(mx) = f(x)^m \]
+Donc $\forall m \in \Z, \quad f(m) = f(1)^m$.
+Et $\forall x = \frac{p}{q} \in \mathbb{Q}$ avec $(p,q) \in \Z \times \N^*$ :
+\[ f\left(q \times \frac{p}{q}\right) = f\left(\frac{p}{q}\right)^q \]
+Comme $f\left(\frac{p}{q}\right) \in \mathbb{R}_+^*$ (puisque son image est dans $\mathbb{Q}_+^*$), on peut écrire $f\left(\frac{p}{q}\right) = f(p)^{1/q} = f(1)^{p/q}$.
+
+Définissons, pour $p$ premier et $(a,b) \in (\N^*)^2$ :
+\[ v_p\left(\frac{a}{b}\right) = v_p(a) - v_p(b) \in \Z \]
+Ce qui est bien cohérent car si $\frac{a}{b} = \frac{c}{d}$, $ad = bc$ donc $v_p(a) + v_p(d) = v_p(b) + v_p(c)$, soit $v_p(a) - v_p(b) = v_p(c) - v_p(d)$.
+
+Il vient :
+\[ \forall (x, x') \in (\mathbb{Q}_+^*)^2, \quad v_p(x x') = v_p(x) + v_p(x') \quad \text{et} \quad \forall x \in \mathbb{Q}_+^*, \quad x = \prod_{p \in \mathcal{P}} p^{v_p(x)} \quad \text{(produit fini)} \]
+Alors pour tout $m \in \N^*$ :
+\[ f(1) = f\left(\frac{1}{m}\right)^m \implies \forall p \in \mathcal{P}, \quad v_p(f(1)) = m v_p\left(f\left(\frac{1}{m}\right)\right) \in \Z \]
+Ceci étant vrai pour tout entier naturel non nul $m$, nécessairement :
+\[ \forall p \in \mathcal{P}, \quad v_p(f(1)) = 0 \]
+Et donc $f(1) = 1$.
+Ainsi, le seul morphisme est la fonction constante $\boxed{f : x \mapsto 1}$.
+
+\begin{remarkbox}
+Rem : Si $f : (\R, +) \to (\R, +)$ est un morphisme continu :
+$\forall (m,x) \in \Z \times \R, f(mx) = m f(x)$ et $\forall m \in \Z, f(m) = m f(1)$. \\
+$\forall (m,n) \in \Z \times \N^*, f\left(\frac{m}{n} \times n\right) = m f(1) = f(m) = n f\left(\frac{m}{n}\right)$. \\
+Donc $f\left(\frac{m}{n}\right) = \frac{m}{n} f(1)$, puis par continuité de $f$ et densité de $\mathbb{Q}$ dans $\R$ : $\forall x \in \R, f(x) = x f(1)$. \\
+Soit $g : (\R, +) \to (\R_+^*, \times)$ un morphisme continu. Soit $f = \ln(g) : \R \to \R$, on a $\forall (x,y) \in \R^2, f(x+y) = f(x) + f(y)$.
+Donc $\forall x \in \R, f(x) = x f(1)$, et $g(x) = e^{f(x)} = e^{x f(1)} = a^x$, où $a = e^{f(1)} > 0$.
+\end{remarkbox}
+\end{solution}
+
+\exercise{12}{}
+
+\begin{statementbox}
+On définit $\mu(1) = 1$, et $\forall m \in \N^*$, si $S_m = \{\xi \in \mathbb{C}^* \mid \xi^k = 1 \iff k \in m\N\} = \{\text{racines primitives } m\text{-ièmes de l'unité}\}$, [$\mathcal{P}_1 = \{+1\}, \mathcal{P}_2 = \{-1\}, \mathcal{P}_3 = \{i, -i\}, \mathcal{P}_4 = \{i, -i\}$],
+\[ \mu(n) = \sum_{\xi \in S_n} \xi \]
+\begin{enumerate}[label=\alph*)]
+  \item Soit $(n,m) \in (\N^*)^2$ avec $n \wedge m = 1$, mq $\mu(n m) = \mu(n) \times \mu(m)$. \\
+  $\big[$On montrera que $f : S_n \times S_m \to S_{nm}, (\xi, \xi') \mapsto \xi \xi'$ est bien définie et bijective.$\big]$
+  \item Soit $p$ premier et $k \in \N^*$, calculer $\mu(p^k)$.
+  \item En déduire, pour $n \in \N^*$, $\mu(n)$. $\big[$On décomposera $n = p_1^{\alpha_1} \dots p_r^{\alpha_r}$ où $(p_1, \dots, p_r)$ sont premiers distincts et $(\alpha_1, \dots, \alpha_r) \in (\N^*)^r$.\big]
+\end{enumerate}
+\end{statementbox}
+
+\begin{solution}
+\partanswer{a)}
+Soit $(\xi, \xi') \in S_n \times S_m$. Soit $k \in \Z$, si $(\xi \xi')^k = 1$ :
+\[ \xi^k = \xi'^{-k} \in \mathbb{U}_n \cap \mathbb{U}_m \]
+Son ordre (multiplicatif) divise $n$ et $m$, or $n \wedge m = 1$, donc son ordre vaut 1 et :
+\[ \xi^k = \xi'^{-k} = 1 \]
+Donc $n \mid k$ et $m \mid k$, d'où $nm \mid k$.
+Réciproquement, $(\xi \xi')^{nm} = 1$, donc $\operatorname{ordre}(\xi \xi') = nm$, soit $\xi \xi' \in S_{nm}$.
+L'application $f : (\xi, \xi') \mapsto \xi \xi'$ est donc bien définie.
+
+On a $|S_{mn}| = \varphi(mn) = \varphi(n)\varphi(m)$ (d'après le théorème chinois) $= |S_n \times S_m|$.
+Il suffit donc de montrer que $f$ est injective :
+Soient $(\xi_1, \xi'_1), (\xi_2, \xi'_2) \in S_n \times S_m$ tels que $\xi_1 \xi'_1 = \xi_2 \xi'_2$.
+\[ \xi_1 \xi_2^{-1} = \xi'_2 \xi'_1^{-1} \in \mathbb{U}_n \cap \mathbb{U}_m = \{1\} \]
+Donc $\xi_1 = \xi_2$ et $\xi'_1 = \xi'_2$.
+$f$ est injective, donc bijective.
+
+Il vient :
+\[ \mu(n) \times \mu(m) = \left(\sum_{\xi \in S_n} \xi\right) \times \left(\sum_{\xi' \in S_m} \xi'\right) = \sum_{\xi \in S_n, \xi' \in S_m} \xi \xi' = \sum_{x \in S_{nm}} x = \mu(nm) \]
+
+\partanswer{b)}
+\begin{itemize}
+  \item Pour $k=1$ : $\mu(p) = \sum_{\xi \in S_p} \xi = \sum_{j=1}^{p-1} e^{i \frac{2j\pi}{p}} = -1$ (car $\sum_{\xi \in \mathbb{U}_p} \xi = 0$).
+  \item Pour $k \geq 2$ : Les racines primitives $p^k$-ièmes de l'unité sont les éléments de $\mathbb{U}_{p^k} \setminus \mathbb{U}_{p^{k-1}}$.
+  \[ \mu(p^k) = \sum_{\xi \in \mathbb{U}_{p^k}} \xi - \sum_{\xi' \in \mathbb{U}_{p^{k-1}}} \xi' = 0 - 0 = 0 \]
+\end{itemize}
+
+\partanswer{c)}
+Soit $n = p_1^{\alpha_1} \dots p_r^{\alpha_r}$ avec $(p_i)_{1 \leq i \leq r}$ premiers distincts, $\alpha_i \in \N^*$.
+S'il existe $i \in \llbracket 1, r \rrbracket$ tel que $\alpha_i \geq 2$ (c'est-à-dire si $n$ possède un facteur carré), alors $\boxed{\mu(n) = 0}$.
+Sinon (si $n$ est sans facteur carré), $\boxed{\mu(n) = (-1)^r}$.
+\end{solution}
+
+\exercise{34}{}
+
+\begin{statementbox}
+Soit $p$ premier, $(a_0, \dots, a_{p-1}) \in \Z^p$, mq :
+\[
+\begin{vmatrix}
+a_0 & a_{p-1} & \dots & a_1 \\
+a_1 & a_0 & \dots & a_2 \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{p-1} & a_{p-2} & \dots & a_0
+\end{vmatrix}
+\equiv (a_0 + \dots + a_{p-1}) [p]
+\]
+$\big[$On observera que $\forall (A,B) \in \mathcal{M}_n(\mathbb{F}_p)^2$, $AB = BA \implies (A+B)^p = A^p + B^p$.\big]
+\end{statementbox}
+
+\begin{solution}
+\textbf{Lemme 1 :} Soit $k \in \llbracket 1, p-1 \rrbracket$, $p \mid \binom{p}{k}$. \\
+\textbf{Dém :} $k \binom{p}{k} = p \binom{p-1}{k-1}$ donc $p \mid k \binom{p}{k}$, or d'après le lemme de Gauss, $p \wedge k = 1$ donc $p \mid \binom{p}{k}$.
+
+Il s'en suit que si $(A,B) \in \mathcal{M}_n(\mathbb{F}_p)^2$ commutent :
+\[ (A+B)^p = A^p + B^p + \sum_{k=1}^{p-1} \binom{p}{k} A^k B^{p-k} = A^p + B^p \]
+
+Dans $\mathbb{F}_p$, soit $J = \begin{pmatrix} 0 & \dots & 0 & 1 \\ 1 & \dots & 0 & 0 \\ \vdots & \ddots & \vdots & \vdots \\ 0 & \dots & 1 & 0 \end{pmatrix} \in \mathcal{M}_p(\mathbb{F}_p)$, on a $J^p = I_p$.
+\[ \det\begin{pmatrix} a_0 & a_{p-1} & \dots & a_1 \\ \vdots & \ddots & \ddots & \vdots \\ a_{p-1} & \dots & a_1 & a_0 \end{pmatrix} = \det\left(\overline{a_0} I_p + \overline{a_1} J + \dots + \overline{a_{p-1}} J^{p-1}\right) \in \mathbb{F}_p \]
+D'après le théorème de Fermat :
+\begin{align*}
+\det(\cdot) &= [\det(\cdot)]^p = \det\left( \left[ \sum_{k=0}^{p-1} \overline{a_k} J^k \right]^p \right) \\
+&= \det\left( \sum_{k=0}^{p-1} \overline{a_k}^p J^{kp} \right) \quad (\text{d'après le lemme}) \\
+&= \det\left( \sum_{k=0}^{p-1} \overline{a_k} I_p \right) \quad (\text{d'après Fermat et } J^p = I_p) \\
+&= \det\left( \left(\sum_{k=0}^{p-1} \overline{a_k}\right) I_p \right) = \left( \sum_{k=0}^{p-1} \overline{a_k} \right)^p = \sum_{k=0}^{p-1} \overline{a_k}
+\end{align*}
+
+\begin{remarkbox}
+Rem : On peut mq $\forall A \in \mathcal{M}_n(\Z)$, $p$ premier :
+$\operatorname{tr}(A^p) \equiv \operatorname{tr}(A) [p]$. \\
+Utiliser $\chi_{A^p}(X^p) = \det(X^p I_n - A^p)$ ; et si $p \geq 3$ (impair) dans $\mathcal{M}_n(\mathbb{F}_p)$ :
+$= \det(X I_n - A)^p \dots$
+\end{remarkbox}
+\end{solution}
+
+\exercise{2}{}
+
+\begin{statementbox}
+Soit $(G, \cdot)$ un groupe / $\forall x \in G, x^2 = e$ (neutre).
+\begin{enumerate}[label=\alph*)]
+  \item Mq $G$ est abélien.
+  \item Si $G$ est fini, mq $\exists m \in \N / G$ est isomorphe à $((\Z/2\Z)^m, +)$. \\
+  $\big[$On pourra considérer $m = \min \{p \in \N \mid \exists (x_1, \dots, x_p) \in G^p, \operatorname{gr}(x_1, \dots, x_p) = G\}$ et $(x_1, \dots, x_m) \in G^m / \operatorname{gr}(x_1, \dots, x_m) = G$, et former $\varphi : (\Z/2\Z)^m \to G, (\bar{k}_1, \dots, \bar{k}_m) \mapsto x_1^{k_1} \dots x_m^{k_m}.\big]$
+\end{enumerate}
+\end{statementbox}
+
+\begin{solution}
+\partanswer{a)}
+Soit $(a,b) \in G^2$.
+\[ (ab)^{-1} = ab = b^{-1}a^{-1} = ba \]
+Donc $G$ est abélien.
+
+\partanswer{b)}
+$G$ étant fini, il admet une famille génératrice finie, donc $m$ est bien défini.
+Soit $(x_1, \dots, x_m) \in G^m$ tel que $G = \operatorname{gr}(\{x_1, \dots, x_m\})$.
+Définissons :
+\[ \varphi : (\Z/2\Z)^m \longrightarrow (G, \cdot) \]
+\[ (\bar{k}_1, \dots, \bar{k}_m) \longmapsto x_1^{k_1} \dots x_m^{k_m} \]
+$\varphi$ est bien définie car $\forall x \in G, \forall k \in \Z$ :
+\begin{itemize}
+  \item si $k \equiv 0 [2]$, $x^k = e$
+  \item si $k \equiv 1 [2]$, $x^k = x$
+\end{itemize}
+Donc $\forall (\bar{k}_1, \dots, \bar{k}_m), (\bar{k}'_1, \dots, \bar{k}'_m) \in (\Z/2\Z)^m$, si $\bar{k}_i = \bar{k}'_i$, alors $x_i^{k_i} = x_i^{k'_i}$, donc $\varphi$ est correctement définie.
+
+De plus :
+\begin{align*}
+\varphi((\bar{k}_1, \dots, \bar{k}_m) + (\bar{k}'_1, \dots, \bar{k}'_m)) &= \varphi((\overline{k_1+k'_1}, \dots, \overline{k_m+k'_m})) \\
+&= x_1^{k_1+k'_1} \dots x_m^{k_m+k'_m} \\
+&= x_1^{k_1} \dots x_m^{k_m} x_1^{k'_1} \dots x_m^{k'_m} \quad (\text{car } G \text{ est abélien}) \\
+&= \varphi((\bar{k}_1, \dots, \bar{k}_m)) \cdot \varphi((\bar{k}'_1, \dots, \bar{k}'_m))
+\end{align*}
+
+Soit $(\bar{k}_1, \dots, \bar{k}_m) \in \operatorname{Ker} \varphi$. On a $x_1^{k_1} \dots x_m^{k_m} = e$.
+Si $\exists i \in \llbracket 1, m \rrbracket$ tel que $k_i$ est impair, alors :
+\[ x_i^{k_i} = x_i = \prod_{j=1, j \neq i}^m x_j^{k_j} \in \operatorname{gr}\left(\{x_j\}_{j \neq i}\right) \]
+Alors $\{x_j \mid j \neq i\}$ générerait $G$, ce qui contredit le caractère minimal de $m$.
+Donc $\forall i \in \llbracket 1, m \rrbracket, k_i$ est pair, et $\bar{k}_i = \bar{0}$.
+Donc $\operatorname{Ker} \varphi = \{(\bar{0}, \dots, \bar{0})\}$, et $\varphi$ est injective.
+
+De plus, $\operatorname{Im} \varphi$ est un sous-groupe de $G$ et contient tous les $x_i$, donc $\operatorname{Im} \varphi = G$. $\varphi$ est surjectif.
+
+\begin{remarkbox}
+Rem : Si on note $+$ la loi sur $G$, on peut munir $G$ d'une structure de $\mathbb{F}_2$-ev en définissant :
+\[ \forall (\bar{k}, x) \in \mathbb{F}_2 \times G, \quad \bar{k} \cdot x = \begin{cases} 0 & \text{si } k \text{ est pair} \\ x & \text{si } k \text{ est impair} \end{cases} \]
+Soit $(x_i)_{i \in I}$ une base du $\mathbb{F}_2$-ev $G$. L'application
+\[ \varphi : (\Z/2\Z)^{(I)} \longrightarrow G, \quad (\bar{k}_i)_{i \in I} \longmapsto \sum \bar{k}_i x_i \]
+est un isomorphisme à support fini. Ainsi $G$ est isomorphe à $(\Z/2\Z)^{(I)}$. \\
+Rem : Nous montrerons que $(\Z/2\Z)^{(\N)}$ est un groupe dénombrable qui possède un nombre non dénombrable de sous-groupes.
+\end{remarkbox}
+\end{solution}
+
+\exercise{30}{}
+
+\begin{statementbox}
+Soit $n \in \N^*$.
+\begin{enumerate}[label=\alph*)]
+  \item Combien y a-t-il d'inversibles dans l'anneau $\Z/2^n\Z$ ?
+  On note cet ensemble $(\Z/2^n\Z)^*$, muni d'une structure de groupe.
+  \item Mq $\forall n \geq 3 : \bar{5}^{2^{n-3}} = \bar{1} + 2^{n-1} [2^n]$ ; en déduire l'ordre dans $(\Z/2^n\Z)^*$ de $\bar{5}$.
+  \item Mq dans $((\Z/2^n\Z)^*, \times)$, $\operatorname{gr}(-\bar{1}) \cap \operatorname{gr}(\bar{5}) = \{\bar{1}\}$.
+  \item Mq $((\Z/2^n\Z)^*, \times)$ est isomorphe à $(\Z/2\Z \times \Z/2^{n-2}\Z, +)$ (si $n \geq 3$).
+\end{enumerate}
+\end{statementbox}
+
+\begin{solution}
+\partanswer{a)}
+$\varphi(2^n) = 2^{n-1}$, donc $\operatorname{card}((\Z/2^n\Z)^*) = 2^{n-1}$ ($=\{\bar{k} \mid 1 \leq k \leq 2^n \text{ et } k \text{ impair}\}$).
+
+\partanswer{b)}
+Pour $n=3$ : $\bar{5} = \bar{5}^{2^{3-3}} = 1+2^2$, donc $\bar{5} \equiv 1+2^2 [8]$.
+Soit $n \geq 3$, supposons $5^{2^{n-3}} \equiv 1 + 2^{n-1} [2^n]$.
+Alors $\exists x \in \Z / 5^{2^{n-3}} = 1 + 2^{n-1} + x 2^n$.
+\begin{align*}
+5^{2^{n-2}} = \left(5^{2^{n-3}}\right)^2 &= (1 + 2^{n-1} + x 2^n)^2 \\
+&= 1 + 2^n + x 2^{n+1} + 2^{2n-2} + x 2^{2n} + x^2 2^{2n} \\
+&= 1 + 2^n + 2^{n+1}(\dots) \equiv 1 + 2^n [2^{n+1}]
+\end{align*}
+Par récurrence : $\forall n \geq 3, \quad \bar{5}^{2^{n-3}} = \overline{1+2^{n-1}} \in \Z/2^n\Z$.
+
+$\bar{5} \in (\Z/2^n\Z)^* \implies \omega_n(5) \mid 2^{n-1} \implies \exists k \in \llbracket 0, n-1 \rrbracket, \omega_n(5) = 2^k$.
+\[ 5^{2^{n-2}} = \bar{1} \quad \text{d'après ce qui précède} \]
+\[ \text{et } 5^{2^{n-3}} = \bar{1} + 2^{n-1} \neq \bar{1} \quad \text{car } 2^{n-1} \not\equiv 0 [2^n] \]
+D'où $\boxed{\omega_n(5) = 2^{n-2}}$.
+
+\partanswer{c)}
+$-\bar{1}$ est d'ordre 2 dans $(\Z/2^n\Z)^*$ ($n \geq 3$).
+Or $\operatorname{gr}(\bar{5})$ est cyclique d'ordre $2^{n-2}$, donc son unique élément d'ordre 2 est :
+\[ \bar{5}^{2^{n-3}} = \overline{1+2^{n-1}} \neq -\bar{1} \quad (\text{car } n \geq 3) \]
+Donc $-\bar{1} \notin \operatorname{gr}(\bar{5})$ et $\boxed{\operatorname{gr}(\bar{5}) \cap \operatorname{gr}(-\bar{1}) = \{\bar{1}\}}$.
+
+\partanswer{d)}
+Soit $\psi : (\Z/2\Z \times \Z/2^{n-2}\Z, +) \longrightarrow ((\Z/2^n\Z)^*, \times)$
+\[ (\bar{k}, \bar{l}) \longmapsto \bar{5}^l (-\bar{1})^k \]
+$\psi$ est un morphisme de groupes commutatifs.
+Soit $(\bar{k}, \bar{l}) \in \operatorname{Ker}(\psi)$. On a $\bar{5}^l (-\bar{1})^k = \bar{1}$.
+\[ (-\bar{1})^k = (\bar{5})^{-l} = \bar{5}^{-l} \in \operatorname{gr}(-\bar{1}) \cap \operatorname{gr}(\bar{5}) = \{\bar{1}\} \]
+Donc $\bar{l} = \bar{0}$ puis $\bar{k} = \bar{0}$.
+D'où $\psi$ est injective.
+De plus, $\operatorname{card}(\Z/2\Z \times \Z/2^{n-2}\Z) = 2^{n-1} = \operatorname{card}((\Z/2^n\Z)^*)$.
+$\psi$ est donc un isomorphisme.
+
+Il s'ensuit que pour $n \geq 3$, $((\Z/2^n\Z)^*, \times)$ n'est pas cyclique.
+\end{solution}
+
+\exercise{16}{}
+
+\begin{statementbox}
+Soit $(G,\cdot)$ un groupe ; on définit $D(G) := \operatorname{gr}\{a b a^{-1} b^{-1} \mid (a,b) \in G^2\}$ (groupe dérivé).
+\begin{enumerate}[label=\alph*)]
+  \item Identifier $D(G)$ lorsque $G$ est abélien.
+  \item Soit $n \geq 3$ ; mq deux 3-cycles sont conjugués dans $S_n$. Est-ce toujours le cas dans $A_n$ ?
+  \item Mq les 3-cycles engendre $A_n$ et en déduire $D(S_n)$.
+\end{enumerate}
+\end{statementbox}
+
+\begin{solution}
+\partanswer{a)}
+Si $G$ est abélien, $\forall (a,b) \in G^2, a b a^{-1} b^{-1} = e$, donc $\boxed{D(G) = \{e\}}$.
+
+\partanswer{b)}
+Soient $a_1, a_2, a_3$ 2 à 2 distincts et $b_1, b_2, b_3$ 2 à 2 distincts.
+On sait que $\forall \sigma \in S_n$, $\sigma (a_1, a_2, a_3) \sigma^{-1} = (\sigma(a_1), \sigma(a_2), \sigma(a_3))$.
+On choisit $\sigma \in S_n$ tel que $\sigma(a_1) = b_1, \sigma(a_2) = b_2, \sigma(a_3) = b_3$.
+Ainsi deux 3-cycles sont toujours conjugués dans $S_n$.
+
+Si $n \geq 5$, si $\sigma$ est impaire, soit $i \neq j \in \llbracket 1, n \rrbracket \setminus \{a_1, a_2, a_3\}$.
+On pose $\sigma' = \sigma \cdot (i,j) \in A_n$.
+On a toujours $\sigma'(a_1, a_2, a_3) \sigma'^{-1} = (b_1, b_2, b_3)$. Donc ils sont conjugués dans $A_n$.
+Pour $n = 3$ ou $n = 4$, ce n'est pas toujours le cas.
+
+\partanswer{c)}
+Si $\{a,b\} \cap \{c,d\} = \{b\}$ : $(a,b)(b,c) = (a,b,c)$ (3-cycle). \\
+Si $\{a,b\} \cap \{c,d\} = \emptyset$ : $(a,b)(c,d) = (a,b)(b,c)(b,c)(c,d) = (a,b,c)(b,c,d)$. \\
+Le produit de 2 transpositions étant un produit de 3-cycles, les 3-cycles engendrent $A_n$.
+
+Soit $(\sigma, \sigma') \in S_n^2$, $\epsilon(\sigma \sigma' \sigma^{-1} \sigma'^{-1}) = \epsilon(\sigma) \epsilon(\sigma') \epsilon(\sigma)^{-1} \epsilon(\sigma')^{-1} = 1$, donc $D(S_n) \subset A_n$.
+
+Réciproquement, soit $(a_1, a_2, a_3)$ un 3-cycle.
+$\exists \sigma \in S_n / (a_1, a_2, a_3)^2 = (a_1, a_3, a_2) = \sigma (a_1, a_2, a_3) \sigma^{-1}$.
+D'où $(a_1, a_2, a_3) = \sigma (a_1, a_2, a_3) \sigma^{-1} (a_1, a_2, a_3)^{-1} \in D(S_n)$.
+Les 3-cycles sont dans $D(S_n)$, d'où $A_n \subset D(S_n)$.
+Ainsi $\boxed{D(S_n) = A_n}$.
+\end{solution}
+
+\exercise{Ulm}{}
+
+\begin{statementbox}
+(Ulm)
+\begin{enumerate}
+  \item Soit $(G,\cdot)$ un groupe, mq $G$ est fini ssi il possède un nombre fini de sous-groupes.
+  \item On suppose que $G$ possède un nombre dénombrable de sous-groupes ; mq $G$ est dénombrable.
+  \item La réciproque est-elle vraie ? \\
+  $\big[$On pourra considérer $G = ((\Z/2\Z)^{(\N)}, +) = \{\varepsilon = (\varepsilon_n)_{n \in \N} \mid \forall n \in \N, \varepsilon_n \in \{\bar{0}, \bar{1}\} \text{ et } \{n \in \N \mid \varepsilon_n = \bar{1}\} \text{ est fini}\}$, muni de $+$ ; pour $k \in \N, e_k = (\delta_{k,n})$, et pour $A \subset \N$, $H_A := \{\varepsilon \in G \mid \operatorname{supp} \varepsilon \subset A\}$ ; on montrera que $A = \{k \in \N \mid e_k \in H_A\}.\big]$
+\end{enumerate}
+\end{statementbox}
+
+\begin{solution}
+\partanswer{1)}
+Si $G$ est fini, alors $\mathcal{P}(G)$ est fini donc $G$ possède un nombre fini de sous-groupes.
+Réciproquement, si $G$ possède un nombre fini de sous-groupes : pour $n \in G$, si $\operatorname{gr}\{n\}$ était infini (isomorphe à $(\Z, +)$), il posséderait une infinité de sous-groupes, ce qui ne se peut pas. Donc chaque $\operatorname{gr}\{n\}$ est fini.
+Comme $G = \bigcup_{a \in G} \operatorname{gr}\{a\}$ et qu'il y a un nombre fini de sous-groupes, $G$ est fini.
+
+\partanswer{2)}
+D'après 1, $G$ n'est pas fini. $G = \bigcup_{x \in G} \operatorname{gr}\{x\}$, or $\operatorname{gr}\{x\}$ est monogène donc fini ou dénombrable. Ainsi $G$ est la réunion dénombrable de groupes au plus dénombrables, donc $G$ est dénombrable.
+
+\partanswer{3)}
+Considérons $G = ((\Z/2\Z)^{(\N)}, +)$.
+Soit $A \subset \N$. $H_A = \{\varepsilon \in G \mid \operatorname{supp}\varepsilon \subset A\}$ est un sous-groupe de $G$.
+Soit $k \in \N$, $e_k \in H_A \iff \operatorname{supp}(e_k) = \{k\} \subset A \iff k \in A$, donc $A = \{k \in \N \mid e_k \in H_A\}$.
+
+L'application $\mathcal{P}(\N) \to \{\text{sous-groupes de } G\}, A \mapsto H_A$ est injective.
+Or $\mathcal{P}(\N)$ n'est pas dénombrable, donc $G$ possède un nombre non dénombrable de sous-groupes.
+
+Enfin, $G = \bigcup_{N \in \N} \{\varepsilon \in G \mid \operatorname{supp} \varepsilon \subset \llbracket 0, N \rrbracket\}$, réunion dénombrable d'ensembles finis (de cardinal $2^{N+1}$), donc $G$ est dénombrable.
+La réciproque est donc \boxed{\text{fausse}}.
+\end{solution}
+
+\exercise{Mines}{}
+
+\begin{statementbox}
+(Mines)
+\begin{enumerate}
+  \item Soit $n \in \N^*$ et $d \mid n$, mq $\{k \in \Z/n\Z \mid d\bar{k} = \bar{0}\} = \operatorname{gr}\left\{\frac{\bar{n}}{d}\right\} = \left\{l \frac{\bar{n}}{d} \mid 0 \leq l \leq d-1\right\}$ et de cardinal $d$.
+  \item Soit $(n,m) \in (\N^*)^2$ ; combien y a-t-il de morphismes de groupes de $(\Z/n\Z, +) \to (\Z/m\Z, +)$ ?
+  \item Mq on peut munir $\operatorname{Hom}(\Z/n\Z, \Z/m\Z)$ d'une structure de groupe additif et que ce groupe est cyclique.
+\end{enumerate}
+\end{statementbox}
+
+\begin{solution}
+\partanswer{1)}
+Soit $k \in \Z$, $d\bar{k} = \bar{0} \iff n \mid dk \iff \frac{n}{d} \mid k \iff \exists l \in \llbracket 0, d-1 \rrbracket / \bar{k} = l \frac{\bar{n}}{d}$.
+
+\partanswer{2)}
+Soit $f \in \operatorname{Hom}(\Z/n\Z, \Z/m\Z)$, $\forall \bar{k} \in \Z/n\Z, f(\bar{k}) = k f(\bar{1})$.
+On a $n f(\bar{1}) = f(\bar{n}) = \tilde{0} \in \Z/m\Z$.
+Soit $\delta = n \wedge m$, $\exists (u,v) \in \Z^2 / \delta = u n + v m$ ; alors :
+\[ \delta f(\bar{1}) = u n f(\bar{1}) + v m f(\bar{1}) = \tilde{0} \]
+D'après 1) : $\exists l \in \llbracket 0, \delta - 1 \rrbracket / f(\bar{1}) = l \frac{\tilde{m}}{\delta}$.
+
+Réciproquement, pour $l \in \llbracket 0, \delta - 1 \rrbracket$, $f_l : \bar{k} \mapsto \frac{\tilde{k l m}}{\delta}$ est un morphisme bien défini.
+Il y a donc $\boxed{n \wedge m}$ morphismes.
+
+\partanswer{3)}
+Munissons $\operatorname{Hom}(\Z/n\Z, \Z/m\Z)$ de la somme usuelle $(f+g)(\bar{k}) = f(\bar{k}) + g(\bar{k})$.
+Comme $f_l = l f_1$, $\operatorname{Hom}(\Z/n\Z, \Z/m\Z) = \operatorname{gr}(f_1)$ est un groupe cyclique de cardinal $\delta = n \wedge m$.
+\end{solution}
+
+\exercise{ENS}{}
+
+\begin{statementbox}
+(ENS) Soit $(G,\cdot)$ un groupe, on définit $\mathcal{R}$ sur $G$ :
+$\forall (u,y) \in G^2 : u \mathcal{R} y \iff \exists a \in G / y = a u a^{-1}$ (relation de conjugaison).
+On note pour $n \in G, \bar{n} := \{a n a^{-1} \mid a \in G\}$ ; soit $S_n := \{a \in G \mid a n = n a\}$ ("stabilisateur" de $n$), et $Z(G) := \{u \in G \mid \forall a \in G, a u = u a\}$ ("centre" de $G$).
+\begin{enumerate}[label=\alph*)]
+  \item Mq $\forall n \in G, S_n$ est un sous-groupe de $G$, ainsi que $Z(G)$, et que $S_n = G \iff n \in Z(G) \iff |\bar{n}| = 1$.
+  \item Mq $\forall n \in G : |\bar{n}| \times |S_n| = |G|$.
+  \item Mq $\exists A \subset G \setminus Z(G) \mid |G| = |Z(G)| + \sum_{n \in A} \frac{|G|}{|S_n|}$ (éventuellement $A = \emptyset$).
+  \item Soit $p$ premier et $\alpha \in \N^*$ ; on suppose que $|G| = p^\alpha$. Mq $Z(G) \neq \{e\}$.
+  \item On suppose que $|G| = p^2$. Mq $G$ est abélien, isomorphe à $\Z/p^2\Z$ ou à $(\Z/p\Z)^2$.
+\end{enumerate}
+\end{statementbox}
+
+\begin{solution}
+\partanswer{a)}
+$e \in S_n$. Pour $(a,b) \in S_n^2$, $abn = anb = nab$, donc $ab \in S_n$.
+Et $an = na \implies n a^{-1} = a^{-1} n \implies a^{-1} \in S_n$. $S_n$ est un sous-groupe de $G$.
+$Z(G) = \bigcap_{n \in G} S_n$ est donc un sous-groupe de $G$.
+Enfin, $S_n = G \iff \forall a \in G, an = na \iff n \in Z(G) \iff \bar{n} = \{n\} \iff |\bar{n}| = 1$.
+
+\partanswer{b)}
+Posons $f : G \to \bar{n}, a \mapsto a n a^{-1}$ (surjective par définition).
+\[ f(a) = f(b) \iff a n a^{-1} = b n b^{-1} \iff b^{-1} a \in S_n \iff a \in b S_n \]
+Il y a exactement $|S_n|$ antécédents pour chaque élément de $\bar{n}$.
+D'après le lemme des bergers : $\boxed{|G| = |\bar{n}| \cdot |S_n|}$.
+
+\partanswer{c)}
+En partitionnant $G$ par les classes d'équivalence de $\mathcal{R}$ et en prenant $A$ un représentant de chaque classe non réduite à un élément :
+\[ |G| = |Z(G)| + \sum_{n \in A} |\bar{n}| = |Z(G)| + \sum_{n \in A} \frac{|G|}{|S_n|} \quad \text{(équation aux classes)} \]
+
+\partanswer{d)}
+On a $p^\alpha = |Z(G)| + \sum_{n \in A} \frac{|G|}{|S_n|}$.
+Pour $n \in A \subset G \setminus Z(G)$, $S_n \neq G$ donc $|S_n| = p^\beta$ avec $\beta < \alpha$, d'où $p \mid \frac{|G|}{|S_n|}$.
+On en déduit que $p \mid |Z(G)|$, donc $\boxed{Z(G) \neq \{e\}}$.
+
+\partanswer{e)}
+Si $|G| = p^2$, $|Z(G)| = p$ ou $|Z(G)| = p^2$.
+Si $|Z(G)| = p$, alors $A \neq \emptyset$. Pour $n \in A$, $|S_n| = p$. Mais $Z(G) \subset S_n$ et $|Z(G)| = p$, donc $S_n = Z(G)$, ce qui contredit $n \in S_n \setminus Z(G)$.
+Ainsi $|Z(G)| = p^2$, et $G$ est abélien.
+
+Si $G$ est cyclique, $G \simeq \Z/p^2\Z$.
+Sinon, tout élément non neutre est d'ordre $p$. Soit $n \neq e$ et $y \notin \operatorname{gr}\{n\}$.
+L'application $f : (\Z/p\Z)^2 \to G, (\bar{k}, \bar{l}) \mapsto n^k y^l$ est un morphisme.
+Si $n^k y^l = e$, si $p \nmid l$, alors $y \in \operatorname{gr}\{n\}$ (impossible), donc $p \mid l$ et $p \mid k$.
+$f$ est un morphisme injectif puis bijectif par cardinalité.
+$G$ est donc isomorphe à $\boxed{(\Z/p\Z)^2}$.
+
+\begin{remarkbox}
+Rem : Ce n'est plus vrai pour $p^3$ [cf. le groupe des quaternions $\{\pm I_2, \pm J, \pm K, \pm L\}$, de cardinal 8 et non abélien].
+\end{remarkbox}
+\end{solution}
+
+\exercise{X}{}
+
+\begin{statementbox}
+(X)
+\begin{enumerate}
+  \item Soit $p$ premier, soit $(A, +, \times)$ un anneau tel que $\forall a \in A, pa = 0$ [par exemple $\mathbb{F}_p, \mathbb{F}_p[X], \mathcal{M}_n(\mathbb{F}_p)$]. Soit $(a,b) \in A^2$ deux éléments qui commutent, mq $(a+b)^p = a^p + b^p$.
+  \item Soit $n \in \N^*, M \in \mathcal{M}_n(\Z)$, mq $\operatorname{tr}(M^p) \equiv \operatorname{tr}(M) [p]$. \\
+  $\big[$On considérera, si $M = (m_{i,j})_{1 \leq i,j \leq n}$, $\bar{M} = (\bar{m}_{i,j})_{1 \leq i,j \leq n}$, et on formera $\chi_{\bar{M}^p}(X^p) = \det(X^p I_n - \bar{M}^p) \in \mathbb{F}_p[X]$.\big]
+\end{enumerate}
+\end{statementbox}
+
+\begin{solution}
+\partanswer{1)}
+Comme $a$ et $b$ commutent, la formule du binôme de Newton s'applique :
+\[ (a+b)^p = \sum_{k=0}^p \binom{p}{k} a^k b^{p-k} = a^p + \left( \sum_{k=1}^{p-1} \binom{p}{k} a^k b^{p-k} \right) + b^p \]
+\textbf{Lemme :} $\forall k \in \llbracket 1, p-1 \rrbracket, \quad p \mid \binom{p}{k}$. \\
+\textbf{Dém :} On a $k! \binom{p}{k} = p(p-1)\dots(p-k+1)$, donc $p \mid k! \binom{p}{k}$. Or $p \wedge k! = 1$ (car $k < p$ et $p$ premier), donc d'après le lemme de Gauss, $p \mid \binom{p}{k}$.
+
+Dans l'anneau $A$, comme $pa = 0$ pour tout $a \in A$, on a $\binom{p}{k} a^k b^{p-k} = 0$ pour tout $1 \leq k \leq p-1$.
+Ainsi, $\boxed{(a+b)^p = a^p + b^p}$.
+
+\partanswer{2)}
+Soit $M \in \mathcal{M}_n(\Z)$, on note $\bar{M} \in \mathcal{M}_n(\mathbb{F}_p)$ la matrice réduite modulo $p$.
+Considérons le polynôme $\chi_{\bar{M}^p}(X^p) = \det(X^p I_n - \bar{M}^p) \in \mathbb{F}_p[X]$.
+
+D'après le résultat de la question 1), dans l'anneau de polynômes à coefficients matriciels :
+\begin{itemize}
+  \item Si $p \geq 3$ (impair) :
+  \[ (X I_n - \bar{M})^p = X^p I_n + (-1)^p \bar{M}^p = X^p I_n - \bar{M}^p \]
+  \item Si $p = 2$ : $-\bar{I} = \bar{I}$ donc $-\bar{M} = \bar{M}$ et $(X I_n - \bar{M})^2 = X^2 I_n - \bar{M}^2$.
+\end{itemize}
+
+Dans tous les cas :
+\begin{align*}
+\chi_{\bar{M}^p}(X^p) &= \det(X^p I_n - \bar{M}^p) = \det\left( (X I_n - \bar{M})^p \right) = \det(X I_n - \bar{M})^p \\
+&= \chi_{\bar{M}}(X)^p = \left( \bar{a}_0 + \bar{a}_1 X + \dots + \bar{a}_{n-1} X^{n-1} + X^n \right)^p
+\end{align*}
+où $\bar{a}_{n-1} = -\operatorname{tr}(\bar{M}) = -\overline{\operatorname{tr}(M)}$.
+
+D'après la question 1) appliquée à la somme, puis par le Petit Théorème de Fermat ($\bar{a}^p = \bar{a}$) :
+\begin{align*}
+\chi_{\bar{M}^p}(X^p) &= \bar{a}_0^p + (\bar{a}_1 X)^p + \dots + (\bar{a}_{n-1} X^{n-1})^p + X^{np} \\
+&= \bar{a}_0 + \bar{a}_1 X^p + \dots + \bar{a}_{n-1} X^{(n-1)p} + X^{np}
+\end{align*}
+D'autre part, en posant $Y = X^p$, le polynôme caractéristique de $\bar{M}^p$ s'écrit :
+\[ \chi_{\bar{M}^p}(Y) = \bar{b}_0 + \bar{b}_1 Y + \dots + \bar{b}_{n-1} Y^{n-1} + Y^n \]
+avec $\bar{b}_{n-1} = -\operatorname{tr}(\bar{M}^p) = -\overline{\operatorname{tr}(M^p)}$.
+
+Par identification des coefficients de degré $n-1$ en $Y = X^p$ :
+\[ \bar{b}_{n-1} = \bar{a}_{n-1} \implies -\overline{\operatorname{tr}(M^p)} = -\overline{\operatorname{tr}(M)} \]
+Ce qui signifie exactement que $\boxed{\operatorname{tr}(M^p) \equiv \operatorname{tr}(M) [p]}$.
+\end{solution}
+
+\exercise{Convolution et Möbius}{}
+
+\begin{statementbox}
+(ENS, Centrale) On définit sur $\mathbb{C}^{\N^*}$ la loi interne (appelée "convolution arithmétique") :
+\[ \forall (f,g) \in (\mathbb{C}^{\N^*})^2, \quad f * g : \N^* \to \mathbb{C}, \quad n \mapsto (f*g)(n) = \sum_{d \mid n} f(d) g\left(\frac{n}{d}\right) \]
+$\big[$Exemples : $(f*g)(1) = f(1)g(1)$, $(f*g)(2) = f(1)g(2) + f(2)g(1)$, $(f*g)(6) = \sum_{d_1 d_2 = 6} f(d_1) g(d_2) = f(1)g(6) + f(2)g(3) + f(3)g(2) + f(6)g(1)$\big]
+
+On définit $\varepsilon : \N^* \to \mathbb{C}, 1 \mapsto 1 \text{ et } n \mapsto 0 \text{ si } n \geq 2$. \\
+On définit la fonction de Möbius $\mu : \N^* \to \mathbb{C}$ par :
+\[ \mu(1) = 1 \]
+\[ \text{si } n = p_1 \dots p_r \text{ ($p_1 \dots p_r$ premiers distincts)}, \quad \mu(n) = (-1)^r \]
+\[ \text{si } \exists i \text{ t.q. } \alpha_i \geq 2 \text{ dans } n = p_1^{\alpha_1} \dots p_r^{\alpha_r}, \quad \mu(n) = 0 \]
+\begin{enumerate}
+  \item Montrer que $*$ est associative, commutative et que $\varepsilon$ est son élément neutre.
+  \item Montrer le lemme : $\mu * \mathbf{1} = \varepsilon$ (où $\mathbf{1}(n) = 1, \forall n$).
+  \item En déduire l'expression de l'indicatrice d'Euler $\varphi(n)$ à l'aide de $\mu$.
+  \item Application (Mines / Centrale) : Soit $N \in \N^*$, on munit $\llbracket 1, N \rrbracket^2$ de la probabilité uniforme.
+  Déterminer $\lim_{N \to +\infty} p_N$, où $p_N = \mathbb{P}((n,m) \in \llbracket 1, N \rrbracket^2 \text{ tels que } n \wedge m = 1)$.
+\end{enumerate}
+\end{statementbox}
+
+\begin{solution}
+\partanswer{1)}
+$\forall (f,g) \in (\mathbb{C}^{\N^*})^2, \forall n \in \N^*$ :
+\[ (f*g)(n) = \sum_{d_1 d_2 = n} f(d_1) g(d_2) = \sum_{d_2 d_1 = n} g(d_2) f(d_1) = (g*f)(n) \]
+De même, $\forall (f,g,h) \in (\mathbb{C}^{\N^*})^3$ :
+\begin{align*}
+((f*g)*h)(n) &= \sum_{d d_3 = n} (f*g)(d) h(d_3) = \sum_{d d_3 = n} \left( \sum_{d_1 d_2 = d} f(d_1) g(d_2) \right) h(d_3) \\
+&= \sum_{d_1 d_2 d_3 = n} f(d_1) g(d_2) h(d_3) = (f*(g*h))(n)
+\end{align*}
+Donc $*$ est commutative et associative.
+Enfin, $(f*\varepsilon)(n) = \sum_{d \mid n} f(d) \varepsilon\left(\frac{n}{d}\right) = f(n) \varepsilon(1) = f(n)$, donc $\varepsilon$ est l'élément neutre.
+
+\partanswer{2)}
+$(\mu * \mathbf{1})(1) = \mu(1) = 1 = \varepsilon(1)$.
+Pour $n \geq 2$, soit sa décomposition $n = p_1^{\alpha_1} \dots p_r^{\alpha_r}$ avec $r \geq 1$.
+Les diviseurs $d$ de $n$ pour lesquels $\mu(d) \neq 0$ sont de la forme $d = p_1^{\beta_1} \dots p_r^{\beta_r}$ avec $\beta_i \in \{0, 1\}$.
+\begin{align*}
+(\mu * \mathbf{1})(n) &= \sum_{d \mid n} \mu(d) = \sum_{\beta_1, \dots, \beta_r \in \{0, 1\}} \mu(p_1^{\beta_1} \dots p_r^{\beta_r}) \\
+&= \sum_{I \subset \llbracket 1, r \rrbracket} (-1)^{|I|} = \sum_{k=0}^r \binom{r}{k} (-1)^k = (1-1)^r = 0 = \varepsilon(n)
+\end{align*}
+Donc $\boxed{\mu * \mathbf{1} = \varepsilon}$.
+
+\partanswer{3)}
+D'après la formule d'Euler-Möbius, $\forall n \in \N^*, \quad n = \sum_{d \mid n} \varphi(d)$, c'est-à-dire :
+\[ \mathbf{id}_{\N^*} = \varphi * \mathbf{1} \]
+En convolant par $\mu$ et par associativité :
+\[ \mathbf{id}_{\N^*} * \mu = (\varphi * \mathbf{1}) * \mu = \varphi * (\mathbf{1} * \mu) = \varphi * \varepsilon = \varphi \]
+Ainsi, $\forall n \in \N^*$ :
+\[ \boxed{\varphi(n) = \sum_{d_1 d_2 = n} d_1 \mu(d_2) = \sum_{d \mid n} \frac{n}{d} \mu(d)} \]
+
+\partanswer{4)}
+Dans le tableau des $n \wedge m$ pour $(n,m) \in \llbracket 1, N \rrbracket^2$, par symétrie autour de la diagonale, le nombre de couples tels que $n \wedge m = 1$ vaut :
+\[ 1 + 2 \sum_{n=2}^N \varphi(n) \]
+Donc :
+\[ p_N = \frac{1 + 2 \sum_{n=2}^N \varphi(n)}{N^2} = \frac{2 \sum_{n=1}^N \varphi(n) - 1}{N^2} \]
+En utilisant le résultat de la question 3) :
+\begin{align*}
+p_N &= \frac{1}{N^2} \left( 2 \sum_{n=1}^N \sum_{d_1 d_2 = n} d_1 \mu(d_2) - 1 \right) \\
+&= \frac{1}{N^2} \left( 2 \sum_{d_2=1}^N \mu(d_2) \sum_{d_1=1}^{\lfloor N/d_2 \rfloor} d_1 - 1 \right) \\
+&= \frac{1}{N^2} \left( 2 \sum_{d_2=1}^N \mu(d_2) \frac{1}{2} \left\lfloor \frac{N}{d_2} \right\rfloor \left( \left\lfloor \frac{N}{d_2} \right\rfloor + 1 \right) - 1 \right)
+\end{align*}
+
+Comme $\frac{N}{d_2} - 1 < \lfloor \frac{N}{d_2} \rfloor \leq \frac{N}{d_2}$, on a $\lfloor \frac{N}{d_2} \rfloor \left( \lfloor \frac{N}{d_2} \rfloor + 1 \right) = \frac{N^2}{d_2^2} + \mathcal{O}\left(\frac{N}{d_2}\right)$.
+On en déduit :
+\[ \left| p_N - \sum_{d=1}^N \frac{\mu(d)}{d^2} \right| \leq \frac{1}{N^2} + \frac{1}{N} \sum_{d=1}^N \frac{1}{d} \sim \frac{\ln N}{N} \xrightarrow[N \to +\infty]{} 0 \]
+
+Enfin, calculons la somme de la série $\sum_{d=1}^{+\infty} \frac{\mu(d)}{d^2}$.
+La famille $\left( \frac{\mu(d)}{d^2 d'^2} \right)_{(d,d') \in (\N^*)^2}$ est absolument sommable.
+\begin{align*}
+\left( \sum_{d=1}^{+\infty} \frac{\mu(d)}{d^2} \right) \times \left( \sum_{d'=1}^{+\infty} \frac{1}{d'^2} \right) &= \sum_{n=1}^{+\infty} \frac{1}{n^2} \sum_{d d' = n} \mu(d) \\
+&= \sum_{n=1}^{+\infty} \frac{1}{n^2} \underbrace{(\mu * \mathbf{1})(n)}_{= \delta_{n,1}} = 1
+\end{align*}
+Comme $\sum_{d'=1}^{+\infty} \frac{1}{d'^2} = \zeta(2) = \frac{\pi^2}{6}$, on en conclut que :
+\[ \sum_{d=1}^{+\infty} \frac{\mu(d)}{d^2} = \frac{6}{\pi^2} \]
+Et finalement :
+\[ \boxed{\lim_{N \to +\infty} p_N = \frac{6}{\pi^2}} \]
+\end{solution}
